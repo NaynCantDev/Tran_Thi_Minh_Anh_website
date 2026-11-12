@@ -1,0 +1,199 @@
+{% extends "_base.html.j2" %}
+{% block title %}Giới thiệu{% endblock %}
+{% block content %}
+{% set words = name.split(' ') %}
+
+{# ───────────── I. PRÉLUDE ───────────── #}
+<section class="prelude">
+  <div class="prelude-in">
+    <div class="pre-copy">
+      <p class="eyebrow"><span class="dot"></span>Portfolio · Recital số 1 · {{ major }}</p>
+      <h1 class="name" aria-label="{{ name }}">
+        <span class="name-sm" aria-hidden="true">{{ words[:-2]|join(' ') }}</span>
+        <span class="name-lg" aria-hidden="true">{{ words[-2] }} <em>{{ words[-1] }}</em></span>
+      </h1>
+      <p class="pre-bio">{{ short_bio }}</p>
+      <div class="pre-act">
+        <a class="btn btn-ink" href="projects.html">Xem chương trình</a>
+        <a class="btn btn-line" href="#vocalise">Khởi động giọng cùng mình</a>
+      </div>
+    </div>
+
+    <figure class="arch">
+      <div class="arch-frame">
+        {% if avatar_url %}<img src="{{ avatar_url }}" alt="{{ name }} trong buổi lễ Ngày Nhà giáo Việt Nam 20/11 của Khoa Sư phạm Âm nhạc" width="398" height="512">{% endif %}
+      </div>
+      <figcaption>{{ avatar_caption }}</figcaption>
+      <svg class="arch-notes" viewBox="0 0 120 200" aria-hidden="true">
+        <g><ellipse cx="22" cy="150" rx="9" ry="6.5" transform="rotate(-20 22 150)"/><rect x="29" y="104" width="2.4" height="46"/></g>
+        <g><ellipse cx="80" cy="70" rx="7" ry="5" transform="rotate(-20 80 70)"/><ellipse cx="104" cy="58" rx="7" ry="5" transform="rotate(-20 104 58)"/><rect x="85.5" y="34" width="2" height="36"/><rect x="109.5" y="22" width="2" height="36"/><path d="M85.5 34 111.5 22v6L85.5 40z"/></g>
+      </svg>
+    </figure>
+  </div>
+
+  <div class="staffbar" id="staffbar">
+    <p class="staff-hint" id="staffHint">Chạm vào khuông nhạc để hát một nốt — càng cao càng thanh.</p>
+    <canvas id="staffCanvas" aria-hidden="true"></canvas>
+  </div>
+</section>
+
+{# ───────────── LỜI NGỎ ───────────── #}
+<section class="sec letter" id="about">
+  <div class="sec-in letter-in">
+    <div class="letter-body reveal">
+      <p class="eyebrow">Lời ngỏ</p>
+      <h2 class="h2">Về <em>mình</em></h2>
+      <p class="dropcap">{{ about.intro }}</p>
+      <p class="sign">— {{ words[-2:]|join(' ') }}</p>
+    </div>
+    <div class="card-prog reveal">
+      <p class="card-prog-h"><span>Thông tin nghệ sĩ</span><span class="ornament" aria-hidden="true">❦</span></p>
+      <dl>
+        <div><dt>Họ và tên</dt><dd>{{ name }}</dd></div>
+        <div><dt>Ngành</dt><dd>{{ major }}</dd></div>
+        <div><dt>Sở thích</dt><dd>{{ about.hobbies }} <span class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></dd></div>
+        <div><dt>Mã sinh viên</dt><dd>{{ student_id or 'đang cập nhật' }}</dd></div>
+        <div><dt>Lớp</dt><dd>{{ class or 'đang cập nhật' }}</dd></div>
+        {% if birthday %}<div><dt>Ngày sinh</dt><dd>{{ birthday }}</dd></div>{% endif %}
+        <div><dt>Trường</dt><dd>{{ school }}</dd></div>
+        <div><dt>Học phần</dt><dd>{{ subject }}</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+{# ───────────── VOCALISE ───────────── #}
+<section class="sec vocalise" id="vocalise">
+  <div class="sec-in">
+    <div class="voc-head reveal">
+      <p class="eyebrow eyebrow-lt">Vocalise · Phòng luyện thanh</p>
+      <h2 class="h2">Khởi động giọng <em>cùng {{ words[-2:]|join(" ") }}</em></h2>
+      <p class="voc-lead">Trước mỗi buổi hát, ai cũng cần luyện thanh. Chọn một mẫu, một nguyên âm rồi bấm “Bắt đầu”: đàn dạo hợp âm, giọng mẫu hát từng nốt và tự nâng lên nửa cung sau mỗi lượt — đúng như trong giờ thanh nhạc. Bạn có thể hát theo.</p>
+    </div>
+
+    <div class="voc-box reveal">
+      <div class="voc-ctrl">
+        <fieldset class="seg">
+          <legend>Mẫu luyện</legend>
+          <label><input type="radio" name="pat" value="scale5" checked><span>Năm nốt</span></label>
+          <label><input type="radio" name="pat" value="arp"><span>Rải hợp âm</span></label>
+          <label><input type="radio" name="pat" value="octave"><span>Quãng tám</span></label>
+        </fieldset>
+        <fieldset class="seg">
+          <legend>Nguyên âm</legend>
+          <label><input type="radio" name="vow" value="a" checked><span>a</span></label>
+          <label><input type="radio" name="vow" value="o"><span>o</span></label>
+          <label><input type="radio" name="vow" value="u"><span>u</span></label>
+          <label><input type="radio" name="vow" value="i"><span>i</span></label>
+        </fieldset>
+        <div class="seg">
+          <span class="legend" id="keyLbl">Giọng xuất phát</span>
+          <div class="stepper" role="group" aria-labelledby="keyLbl">
+            <button type="button" id="keyDn" aria-label="Hạ nửa cung">−</button>
+            <output id="keyOut">Đô trưởng</output>
+            <button type="button" id="keyUp" aria-label="Nâng nửa cung">+</button>
+          </div>
+        </div>
+        <button class="btn btn-glow" type="button" id="vocPlay"><span class="ic-play" aria-hidden="true"></span><span class="t">Bắt đầu</span></button>
+      </div>
+
+      <div class="voc-score">
+        <p class="voc-now" aria-live="polite"><span id="vocRound">Lượt 1 / 4</span> · <span id="vocKey">Đô trưởng</span></p>
+        <svg id="vocStaff" class="voc-staff" viewBox="0 0 640 170" role="img" aria-label="Khuông nhạc hiển thị mẫu luyện thanh"></svg>
+        <ol class="voc-syl" id="vocSyl"></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ───────────── MỤC TIÊU HỌC TẬP ───────────── #}
+<section class="sec goals" id="goals">
+  <div class="sec-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Phần I · Mục tiêu học tập</p>
+      <h2 class="h2">To dần, <em>crescendo</em></h2>
+      <p class="sec-sub">Bốn mục tiêu của học phần, xếp từ nhẹ đến mạnh — như một câu nhạc lớn dần, bắt đầu từ hiểu biết nền tảng và vang to nhất khi mang được vào lớp học nhạc. Bấm vào ký hiệu cường độ để nghe.</p>
+    </div>
+
+    <div class="cresc" id="cresc">
+      <svg class="hairpin" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path d="M8 60 992 8M8 60 992 112"/></svg>
+      <ol class="cresc-list">
+        {% for g in learning_goals %}
+        <li class="cg reveal" style="--i:{{ loop.index0 }}">
+          <button class="dyn" type="button" data-vol="{{ loop.index }}" aria-label="Nghe cường độ {{ g.term }}">{{ g.dyn }}</button>
+          <p class="dyn-term">{{ g.term }}</p>
+          <h3 class="h3">{{ g.title }}</h3>
+          <p>{{ g.text }}</p>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <details class="orig reveal">
+      <summary>Đọc nguyên văn mục tiêu học tập</summary>
+      <p>{{ learning_goal }}</p>
+    </details>
+  </div>
+</section>
+
+{# ───────────── ĐỊNH HƯỚNG PHÁT TRIỂN ───────────── #}
+<section class="sec song" id="direction">
+  <div class="sec-in song-in">
+    <div class="song-side">
+      <p class="eyebrow">Phần II · Định hướng phát triển</p>
+      <h2 class="h2">Bài hát <em>của mình</em></h2>
+      <p class="sec-sub">Định hướng của mình viết thành cấu trúc một ca khúc: mở đầu nhẹ nhàng, dâng lên dần và vỡ òa ở điệp khúc — nơi công nghệ bước vào lớp học âm nhạc.</p>
+      <div class="songmap" role="list" aria-label="Cấu trúc bài hát">
+        {% for s in direction_song %}<span role="listitem" class="sm-seg" data-k="{{ loop.index0 }}" style="--w:{{ s.melody|length }}"><b>{{ s.part }}</b></span>{% endfor %}
+        <i class="sm-head" aria-hidden="true"></i>
+      </div>
+      <button class="btn btn-ink" type="button" id="songPlay"><span class="ic-play" aria-hidden="true"></span><span class="t">Hát cả bài</span></button>
+    </div>
+
+    <ol class="lyrics">
+      {% for s in direction_song %}
+      <li class="ly reveal" data-k="{{ loop.index0 }}" data-mel="{{ s.melody|join(',') }}">
+        <p class="ly-tag">[{{ s.part }}]</p>
+        <h3 class="h3">{{ s.title }}{% if s.part == 'Pre-chorus' %} <span class="fermata" title="Điểm dừng"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M3 22a17 17 0 0 1 34 0"/><circle cx="20" cy="18" r="2.6"/></svg><span class="vh">Điểm dừng</span></span>{% endif %}</h3>
+        <p>{{ s.text }}</p>
+        {% if s.part == 'Pre-chorus' %}<p class="ly-note">Điểm dừng (<em>fermata</em>): AI là nhạc đệm — giọng hát chính vẫn là của mình.</p>{% endif %}
+        <button class="ly-play" type="button" aria-label="Hát thử đoạn {{ s.part }}"><span class="ic-play" aria-hidden="true"></span>Hát thử</button>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+  <div class="sec-in">
+    <details class="orig reveal">
+      <summary>Đọc nguyên văn định hướng phát triển</summary>
+      <p>{{ direction }}</p>
+    </details>
+  </div>
+</section>
+
+{# ───────────── MỤC TIÊU PORTFOLIO ───────────── #}
+<section class="sec ticket-sec" id="portfolio">
+  <div class="sec-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Phần III · Mục tiêu của Portfolio</p>
+      <h2 class="h2">Tấm vé <em>vào xem</em></h2>
+    </div>
+
+    <div class="ticket reveal" id="ticket">
+      <div class="tk-main">
+        <p class="tk-top"><span>Admit one</span><span>{{ school }}</span></p>
+        <p class="tk-title">Portfolio <em>{{ words[-2:]|join(' ') }}</em></p>
+        <p class="tk-text">{{ portfolio_goal }}</p>
+        <dl class="tk-rows">
+          {% for r in portfolio_rows %}<div><dt>{{ r.k }}</dt><dd>{{ r.v }}</dd></div>{% endfor %}
+        </dl>
+      </div>
+      <div class="tk-stub">
+        <p class="tk-stub-k">Hàng</p><p class="tk-stub-v">6 bài</p>
+        <p class="tk-stub-k">Học phần</p><p class="tk-stub-v">INF2501</p>
+        <a class="tk-go" href="projects.html">Vào xem →</a>
+        <svg class="tk-bars" viewBox="0 0 80 22" aria-hidden="true">{% for x in [0,3,5,9,11,14,18,20,23,27,29,32,36,38,41,45,48,50,54,57,59,63,66,68,72,75,77] %}<rect x="{{ x }}" y="0" width="{{ 1 + (x % 3 == 0) }}" height="22"/>{% endfor %}</svg>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

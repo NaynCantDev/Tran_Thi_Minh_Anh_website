@@ -1,0 +1,55 @@
+{% extends "_base.html.j2" %}
+{% block title %}Bài {{ project.id }}: {{ project.title }}{% endblock %}
+{% block content %}
+{% set p = project %}
+{% set prod = p.product or {} %}
+{% macro tbd() %}<p class="tbd">Nội dung đang được cập nhật</p>{% endmacro %}
+
+<section class="page-head proj-head">
+  <div class="sec-in">
+    <p class="eyebrow">Tiết mục {{ p.id|roman }} / {{ (projects|length)|roman }} · Bài {{ p.section }}</p>
+    <h1 class="h1 h1-proj"><span class="no">No. {{ p.id|roman }}</span>{{ p.title }}</h1>
+    <p class="sec-sub">{{ p.chapter }}</p>
+  </div>
+</section>
+
+<div class="sec-in proj">
+  <article class="proj-body">
+    <section class="part reveal">
+      <h2 class="h3"><em>Mở đầu</em> Mục tiêu</h2>
+      {% if p.objective is blank %}{{ tbd() }}{% else %}<p class="lead">{{ p.objective }}</p>{% endif %}
+    </section>
+
+    <section class="part reveal">
+      <h2 class="h3"><em>Diễn tiến</em> Quá trình thực hiện</h2>
+      {% if p.process is blank %}{{ tbd() }}{% else %}
+      <ol class="steps">{% for s in p.process if not (s is blank) %}<li class="st st-{{ s|step_kind }}">{{ s }}</li>{% endfor %}</ol>
+      {% endif %}
+    </section>
+
+    <section class="part reveal">
+      <h2 class="h3"><em>Thành phẩm</em> Sản phẩm</h2>
+      {% if not (prod.intro is blank) %}<p class="req">{{ prod.intro }}</p>{% endif %}
+      {% if prod.gallery %}
+      <div class="gallery">{% for g in prod.gallery %}<figure><img src="{{ g.src }}" alt="{{ g.caption or p.title }}" loading="lazy">{% if g.caption %}<figcaption>{{ g.caption }}</figcaption>{% endif %}</figure>{% endfor %}</div>
+      {% else %}{{ tbd() }}{% endif %}
+      {% if p.source_url %}<p class="src">Bản gốc: <a href="{{ p.source_url }}" target="_blank" rel="noopener">{{ p.source_label or 'Google Docs' }}</a></p>{% endif %}
+    </section>
+  </article>
+
+  <aside class="margin">
+    <p class="margin-h">Ghi chú bên lề</p>
+    <dl>
+      <div><dt>Chương</dt><dd>{{ p.chapter }}</dd></div>
+      <div><dt>Bài</dt><dd>{{ p.section }}</dd></div>
+      <div><dt>Công cụ</dt><dd>{% if p.tool is blank %}—{% else %}{{ p.tool }}{% endif %}</dd></div>
+      <div><dt>Sử dụng AI</dt><dd>{% if p.ai_use is blank %}—{% else %}{{ p.ai_use }}{% endif %}</dd></div>
+    </dl>
+  </aside>
+</div>
+
+<nav class="sec-in turn" aria-label="Chuyển tiết mục">
+  {% if prev_p %}<a class="turn-a" href="project-{{ prev_p.id }}.html"><span>← Tiết mục trước</span><b>{{ prev_p.id|roman }}. {{ prev_p.title }}</b></a>{% else %}<a class="turn-a" href="index.html"><span>← Về đầu chương trình</span><b>Giới thiệu</b></a>{% endif %}
+  {% if next_p %}<a class="turn-a nx" href="project-{{ next_p.id }}.html"><span>Tiết mục sau →</span><b>{{ next_p.id|roman }}. {{ next_p.title }}</b></a>{% else %}<a class="turn-a nx" href="conclusion.html"><span>Coda →</span><b>Tổng kết</b></a>{% endif %}
+</nav>
+{% endblock %}

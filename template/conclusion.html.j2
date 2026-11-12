@@ -1,0 +1,28 @@
+{% extends "_base.html.j2" %}
+{% block title %}Tổng kết{% endblock %}
+{% block content %}
+{% set c = conclusion %}
+{% macro tbd() %}<p class="tbd">Nội dung đang được cập nhật</p>{% endmacro %}
+<section class="page-head coda-head">
+  <svg class="valance" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1200v30{% for i in range(12) %} q-50 34 -100 0{% endfor %}z"/></svg>
+  <div class="sec-in narrow center">
+    <p class="eyebrow">Coda · Chào màn</p>
+    <h1 class="h1">Tổng <em>kết</em></h1>
+    <p class="sec-sub">Nhìn lại cả học phần sau sáu tiết mục.</p>
+  </div>
+</section>
+
+<section class="sec-in narrow coda">
+  <blockquote class="coda-q">{% if c.experience is blank %}{{ tbd() }}{% else %}<p>{{ c.experience }}</p>{% endif %}</blockquote>
+
+  <div class="coda-grid">
+    <div class="part"><h2 class="h3"><em>i.</em> Kiến thức và kỹ năng có được</h2>{% if c.key_skills is blank %}{{ tbd() }}{% else %}<ul class="ticks">{% for s in c.key_skills %}<li>{{ s }}</li>{% endfor %}</ul>{% endif %}</div>
+    <div class="part"><h2 class="h3"><em>ii.</em> Tiết mục tâm đắc nhất</h2>{% if c.highlight is blank %}{{ tbd() }}{% else %}<p>{{ c.highlight }}</p>{% endif %}</div>
+    <div class="part"><h2 class="h3"><em>iii.</em> Khó khăn và cách vượt qua</h2>{% if c.challenge is blank %}{{ tbd() }}{% else %}<p>{{ c.challenge }}</p>{% endif %}</div>
+    <div class="part"><h2 class="h3"><em>iv.</em> Hướng đi tiếp theo</h2>{% if c.future is blank %}{{ tbd() }}{% else %}<p>{{ c.future }}</p>{% endif %}</div>
+  </div>
+
+  <h2 class="h3 bis-h">Bis — xem lại các tiết mục</h2>
+  <ol class="bis">{% for p in projects %}<li><a href="project-{{ p.id }}.html"><span>{{ p.id|roman }}.</span>{{ p.title }}</a></li>{% endfor %}</ol>
+</section>
+{% endblock %}

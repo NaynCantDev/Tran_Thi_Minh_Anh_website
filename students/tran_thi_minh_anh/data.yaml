@@ -1,0 +1,177 @@
+# ============================================================
+#  Portfolio CNS&AI — Trần Thị Minh Anh (Sư phạm Âm nhạc)
+#  Mọi nội dung web nằm ở file này. Ô nào còn "…" sẽ hiện nhãn
+#  "đang cập nhật" trên web.
+# ============================================================
+
+name: Trần Thị Minh Anh
+student_id: ''
+birthday: ''
+class: ''
+email: ''
+major: Sư phạm Âm nhạc
+school: Trường Đại học Sư phạm Nghệ thuật Trung ương
+subject: Nhập môn Công nghệ số và ứng dụng trí tuệ nhân tạo
+avatar: images/Tran_Thi_Minh_Anh.jpg
+avatar_caption: Ngày Nhà giáo Việt Nam 20/11 · Khoa Sư phạm Âm nhạc
+short_bio: Sinh viên Sư phạm Âm nhạc yêu ca hát — đang học cách để công nghệ số và AI trở thành “nhạc đệm” cho việc học và cho những giờ dạy nhạc sau này.
+
+about:
+  intro: Mình là Trần Thị Minh Anh, sinh viên ngành Sư phạm Âm nhạc. Ca hát là niềm yêu thích lớn nhất của mình. Mình mong được dùng công nghệ số và AI để soạn giáo án, thiết kế bài giảng, xây dựng học liệu âm nhạc — và trở thành một giáo viên âm nhạc thích ứng với giáo dục thời đại số.
+  hobbies: Ca hát
+
+# ---------- Mục tiêu học tập ----------
+learning_goal: >-
+  Môn học Nhập môn Công nghệ số và Ứng dụng AI nhằm trang bị cho sinh viên những kiến thức cơ bản về công nghệ số,
+  trí tuệ nhân tạo (AI), hiểu được vai trò, tầm quan trọng và khả năng ứng dụng của công nghệ trong học tập,
+  nghiên cứu và đời sống. Đồng thời, giúp sinh viên hình thành và phát triển các kỹ năng sử dụng những công cụ AI
+  như ChatGPT, Gemini, Copilot để tìm kiếm, xử lý thông tin, sáng tạo nội dung và giải quyết các nhiệm vụ học tập.
+  Qua đó, rèn luyện tư duy sáng tạo, khả năng phân tích, đánh giá thông tin và ý thức sử dụng công nghệ một cách
+  an toàn, hiệu quả, có trách nhiệm. Đặc biệt, sinh viên biết vận dụng công nghệ số và AI vào chuyên ngành Sư phạm
+  Âm nhạc, hỗ trợ xây dựng giáo án, thiết kế bài giảng và nâng cao chất lượng dạy học, đáp ứng yêu cầu đổi mới
+  giáo dục trong thời đại chuyển đổi số hiện nay.
+# 4 mục tiêu tách từ đoạn trên, xếp như một đoạn "crescendo" (to dần)
+learning_goals:
+  - dyn: p
+    term: piano · nhẹ
+    title: Hiểu nền tảng
+    text: Kiến thức cơ bản về công nghệ số và trí tuệ nhân tạo; vai trò, tầm quan trọng và khả năng ứng dụng của công nghệ trong học tập, nghiên cứu và đời sống.
+  - dyn: mp
+    term: mezzo piano · vừa nhẹ
+    title: Dùng thạo công cụ AI
+    text: Kỹ năng sử dụng ChatGPT, Gemini, Copilot để tìm kiếm, xử lý thông tin, sáng tạo nội dung và giải quyết các nhiệm vụ học tập.
+  - dyn: mf
+    term: mezzo forte · vừa mạnh
+    title: Tư duy & trách nhiệm
+    text: Rèn tư duy sáng tạo, khả năng phân tích, đánh giá thông tin và ý thức dùng công nghệ an toàn, hiệu quả, có trách nhiệm.
+  - dyn: f
+    term: forte · mạnh
+    title: Mang vào lớp học nhạc
+    text: Vận dụng công nghệ số và AI vào chuyên ngành Sư phạm Âm nhạc — xây dựng giáo án, thiết kế bài giảng, nâng cao chất lượng dạy học, đáp ứng yêu cầu đổi mới giáo dục.
+
+# ---------- Định hướng phát triển ----------
+direction: >-
+  Trong quá trình học tập môn Nhập môn Công nghệ số và Ứng dụng AI, em định hướng phát triển bản thân theo hướng
+  chủ động tiếp cận, học hỏi và làm chủ các công nghệ hiện đại. Không ngừng trau dồi kiến thức, nâng cao kỹ năng sử
+  dụng các công cụ AI để hỗ trợ học tập, nghiên cứu và phát triển khả năng sáng tạo. Bên cạnh đó, em sẽ rèn luyện tư
+  duy phản biện, kỹ năng tìm kiếm, chọn lọc và đánh giá thông tin, tránh phụ thuộc hoàn toàn vào trí tuệ nhân tạo.
+  Đặc biệt, với định hướng theo học ngành Sư phạm Âm nhạc, em mong muốn vận dụng công nghệ số và AI vào việc soạn
+  giáo án, thiết kế bài giảng, xây dựng học liệu âm nhạc và tổ chức các hoạt động dạy học một cách sinh động, hiệu
+  quả. Qua đó, từng bước hoàn thiện năng lực chuyên môn, kỹ năng nghề nghiệp và trở thành một giáo viên âm nhạc có
+  khả năng thích ứng với sự phát triển của giáo dục trong thời đại số.
+# Định hướng xếp theo cấu trúc một bài hát. "melody" = số nửa cung tính từ Đô (0 = Đô, 7 = Son, 12 = Đô cao) để web hát thử từng đoạn.
+direction_song:
+  - part: Intro
+    title: Chủ động tiếp cận
+    text: Chủ động tiếp cận, học hỏi và làm chủ các công nghệ hiện đại.
+    melody: [0, 2, 4, 7]
+  - part: Verse
+    title: Trau dồi mỗi ngày
+    text: Không ngừng trau dồi kiến thức, nâng cao kỹ năng dùng công cụ AI để hỗ trợ học tập, nghiên cứu và phát triển khả năng sáng tạo.
+    melody: [4, 4, 5, 4, 2, 0]
+  - part: Pre-chorus
+    title: Giữ giọng của mình
+    text: Rèn tư duy phản biện, kỹ năng tìm kiếm, chọn lọc và đánh giá thông tin — tránh phụ thuộc hoàn toàn vào trí tuệ nhân tạo.
+    melody: [5, 7, 9, 7, 5, 4]
+  - part: Chorus
+    title: Lớp học nhạc sinh động
+    text: Vận dụng công nghệ số và AI vào soạn giáo án, thiết kế bài giảng, xây dựng học liệu âm nhạc và tổ chức hoạt động dạy học sinh động, hiệu quả.
+    melody: [7, 9, 11, 12, 11, 9, 7]
+  - part: Outro
+    title: Người giáo viên của thời đại số
+    text: Từng bước hoàn thiện năng lực chuyên môn, kỹ năng nghề nghiệp và trở thành giáo viên âm nhạc thích ứng với giáo dục thời đại số.
+    melody: [12, 7, 4, 0]
+
+# ---------- Mục tiêu của Portfolio ----------
+portfolio_goal: >-
+  Portfolio được xây dựng nhằm tổng hợp, lưu trữ và giới thiệu những kiến thức, kỹ năng, sản phẩm học tập cũng như
+  kết quả đạt được trong quá trình học tập môn Nhập môn Công nghệ số và Ứng dụng AI. Thông qua Portfolio, em có thể
+  nhìn nhận và đánh giá sự tiến bộ của bản thân, xác định những điểm mạnh, hạn chế cần khắc phục và định hướng phát
+  triển trong tương lai. Đồng thời, đây cũng là cơ hội để em thể hiện khả năng ứng dụng công nghệ số và trí tuệ nhân
+  tạo vào học tập, nghiên cứu cũng như chuyên ngành Sư phạm Âm nhạc, từ đó nâng cao năng lực chuyên môn và kỹ năng
+  nghề nghiệp, đáp ứng yêu cầu đổi mới giáo dục trong thời đại số.
+portfolio_rows:
+  - k: Tổng hợp
+    v: Lưu trữ và giới thiệu kiến thức, kỹ năng, sản phẩm học tập, kết quả đạt được
+  - k: Nhìn lại
+    v: Đánh giá sự tiến bộ, điểm mạnh, hạn chế cần khắc phục
+  - k: Thể hiện
+    v: Ứng dụng công nghệ số và AI vào học tập, nghiên cứu, Sư phạm Âm nhạc
+  - k: Hướng tới
+    v: Nâng cao năng lực chuyên môn, kỹ năng nghề nghiệp trong thời đại số
+
+# ---------- 6 bài tập (chưa điền — chờ Nayn gửi đề) ----------
+projects:
+  - id: 1
+    section: '1.4'
+    title: Thao tác cơ bản với tệp tin và thư mục
+    chapter: Chương 1 – Máy tính và các thiết bị ngoại vi
+    objective: …
+    process: ['Bước 1: …']
+    tool: …
+    ai_use: …
+    product:
+      intro: 'Yêu cầu: trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập, kèm ảnh chụp minh họa.'
+      gallery: []
+  - id: 2
+    section: '2.4'
+    title: Tìm kiếm và đánh giá thông tin học thuật
+    chapter: Chương 2 – Khai thác dữ liệu và thông tin
+    objective: …
+    process: ['Bước 1: …']
+    tool: …
+    ai_use: …
+    product:
+      intro: …
+      gallery: []
+  - id: 3
+    section: '3.4'
+    title: Viết Prompt hiệu quả cho các tác vụ học tập
+    chapter: Chương 3 – Tổng quan về trí tuệ nhân tạo
+    objective: …
+    process: ['Bước 1: …']
+    tool: …
+    ai_use: …
+    product:
+      intro: …
+      gallery: []
+  - id: 4
+    section: '4.4'
+    title: Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm
+    chapter: Chương 4 – Giao tiếp và hợp tác trong môi trường số
+    objective: …
+    process: ['Bước 1: …']
+    tool: …
+    ai_use: …
+    product:
+      intro: …
+      gallery: []
+  - id: 5
+    section: '5.4'
+    title: Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung
+    chapter: Chương 5 – Sáng tạo nội dung số
+    objective: …
+    process: ['Bước 1: …']
+    tool: …
+    ai_use: …
+    product:
+      intro: …
+      gallery: []
+  - id: 6
+    section: '6.4'
+    title: Sử dụng AI có trách nhiệm trong học tập và nghiên cứu
+    chapter: Chương 6 – An toàn và liêm chính học thuật trong môi trường số
+    objective: …
+    process: ['Bước 1: …']
+    tool: …
+    ai_use: …
+    product:
+      intro: …
+      gallery: []
+
+conclusion:
+  experience: …
+  key_skills: ['…']
+  highlight: …
+  challenge: …
+  future: …
