@@ -1,0 +1,197 @@
+{# Trang sản phẩm dạng "tổng phổ" cho bài có thử nghiệm prompt (prod.trials) #}
+{% set crit = prod.criteria %}
+
+{# --- Khuông điểm nhỏ: 5 tiêu chí = 5 nốt, cao độ theo điểm 1..5 --- #}
+{% macro mini_staff(scores) %}
+<svg class="ms" viewBox="0 0 170 62" role="img" aria-label="Điểm: {% for s in scores %}{{ crit[loop.index0].k }} {{ s }}/5{{ ', ' if not loop.last }}{% endfor %}">
+  {% for i in range(5) %}<line x1="0" x2="170" y1="{{ 10 + i*10 }}" y2="{{ 10 + i*10 }}"/>{% endfor %}
+  {% for s in scores %}
+  {% set x = 20 + loop.index0*32 %}{% set y = 50 - (s-1)*10 %}
+  <g class="ms-n{{ ' lo' if s <= 2 }}"><title>{{ crit[loop.index0].k }}: {{ s }}/5</title>
+    <ellipse cx="{{ x }}" cy="{{ y }}" rx="6.2" ry="4.6" transform="rotate(-20 {{ x }} {{ y }})"/>
+    <rect x="{{ x + 5 }}" y="{{ y - 26 }}" width="1.5" height="26"/>
+  </g>
+  {% endfor %}
+</svg>
+{% endmacro %}
+
+<div class="lab">
+
+  {# ===== Chọn tác vụ ===== #}
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Tuyển chọn tiết mục</em> Ba tác vụ và lý do chọn</h3>
+    <div class="picks">
+      {% for t in prod.tasks %}
+      <article class="pick">
+        <p class="pick-no">{{ t.n }}</p>
+        <p class="pick-kind">{{ t.kind }}</p>
+        <h4 class="pick-topic">{{ t.topic }}</h4>
+        <dl>
+          <div><dt>Vì sao chọn</dt><dd>{{ t.why }}</dd></div>
+          <div><dt>Thách thức</dt><dd>{{ t.hard }}</dd></div>
+          <div><dt>Câu trả lời tốt phải</dt><dd>{{ t.good }}</dd></div>
+        </dl>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  {# ===== Thang chấm ===== #}
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Ban giám khảo</em> Năm tiêu chí chấm, mỗi tiêu chí 1–5 điểm</h3>
+    <ol class="crit">
+      {% for c in crit %}<li><b>{{ c.k }}</b><span>{{ c.d }}</span></li>{% endfor %}
+    </ol>
+    <p class="crit-hint">Trên trang, điểm của mỗi prompt được vẽ thành 5 nốt trên khuông nhạc theo đúng thứ tự trên: nốt càng cao, điểm càng cao; nốt màu hồng là điểm 1–2.</p>
+  </section>
+
+  {# ===== 3 tác vụ ===== #}
+  {% for t in prod.trials %}
+  <section class="trial" id="tac-vu-{{ t.n }}">
+    <header class="trial-head reveal">
+      <p class="trial-no">Tác vụ {{ t.n }}</p>
+      <h3 class="trial-title">{{ t.title }}</h3>
+      <div class="truth"><b>Đáp án đối chiếu</b><p>{{ t.truth }}</p></div>
+    </header>
+
+    {% for v in t.versions %}
+    <article class="sys reveal" data-dyn="{{ v.dyn }}">
+      <div class="sys-gut">
+        <span class="sys-dyn">{{ v.dyn }}</span>
+        <span class="sys-lv">{{ v.level }}</span>
+        <span class="sys-tot"><b>{{ v.total }}</b>/25</span>
+      </div>
+      <div class="sys-body">
+        <ul class="chips">{% for k in v.techniques %}<li>{{ k }}</li>{% endfor %}</ul>
+        <details class="lyr"{{ ' open' if v.prompt|length < 160 }}>
+          <summary>Prompt {{ v.level|lower }}{% if v.prompt|length >= 160 %} <span>({{ v.prompt.split('\n')|length }} dòng) · bấm để xem</span>{% endif %}</summary>
+          <pre>{{ v.prompt }}</pre>
+          {% if v.followup %}<p class="lyr-sub">↳ Lượt 2, gửi tiếp trong cùng cuộc trò chuyện</p><pre>{{ v.followup }}</pre>{% endif %}
+        </details>
+        <p class="sys-res">{{ v.result }}</p>
+        <div class="gb">
+          <ul class="gb-g">{% for g in v.good %}<li>{{ g }}</li>{% endfor %}</ul>
+          <ul class="gb-b">{% for b in v.bad %}<li>{{ b }}</li>{% endfor %}</ul>
+        </div>
+        <div class="sys-foot">
+          {{ mini_staff(v.scores) }}
+          <div class="shots">
+            {% for sh in v.shots if sh.src %}
+            <button type="button" class="shot" data-full="{{ sh.src }}" data-cap="{{ sh.caption }}" aria-label="Phóng to ảnh: {{ sh.caption }}">
+              <img src="{{ sh.src }}" alt="{{ sh.caption }}" loading="lazy">
+            </button>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+
+    {# --- Hình kiểm chứng riêng từng tác vụ --- #}
+    {% set c = t.check %}
+    <div class="chk reveal">
+      <h4 class="chk-h">{{ c.title }}</h4>
+      {% if c.type == 'coverage' or c.type == 'claims' %}
+      <div class="chk-scroll">
+      <table class="grid">
+        <thead><tr><th></th>{% for col in (c.cols if c.type == 'coverage' else c.cols) %}<th>{{ col }}</th>{% endfor %}{% if c.type == 'coverage' %}<th>Tên phần mềm</th>{% endif %}</tr></thead>
+        <tbody>
+        {% for r in c.rows %}
+          <tr><th>{{ r.label if c.type == 'coverage' else r.claim }}</th>
+            {% for s in r.cells %}<td><i class="mk mk-{{ s }}" title="{{ c.legend[s] }}"></i><span class="vh">{{ c.legend[s] }}</span></td>{% endfor %}
+            {% if c.type == 'coverage' %}<td class="grid-note">{{ r.note }}</td>{% endif %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+      {% elif c.type == 'answers' %}
+      <div class="ans">
+        <div class="ans-row ans-hdr"><span></span>{% for i in range(8) %}<b>{{ i + 1 }}</b>{% endfor %}</div>
+        {% for r in c.rows %}
+        <div class="ans-row"><span class="ans-lb">{{ r.label }}</span>
+          {% for m in r.marks %}<i class="mk mk-{{ m }}" title="Câu {{ loop.index }}: {{ c.legend[m] }}"></i>{% endfor %}
+          <p class="ans-note">{{ r.note }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <p class="legend">{% for k, l in c.legend.items() %}<span><i class="mk mk-{{ k }}"></i>{{ l }}</span>{% endfor %}</p>
+    </div>
+  </section>
+  {% endfor %}
+
+  {# ===== Bảng so sánh tổng ===== #}
+  <section class="lab-sec reveal" id="so-sanh">
+    <h3 class="lab-h"><em>Bảng tổng phổ</em> So sánh 9 prompt</h3>
+    <div class="melody">
+      <svg viewBox="0 0 660 230" role="img" aria-label="Tổng điểm 9 prompt: {% for t in prod.trials %}tác vụ {{ t.n }}: {% for v in t.versions %}{{ v.level }} {{ v.total }}{{ ', ' if not loop.last }}{% endfor %}; {% endfor %}">
+        {% for g in [25, 20, 15, 10, 5] %}<line class="mg" x1="44" x2="650" y1="{{ 20 + (25-g)*8 }}" y2="{{ 20 + (25-g)*8 }}"/><text class="my" x="34" y="{{ 24 + (25-g)*8 }}">{{ g }}</text>{% endfor %}
+        {% for t in prod.trials %}
+          {% set gx = 70 + loop.index0 * 200 %}
+          <text class="mt" x="{{ gx + 70 }}" y="222">Tác vụ {{ t.n }}</text>
+          <polyline class="ml ml-{{ t.n }}" points="{% for v in t.versions %}{{ gx + loop.index0*70 }},{{ 20 + (25 - v.total)*8 }} {% endfor %}"/>
+          {% for v in t.versions %}
+            {% set x = gx + loop.index0*70 %}{% set y = 20 + (25 - v.total)*8 %}
+            <g class="mn"><ellipse cx="{{ x }}" cy="{{ y }}" rx="9" ry="6.5" transform="rotate(-20 {{ x }} {{ y }})"/>
+            <text class="mv" x="{{ x }}" y="{{ y - 14 }}">{{ v.total }}</text>
+            <text class="md" x="{{ x }}" y="200">{{ v.dyn }}</text></g>
+          {% endfor %}
+        {% endfor %}
+      </svg>
+    </div>
+    <div class="chk-scroll">
+    <table class="board">
+      <thead><tr><th>Tác vụ</th><th>Phiên bản</th>{% for c in crit %}<th>{{ c.k }}</th>{% endfor %}<th>Tổng</th></tr></thead>
+      <tbody>
+      {% for t in prod.trials %}{% for v in t.versions %}
+        <tr{{ ' class=first' if loop.first }}>
+          {% if loop.first %}<th rowspan="3">{{ t.n }}. {{ t.title }}</th>{% endif %}
+          <td class="ver"><span class="bd-dyn">{{ v.dyn }}</span> {{ v.level }}</td>
+          {% for s in v.scores %}<td class="sc sc-{{ s }}">{{ s }}</td>{% endfor %}
+          <td class="tot">{{ v.total }}</td>
+        </tr>
+      {% endfor %}{% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  {# ===== Phân tích ===== #}
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Lời phê</em> Vì sao prompt này hiệu quả hơn prompt kia</h3>
+    <ol class="notes">
+      {% for a in prod.analysis %}
+      <li class="nt-card"><p class="nt-from">{{ a.from }}</p><h4>{{ a.head }}</h4><p>{{ a.body }}</p></li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  {# ===== Nguyên tắc ===== #}
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Gam nguyên tắc</em> Bảy nguyên tắc viết prompt, từ Đô đến Si</h3>
+    <p class="crit-hint">Mỗi nguyên tắc gắn với một nốt và một minh chứng trong bài. Bấm vào nốt để nghe gam đi lên.</p>
+    <ol class="scale">
+      {% for p in prod.principles %}
+      <li style="--k:{{ loop.index0 }}">
+        <button type="button" class="sol" data-deg="{{ loop.index0 }}" aria-label="Nghe nốt {{ p.note }}">{{ p.note }}</button>
+        <div><h4>{{ p.head }}</h4><p>{{ p.body }}</p><p class="eg">{{ p.eg }}</p></div>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  {% if prod.refs %}
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Tư liệu</em> Nguồn đối chiếu</h3>
+    <ol class="refs">{% for r in prod.refs %}<li>{% if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.text }}</a>{% else %}{{ r.text }}{% endif %}</li>{% endfor %}</ol>
+  </section>
+  {% endif %}
+</div>
+
+<div class="lb" id="lb" hidden>
+  <button type="button" class="lb-x" aria-label="Đóng">×</button>
+  <button type="button" class="lb-nav lb-prev" aria-label="Ảnh trước">‹</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button type="button" class="lb-nav lb-next" aria-label="Ảnh sau">›</button>
+</div>

@@ -80,7 +80,17 @@ def render_student(env, student_id):
 
     img_dir = DIST_DIR / "assets" / "img"
     for p in data["projects"]:
+        # Nội dung bài dài có thể tách ra file riêng: product_file: bai3.yaml
+        if p.get("product_file"):
+            with open(STUDENTS_DIR / student_id / p["product_file"], encoding="utf-8") as f:
+                p["product"] = yaml.safe_load(f)
         prod = p.get("product") or {}
+        for t in prod.get("trials") or []:
+            for v in t.get("versions") or []:
+                v["total"] = sum(v.get("scores") or [])
+                for sh in v.get("shots") or []:
+                    sh["src"] = copy_img(student_id, sh["file"], img_dir)
+            print(f"  [OK] bài {p['id']}: tác vụ {t['n']} – {len(t.get('versions') or [])} phiên bản")
         kept = []
         for g in prod.get("gallery") or []:
             url = copy_img(student_id, g["file"], img_dir)

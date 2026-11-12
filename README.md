@@ -5,7 +5,8 @@ Portfolio học phần **Nhập môn Công nghệ số và ứng dụng AI (INF2
 ## Trạng thái
 - ✅ Giao diện riêng + trang Giới thiệu (thông tin, sở thích, mục tiêu học tập, định hướng phát triển, mục tiêu portfolio — giữ nguyên văn, có tách ý để trình bày)
 - ✅ Trang Dự án / chi tiết bài / Tổng kết dựng sẵn; ô nào còn `…` hiện nhãn "đang cập nhật"
-- ⏳ Bài 1–6 & phần Tổng kết: **chưa điền**
+- ✅ Bài 3 (Viết prompt hiệu quả): 3 tác vụ × 3 prompt chạy thật trên Gemini (12/11/2026) + 1 lượt nối prompt, 27 ảnh chụp màn hình, chấm 5 tiêu chí, kiểm chứng với tài liệu gốc, phân tích và 7 nguyên tắc (nội dung ở `students/tran_thi_minh_anh/bai3.yaml`)
+- ⏳ Bài 1, 2, 4, 5, 6 & phần Tổng kết: **chưa điền**
 - ⏳ Mã sinh viên, lớp, email: chưa có
 
 ## Giao diện — "Recital"
@@ -20,6 +21,7 @@ Lấy cảm hứng từ ảnh Minh Anh trong lễ 20/11 của Khoa: váy champag
 - Mục tiêu portfolio = **vé xem hòa nhạc** (nghiêng theo chuột)
 - Dự án = tờ chương trình 6 tiết mục, số La Mã, rê chuột nghe nốt mở màn; trang bài có "ghi chú bên lề"
 - Footer: **phím đàn 2 quãng tám** chơi được
+- Trang bài prompt dạng **tổng phổ**: mỗi phiên bản prompt là một dòng nhạc mang ký hiệu cường độ *p / mf / f*; điểm 5 tiêu chí vẽ thành 5 nốt trên khuông; bảng kiểm chứng riêng cho từng tác vụ; "giai điệu điểm số" so sánh 9 prompt; "lời phê" phân tích; 7 nguyên tắc xếp theo gam Đô → Si (bấm nghe); lightbox xem ảnh
 - Âm thanh tổng hợp bằng Web Audio (giọng hát dùng bộ lọc formant), có nút bật/tắt; tôn trọng *prefers-reduced-motion*
 
 ## Cấu trúc

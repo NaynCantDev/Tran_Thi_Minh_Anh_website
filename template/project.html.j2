@@ -27,6 +27,7 @@
       {% endif %}
     </section>
 
+    {% if not prod.trials %}
     <section class="part reveal">
       <h2 class="h3"><em>Thành phẩm</em> Sản phẩm</h2>
       {% if not (prod.intro is blank) %}<p class="req">{{ prod.intro }}</p>{% endif %}
@@ -35,6 +36,16 @@
       {% else %}{{ tbd() }}{% endif %}
       {% if p.source_url %}<p class="src">Bản gốc: <a href="{{ p.source_url }}" target="_blank" rel="noopener">{{ p.source_label or 'Google Docs' }}</a></p>{% endif %}
     </section>
+    {% else %}
+    <section class="part reveal">
+      <h2 class="h3"><em>Thành phẩm</em> Sản phẩm</h2>
+      <p class="req">{{ prod.intro }}</p>
+      <nav class="toc" aria-label="Mục lục sản phẩm">
+        {% for t in prod.trials %}<a href="#tac-vu-{{ t.n }}">Tác vụ {{ t.n }} · {{ t.title }}</a>{% endfor %}
+        <a href="#so-sanh">Bảng so sánh &amp; phân tích</a>
+      </nav>
+    </section>
+    {% endif %}
   </article>
 
   <aside class="margin">
@@ -47,6 +58,10 @@
     </dl>
   </aside>
 </div>
+
+{% if prod.trials %}
+<div class="sec-in">{% include "_lab.html.j2" %}</div>
+{% endif %}
 
 <nav class="sec-in turn" aria-label="Chuyển tiết mục">
   {% if prev_p %}<a class="turn-a" href="project-{{ prev_p.id }}.html"><span>← Tiết mục trước</span><b>{{ prev_p.id|roman }}. {{ prev_p.title }}</b></a>{% else %}<a class="turn-a" href="index.html"><span>← Về đầu chương trình</span><b>Giới thiệu</b></a>{% endif %}

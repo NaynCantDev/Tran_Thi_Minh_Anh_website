@@ -1,0 +1,412 @@
+# ============================================================
+#  Bài 3.4 – Viết prompt hiệu quả cho các tác vụ học tập
+#  Thử nghiệm trên Gemini (gemini.google.com, không đăng nhập,
+#  chế độ "Quick answers"), ngày 12/11/2026.
+#  Ảnh chụp màn hình: images/bai3/
+# ============================================================
+
+intro: 'Yêu cầu: chọn 3 tác vụ học tập phổ biến, viết 3 phiên bản prompt (cơ bản, cải tiến, nâng cao) cho mỗi tác vụ, thử nghiệm trên một công cụ AI, so sánh kết quả, phân tích lý do và tổng hợp nguyên tắc viết prompt. Nộp kèm bảng so sánh và ảnh chụp màn hình.'
+
+# Thang chấm dùng chung cho cả 9 prompt (mỗi tiêu chí 1–5 điểm)
+criteria:
+  - k: Chính xác
+    d: Nội dung đúng với tài liệu gốc hoặc kiến thức chuyên ngành, không bịa
+  - k: Đầy đủ
+    d: Làm đủ những gì tác vụ cần (đủ các phần, đủ đáp án, đủ ví dụ)
+  - k: Hợp người học
+    d: Đúng trình độ sinh viên năm nhất Sư phạm Âm nhạc, đúng thuật ngữ tiếng Việt, dùng được ngay
+  - k: Rõ ràng
+    d: Bố cục mạch lạc, dễ theo dõi, không lẫn nội dung thừa
+  - k: Trung thực
+    d: Biết nói “không biết” hoặc “không chắc” khi cần; không tự nhận đã kiểm tra khi chưa thật sự kiểm tra
+
+# ------------------------------------------------------------
+#  Phân tích lựa chọn tác vụ
+# ------------------------------------------------------------
+tasks:
+  - n: 1
+    kind: Tóm tắt tài liệu học thuật
+    topic: Bài báo “Ứng dụng công nghệ thông tin trong đổi mới phương pháp dạy học âm nhạc trong kỷ nguyên số” (ThS. Lương Minh Tân, Trường ĐHSP Nghệ thuật Trung ương – Tạp chí Văn hóa Nghệ thuật số 627, 12/2025)
+    why: Bài viết của giảng viên chính trường mình, bàn đúng điều mình đặt làm mục tiêu cho học phần — đưa công nghệ vào giờ dạy nhạc.
+    hard: Bài dài 4 trang, 8 mục, nêu tên gần 20 phần mềm. Câu hỏi then chốt là AI có thật sự đọc được bài không, hay chỉ tóm tắt dựa trên những gì tìm thấy trên mạng.
+    good: Đúng và đủ 8 mục, đúng thông tin xuất bản, nêu đúng tên các công cụ, không thêm ý ngoài bài.
+  - n: 2
+    kind: Giải thích khái niệm phức tạp
+    topic: “Formant ca sĩ” (singer's formant) – vùng năng lượng quanh 3 kHz giúp giọng hát cổ điển vang qua dàn nhạc
+    why: Mình học thanh nhạc. Đây là khái niệm âm học khó, nằm giữa vật lý và kỹ thuật hát, giáo trình tiếng Việt lại ít nói tới.
+    hard: Phải tách được “formant” với “họa âm”, chỉ đúng bộ phận tạo ra nó, và trả lời được câu hỏi riêng của mình là giọng nữ cao có giống giọng nam không.
+    good: Đúng cơ chế (các formant 3–4–5 tụ lại nhờ ống thanh quản phía trên thanh môn), đúng số liệu, có hình ảnh dễ hiểu, có cách tự cảm nhận.
+  - n: 3
+    kind: Tạo bộ câu hỏi ôn tập
+    topic: “Giọng trưởng và hóa biểu” – nhạc lý cơ bản của sinh viên năm nhất
+    why: Đây là việc mình sẽ làm thường xuyên khi đi dạy. Nhạc lý lại có đáp án đúng/sai rõ ràng, nên tự kiểm chứng được từng câu.
+    hard: Một đề ôn tập chỉ cần sai một đáp án là có hại (sinh viên học thuộc cái sai). Phương án nhiễu cũng phải “bẫy” đúng những lỗi người học hay mắc.
+    good: Đáp án đúng 100%, phương án nhiễu hợp lý, độ khó tăng dần, thuật ngữ thống nhất (Đô, Rê, Mi, Fa, Son, La, Si).
+
+# ------------------------------------------------------------
+#  3 tác vụ × 3 phiên bản
+#  scores theo thứ tự criteria; shots: ảnh chụp màn hình
+# ------------------------------------------------------------
+trials:
+  # ===================== TÁC VỤ 1 =====================
+  - n: 1
+    title: Tóm tắt bài báo khoa học
+    truth: Mình mở bản PDF trên VJOL, trích toàn văn và đọc lại để làm “đáp án”. Bài có 8 mục (Mở đầu · Cơ sở lý luận · Vai trò · Thực trạng · Đổi mới mô hình · Mô hình và phương tiện · Giải pháp và kiến nghị · Kết luận) và nêu tên 18 phần mềm, nền tảng cụ thể.
+    versions:
+      - level: Cơ bản
+        dyn: p
+        techniques: [Một câu lệnh, Chỉ có tên bài, không có tài liệu]
+        prompt: Tóm tắt bài báo “Ứng dụng công nghệ thông tin trong đổi mới phương pháp dạy học âm nhạc trong kỷ nguyên số” của Lương Minh Tân.
+        result: Gemini tự tìm trên mạng rồi viết một bản tóm tắt trôi chảy, chia 4 mục. Phần mở đầu và hạn chế của phương pháp truyền thống khớp với bài. Tuy vậy bản tóm tắt chỉ phủ khoảng một nửa bài, và có hai chỗ không có trong bài gốc.
+        good:
+          - Nêu đúng hạn chế của phương pháp truyền thống (dạy một chiều, hát mẫu, đĩa CD, đánh giá đơn giản)
+          - Đúng ý “học sinh thành nhà sản xuất âm nhạc không chuyên”
+        bad:
+          - 'Bịa một mục: “Tổng quan nghiên cứu – bài báo điểm qua các nghiên cứu trong và ngoài nước”. Bài gốc không có phần này'
+          - 'Mục “Giải pháp” sai: bài đề xuất theo 3 đối tượng (cấp quản lý, giáo viên, nhà phát triển), Gemini lại viết “lựa chọn phần mềm phù hợp, kết hợp linh hoạt phương pháp”'
+          - Không nêu tên phần mềm nào (0/18); bỏ qua các mục Cơ sở lý luận, Đổi mới mô hình, Mô hình và phương tiện
+          - Không hề cho biết mình dựa vào nguồn nào
+        scores: [2, 2, 2, 4, 1]
+        shots:
+          - file: images/bai3/t1_v1_a.jpg
+            caption: Prompt một câu, Gemini trả lời ngay như thể đã đọc bài
+          - file: images/bai3/t1_v1_b.jpg
+            caption: Mục “Tổng quan nghiên cứu” và phần “Giải pháp” không có trong bài gốc
+      - level: Cải tiến
+        dyn: mf
+        techniques: [Đưa link tài liệu, Cấu trúc đầu ra 4 mục, Giới hạn độ dài, Xác định người đọc]
+        prompt: |-
+          Hãy tóm tắt bài báo khoa học sau: https://vjol.info.vn/tcvanhoanghethuat/article/download/139860/114371/
+          Yêu cầu:
+          1. Mở đầu bằng thông tin bài báo: tên bài, tác giả, tạp chí, số, năm.
+          2. Tóm tắt theo đúng thứ tự các phần của bài, mỗi phần 2–3 câu.
+          3. Liệt kê các phần mềm, công cụ được nhắc tới trong bài.
+          4. Kết thúc bằng 3 ý chính mà một sinh viên Sư phạm Âm nhạc nên ghi nhớ.
+          Độ dài khoảng 400–500 từ, viết bằng tiếng Việt.
+        result: Đúng khung 4 phần mình yêu cầu, phần giải pháp lần này đúng với bài (3 đối tượng). Nhưng các nhãn nguồn hiện ra là trang Hội Nhạc sĩ, sti.gov.vn… Gemini vẫn đọc qua kết quả tìm kiếm chứ không mở được file PDF, mà không nói ra điều đó.
+        good:
+          - Phần Giải pháp và kiến nghị đúng 3 đối tượng như bài gốc
+          - Bố cục gọn, đúng thứ tự, có 3 ý chính dành cho sinh viên
+        bad:
+          - Thông tin xuất bản mơ hồ — “(hoặc nhóm tác giả nghiên cứu liên quan)”, không có số 627, không có năm
+          - 'Mục “Phần mềm, công cụ” chỉ ghi chung chung (“phần mềm mô phỏng nhạc cụ ảo”, “LMS”…): 0/18 tên phần mềm'
+          - Bỏ qua 3/8 mục (Cơ sở lý luận, Đổi mới mô hình, Kết luận)
+          - Vẫn không cho biết mình chưa đọc được bài
+        scores: [3, 3, 4, 5, 2]
+        shots:
+          - file: images/bai3/t1_v2_a.jpg
+            caption: Prompt có cấu trúc; thông tin xuất bản trả về còn mơ hồ
+          - file: images/bai3/t1_v2_b.jpg
+            caption: Danh sách công cụ chung chung, không có tên phần mềm nào
+      - level: Nâng cao
+        dyn: f
+        techniques: [Đóng vai (role prompting), Suy luận từng bước (chain-of-thought), Ràng buộc chỉ dùng tài liệu, Tự kiểm tra, Nối prompt (prompt chaining)]
+        prompt: |-
+          Bạn là giảng viên phương pháp dạy học âm nhạc, đang hướng dẫn sinh viên năm nhất Sư phạm Âm nhạc đọc tài liệu khoa học.
+          Tài liệu: https://vjol.info.vn/tcvanhoanghethuat/article/download/139860/114371/
+          Hãy làm lần lượt từng bước và trình bày kết quả của mỗi bước:
+          Bước 1 – Liệt kê đúng tên các mục lớn của bài theo thứ tự xuất hiện, kèm số tạp chí và năm xuất bản.
+          Bước 2 – Với mỗi mục, rút ra luận điểm chính trong 1–2 câu. Chỉ dùng thông tin có trong bài, không bổ sung kiến thức bên ngoài.
+          Bước 3 – Lập bảng 2 cột: “Công cụ/phần mềm được bài báo nêu tên” | “Bài báo dùng nó để làm gì”.
+          Bước 4 – Viết một đoạn tóm tắt khoảng 150 từ cho người chưa đọc bài.
+          Bước 5 – Tự kiểm tra: đánh dấu [không chắc] cạnh bất kỳ chi tiết nào bạn không tìm thấy trực tiếp trong bài. Nếu không mở được tài liệu, hãy nói rõ thay vì tự suy đoán nội dung.
+        followup: |-
+          Đây là toàn văn bài báo, mình sao chép từ file PDF. Hãy thực hiện đủ 5 bước như yêu cầu ở trên, chỉ dựa trên văn bản này:
+          [dán toàn văn 8 mục của bài báo]
+        result: 'Lượt 1 cho kết quả bất ngờ: Gemini thừa nhận không mở được tài liệu và dừng lại, không đoán nội dung. Chính câu ràng buộc “nếu không mở được thì nói rõ” đã làm lộ ra điều mà hai prompt trước giấu đi. Mình làm theo gợi ý của Gemini: mở PDF, chép toàn văn và gửi tiếp trong cùng cuộc trò chuyện. Lượt 2 cho bản tốt nhất trong cả bài: đủ 8/8 mục, đúng số 627 – 12/2025, bảng nêu 16/18 phần mềm. Còn 2 chỗ gộp nhầm ngữ cảnh, và phần “tự kiểm tra” không phát hiện ra.'
+        good:
+          - 'Lượt 1: trung thực — nói rõ không truy cập được tài liệu, không bịa'
+          - 'Lượt 2: đủ 8/8 mục đúng thứ tự, đúng thông tin xuất bản'
+          - Bảng công cụ nêu 16/18 tên phần mềm kèm công dụng (thiếu Prezi, YouTube)
+        bad:
+          - Kahoot!, Quizizz bị gán cho “trò chơi giải ô chữ, trắc nghiệm nhạc lí” — bài gốc nói tới hai việc này ở hai chỗ khác nhau
+          - Adobe Audition bị gộp vào dòng “hỗ trợ giáo viên chỉnh sửa file nhạc” — bài gốc dùng nó cho học sinh tự sáng tạo
+          - 'Bước 5 khẳng định “không có chi tiết nào cần gắn nhãn [không chắc]” — tự kiểm tra quá tự tin'
+        scores: [4, 5, 4, 5, 4]
+        shots:
+          - file: images/bai3/t1_v3_a.jpg
+            caption: Prompt nâng cao với 5 bước và ràng buộc “nếu không mở được, hãy nói rõ”
+          - file: images/bai3/t1_v3_b.jpg
+            caption: 'Lượt 1: Gemini thừa nhận không đọc được tài liệu, đề nghị dán toàn văn'
+          - file: images/bai3/t1_v3_c.jpg
+            caption: 'Lượt 2 (nối prompt): dán toàn văn → đủ 8 mục, đúng số 627, tháng 12-2025'
+          - file: images/bai3/t1_v3_d.jpg
+            caption: Bảng công cụ nêu đúng tên phần mềm và công dụng
+          - file: images/bai3/t1_v3_e.jpg
+            caption: Hai dòng gộp nhầm ngữ cảnh, phần tự kiểm tra vẫn khẳng định không có gì cần nghi ngờ
+    check:
+      type: coverage
+      title: Đối chiếu từng mục với bài gốc
+      cols: [Mở đầu, Cơ sở lý luận, Vai trò, Thực trạng, Đổi mới mô hình, Mô hình & phương tiện, Giải pháp, Kết luận]
+      rows:
+        - label: Cơ bản
+          cells: [ok, miss, ok, fake, miss, miss, fake, part]
+          note: '0/18 phần mềm'
+        - label: Cải tiến
+          cells: [ok, miss, ok, ok, miss, part, ok, miss]
+          note: '0/18 phần mềm'
+        - label: Nâng cao (lượt 2)
+          cells: [ok, ok, ok, ok, ok, ok, ok, ok]
+          note: '16/18 phần mềm'
+      legend: {ok: Đúng, part: Một phần / lẫn chỗ, miss: Bỏ sót, fake: Có nội dung bài không hề viết}
+
+  # ===================== TÁC VỤ 2 =====================
+  - n: 2
+    title: Giải thích khái niệm “formant ca sĩ”
+    truth: 'Mình đối chiếu với các nghiên cứu của Johan Sundberg và các công bố âm học giọng hát. Formant ca sĩ là đỉnh năng lượng quanh 2,5–3,5 kHz, do các formant thứ 3, 4, 5 tụ lại gần nhau. Nguyên nhân là ống thanh quản phía trên thanh môn (epilarynx) hẹp lại trong khi họng mở rộng, thanh quản hạ thấp. Dàn nhạc mạnh nhất ở vùng thấp hơn, nên giọng hát "lọt" được qua. Ở nữ cao, formant ca sĩ yếu hoặc không rõ; nốt cao nhất của nữ cao (Đô 6) cũng chỉ khoảng 1.047 Hz.'
+    versions:
+      - level: Cơ bản
+        dyn: p
+        techniques: [Một câu hỏi]
+        prompt: Formant ca sĩ là gì?
+        result: Câu trả lời đúng ý chính (dải 2.500–3.000 Hz, giúp vượt dàn nhạc, liên quan tới hạ thanh quản) nhưng nhầm hai khái niệm nền tảng, viết cho người đọc chung chung, không có bài tập và không nhắc gì tới giọng nữ.
+        good:
+          - Đúng dải tần, đúng tác dụng xuyên qua dàn nhạc
+          - Có nhắc hạ thanh quản và một “bộ cộng hưởng độc lập”
+        bad:
+          - '“Các họa âm vốn tản mác… được gom lại”: nhầm họa âm (do dây thanh tạo ra) với formant (do khoang cộng hưởng tạo ra)'
+          - '“Kỹ thuật và đặc tính độc quyền” của giọng cổ điển: nói quá, thiếu sắc thái'
+          - Không xác định người học, không có cách tự cảm nhận, không nói về giọng nữ
+        scores: [2, 3, 2, 4, 2]
+        shots:
+          - file: images/bai3/t2_v1_a.jpg
+            caption: Prompt một câu, câu trả lời kiểu bách khoa
+          - file: images/bai3/t2_v1_b.jpg
+            caption: '“Các họa âm… được gom lại”: nhầm họa âm với formant'
+      - level: Cải tiến
+        dyn: mf
+        techniques: [Xác định người học, Cấu trúc 4 mục, Yêu cầu thuật ngữ song ngữ, Giới hạn độ dài]
+        prompt: |-
+          Giải thích khái niệm “formant ca sĩ” (singer's formant) cho sinh viên năm nhất Sư phạm Âm nhạc chưa học âm học.
+          Trình bày theo 4 mục:
+          1. Định nghĩa ngắn gọn (2–3 câu).
+          2. Formant ca sĩ hình thành như thế nào trong cơ quan phát âm.
+          3. Vì sao nó giúp giọng hát vang qua dàn nhạc mà không cần hát to hơn.
+          4. Một bài tập cảm nhận cụ thể.
+          Dùng thuật ngữ thanh nhạc tiếng Việt, kèm thuật ngữ tiếng Anh trong ngoặc. Không quá 400 từ.
+        result: Gọn, đúng 4 mục, có thuật ngữ song ngữ và một bài tập 3 bước. Nhưng chính mục “hình thành như thế nào” mình thêm vào lại khiến AI phải đi sâu vào cơ chế, và ở đó nó sai.
+        good:
+          - Đúng bố cục, đúng độ dài, có song ngữ (vocal tract, larynx, pharynx)
+          - Giải thích tác dụng với dàn nhạc rõ ràng; có bài tập ngân “m/ng” → nguyên âm sáng
+        bad:
+          - '“Sinh ra nhờ… vùng hạ thanh môn (subglottic cavities)”: sai vị trí, ống tạo ra formant ca sĩ nằm phía trên thanh môn'
+          - '“Gom các vạch phổ lại” vẫn còn mơ hồ, chưa nói tới các formant 3–4–5'
+          - Bài tập dựa vào cảm giác “mặt nạ cộng hưởng”, chưa chỉ cách kiểm chứng (ví dụ app phân tích phổ); vẫn chưa nói tới giọng nữ
+        scores: [2, 4, 4, 5, 2]
+        shots:
+          - file: images/bai3/t2_v2_a.jpg
+            caption: Prompt 4 mục; mục 2 sai vị trí “vùng hạ thanh môn (subglottic)”
+          - file: images/bai3/t2_v2_b.jpg
+            caption: Mục 3 giải thích vì sao vượt được dàn nhạc
+          - file: images/bai3/t2_v2_c.jpg
+            caption: Bài tập cảm nhận 3 bước
+      - level: Nâng cao
+        dyn: f
+        techniques: [Đóng vai chuyên gia, Một ví dụ mẫu (few-shot), Suy luận từng bước (chain-of-thought), Cá nhân hóa người học, Yêu cầu nêu điều chưa chắc]
+        prompt: |-
+          Bạn là chuyên gia âm học giọng hát kiêm giáo viên thanh nhạc, giỏi giải thích khái niệm khó bằng hình ảnh quen thuộc.
+          Đây là MỘT VÍ DỤ về cách giải thích mà mình muốn:
+          Khái niệm: Cộng minh (resonance)
+          – Hình ảnh: như thân đàn guitar – dây đàn tạo tiếng nhỏ, thân đàn làm tiếng to và đẹp hơn.
+          – Bản chất: dây thanh tạo âm gốc; các khoang họng, miệng, mũi khuếch đại một số vùng tần số.
+          – Tự cảm nhận: ngân “m” khẽ, đặt tay lên sống mũi sẽ thấy rung.
+          – Hiểu lầm hay gặp: cộng minh không có nghĩa là hát to.
+          Bây giờ hãy giải thích khái niệm “formant ca sĩ” (singer's formant) theo đúng 4 dòng như ví dụ trên, cho sinh viên năm nhất Sư phạm Âm nhạc.
+          Người học là một sinh viên nữ đang học thanh nhạc, nên hãy thêm dòng thứ 5 “Với giọng nữ”: khái niệm này có áp dụng giống hệt cho giọng nữ cao không?
+          Trước khi viết, hãy suy nghĩ lần lượt: (1) formant là gì và khác họa âm ở đâu; (2) vì sao giọng ca sĩ cổ điển có thêm một vùng năng lượng nổi bật và bộ phận nào tạo ra nó; (3) điều đó liên quan gì tới dàn nhạc.
+          Cuối cùng thêm mục “Điều mình chưa chắc chắn” cho những số liệu hoặc nhận định bạn không tự tin.
+        result: Bản dễ hiểu và hợp với mình nhất. Bước suy luận (1) đã sửa được lỗi nhầm họa âm/formant của bản cơ bản. Ví dụ mẫu giữ cho câu trả lời đúng 5 dòng ngắn gọn. Dòng “Với giọng nữ” chỉ đúng điểm khác biệt với giọng nam. Nhưng ngay dòng ấy lại có một lỗi số liệu nghiêm trọng, và mục “Điều mình chưa chắc chắn” không nhận ra.
+        good:
+          - Phân biệt đúng họa âm (theo nốt hát) và formant (theo khoang cộng hưởng)
+          - Theo đúng mẫu 5 dòng; hình ảnh “còi cảnh sát cắt qua tiếng ồn” dễ nhớ; nêu được hiểu lầm “phải hát thật to”
+          - Đúng hướng là giọng nữ cao không giống giọng nam, có nhắc tới điều chỉnh nguyên âm (vowel modification)
+          - Có mục điều chưa chắc (tần số dao động 2,7–3,3 kHz)
+        bad:
+          - '“Từ F5 trở lên, tần số cơ bản đã vượt qua cả vùng 3.000 Hz”: sai, F5 chỉ ≈ 698 Hz, nốt Đô 6 cao nhất của nữ cao ≈ 1.047 Hz'
+          - Vẫn chưa gọi tên bộ phận tạo ra formant ca sĩ (ống thanh quản trên thanh môn), dù bước (2) đã hỏi
+          - Lỗi lớn nhất không nằm trong mục “Điều mình chưa chắc chắn”
+        scores: [3, 5, 5, 5, 3]
+        shots:
+          - file: images/bai3/t2_v3_a.jpg
+            caption: Prompt có ví dụ mẫu về “cộng minh”
+          - file: images/bai3/t2_v3_b.jpg
+            caption: Phân biệt đúng formant và họa âm; dòng “Với giọng nữ” có lỗi “F5 vượt 3.000 Hz”
+          - file: images/bai3/t2_v3_c.jpg
+            caption: Mục “Điều mình chưa chắc chắn” không nhắc tới lỗi số liệu trên
+    check:
+      type: claims
+      title: Kiểm chứng từng nhận định quan trọng
+      cols: [Cơ bản, Cải tiến, Nâng cao]
+      rows:
+        - claim: Dải tần khoảng 2,5–3 kHz
+          cells: [ok, ok, ok]
+        - claim: Phân biệt formant với họa âm
+          cells: [bad, part, ok]
+        - claim: Bộ phận tạo ra (ống trên thanh môn, formant 3–4–5 tụ lại)
+          cells: [part, bad, part]
+        - claim: Vì sao vượt được dàn nhạc
+          cells: [ok, ok, ok]
+        - claim: Giọng nữ cao có khác không
+          cells: [miss, miss, part]
+        - claim: Số liệu cao độ đi kèm
+          cells: [na, na, bad]
+      legend: {ok: Đúng, part: Đúng một phần, bad: Sai, miss: Không nhắc tới, na: Không đề cập số liệu}
+
+  # ===================== TÁC VỤ 3 =====================
+  - n: 3
+    title: Tạo bộ câu hỏi ôn tập “Giọng trưởng và hóa biểu”
+    truth: Mình tự giải lại từng câu theo thứ tự dấu thăng Fa – Đô – Son – Rê – La – Mi – Si và dấu giáng Si – Mi – La – Rê – Son – Đô – Fa, rồi đối chiếu với đáp án của Gemini.
+    versions:
+      - level: Cơ bản
+        dyn: p
+        techniques: [Một câu lệnh]
+        prompt: Tạo câu hỏi ôn tập về giọng trưởng và hóa biểu.
+        result: 9 câu hỏi mở chia 3 phần, nội dung nhạc lý đúng. Nhưng không có đáp án, không có trắc nghiệm, không biết dành cho ai. Muốn dùng thì phải tự làm tiếp gần hết.
+        good:
+          - Nội dung đúng (công thức 1 – 1 – ½ – 1 – 1 – 1 – ½, các giọng Son, Rê, Fa, Si giáng trưởng…)
+          - Có chia phần từ lý thuyết tới vận dụng
+        bad:
+          - Không có đáp án, cuối bài chỉ hỏi lại “Bạn có muốn đáp án không?”
+          - Không có câu trắc nghiệm, không xác định trình độ người học
+          - Tên nốt lẫn lộn “Sol, Do, Re” với cách gọi tiếng Việt “Son, Đô, Rê”
+        scores: [4, 2, 2, 3, 3]
+        shots:
+          - file: images/bai3/t3_v1_a.jpg
+            caption: Prompt một câu, câu hỏi mở không kèm đáp án
+          - file: images/bai3/t3_v1_b.jpg
+            caption: Phần 2–3 vẫn là câu hỏi mở; tên nốt lẫn “Sol, Do, Re”
+      - level: Cải tiến
+        dyn: mf
+        techniques: [Xác định người học, Số lượng và dạng câu cụ thể, Phân mức độ nhận thức, Yêu cầu bảng đáp án]
+        prompt: |-
+          Tạo bộ câu hỏi ôn tập chủ đề “Giọng trưởng và hóa biểu” cho sinh viên năm nhất Sư phạm Âm nhạc.
+          Yêu cầu:
+          – 8 câu trắc nghiệm, mỗi câu 4 phương án A–D, chỉ một đáp án đúng.
+          – 2 câu tự luận ngắn.
+          – Độ khó tăng dần: 3 câu nhận biết, 3 câu thông hiểu, 2 câu vận dụng.
+          – Cuối bài có bảng đáp án và giải thích ngắn cho từng câu.
+        result: Hình thức gần như hoàn hảo, đúng từng yêu cầu. Nhưng khi tự giải lại, mình thấy 2/8 đáp án sai, tức 25% đề sẽ dạy sai cho sinh viên.
+        good:
+          - Đủ 8 câu trắc nghiệm + 2 tự luận, đúng 3 – 3 – 2 mức độ, có bảng đáp án
+          - Câu 8 vận dụng hay (xác định giọng qua hóa biểu và hợp âm kết)
+        bad:
+          - 'Câu 3: hóa biểu 3 dấu giáng (Si♭, Mi♭, La♭) là Mi giáng trưởng; Gemini chọn Si giáng trưởng, dù lời giải thích của chính nó (“âm chủ là dấu giáng áp chót”) dẫn tới Mi giáng'
+          - 'Câu 4: dấu thăng thứ tư là Rê# (phương án B); Gemini chọn Son#'
+          - Đáp án đúng không lần nào là C hoặc D, dễ đoán mò
+        scores: [2, 5, 4, 5, 2]
+        shots:
+          - file: images/bai3/t3_v2_a.jpg
+            caption: Prompt nêu rõ số câu, dạng câu, mức độ
+          - file: images/bai3/t3_v2_b.jpg
+            caption: Câu 3 và câu 4 (cả hai đều bị chấm sai đáp án)
+          - file: images/bai3/t3_v2_c.jpg
+            caption: Bảng đáp án ghi C cho câu 3 và câu 4
+      - level: Nâng cao
+        dyn: f
+        techniques: [Đóng vai giảng viên, Câu hỏi mẫu (few-shot), Ràng buộc phương án nhiễu, Phân bố đáp án đều, Tự giải lại để kiểm tra]
+        prompt: |-
+          Bạn là giảng viên nhạc lý, đang soạn đề ôn tập chủ đề “Giọng trưởng và hóa biểu” cho sinh viên năm nhất Sư phạm Âm nhạc. Dùng tên nốt tiếng Việt: Đô, Rê, Mi, Fa, Son, La, Si.
+          Câu hỏi mẫu (hãy viết theo đúng phong cách này, không lặp lại câu mẫu):
+          Câu mẫu: Giọng Son trưởng có hóa biểu là
+          A. 1 dấu thăng (Fa#)   B. 1 dấu giáng (Si♭)   C. 2 dấu thăng (Fa#, Đô#)   D. Không có dấu hóa
+          Đáp án: A – Son trưởng có 1 dấu thăng; dấu thăng đầu tiên luôn là Fa#.
+          Yêu cầu:
+          1. Viết 8 câu trắc nghiệm: 3 nhận biết, 3 thông hiểu, 2 vận dụng (ví dụ: xác định giọng của một đoạn nhạc qua hóa biểu và nốt kết).
+          2. Phương án nhiễu phải là lỗi sinh viên hay mắc: nhầm thứ tự dấu hóa, nhầm thăng với giáng, nhầm giọng trưởng với giọng thứ song song. Các phương án dài tương đương nhau.
+          3. Đáp án đúng phân bố đều: mỗi chữ A, B, C, D đúng 2 lần.
+          4. Ghi đáp án kèm giải thích 1 câu cho từng câu.
+          5. Sau khi viết xong, hãy tự giải lại từng câu như một sinh viên, đối chiếu với đáp án, đếm số lần xuất hiện của A, B, C, D và sửa nếu có sai sót. Trình bày ngắn gọn kết quả tự kiểm tra.
+        result: Đây là kết quả ngược với dự đoán. Phương án nhiễu hay hơn hẳn (đúng kiểu lỗi người học), đáp án rải đều A, B, C, D mỗi chữ 2 lần, nhưng độ chính xác không tăng. Vẫn 2/8 câu hỏng, và phần “tự giải lại” xác nhận cả câu sai là “Khớp”, kết luận “đề chuẩn xác, không có sai sót”.
+        good:
+          - Phương án nhiễu đúng các lỗi hay gặp (nhầm thăng/giáng, nhầm giọng thứ song song)
+          - Đáp án đúng phân bố đều; câu 6 “một bạn xác định nhầm…” đúng tinh thần sư phạm
+        bad:
+          - 'Câu 2 hỏng: lời “tự sửa” của AI (“C. A trưởng (Sai tên gọi nốt) -> Không, sửa lại…”) lẫn vào đề, “La trưởng” xuất hiện ở cả A và D'
+          - 'Câu 5 sai kiến thức: giọng thứ song song của Mi trưởng là Đô thăng thứ (phương án A), không phải Fa thăng thứ; lập luận “Mi xuống 3 bán âm là Fa#” cũng sai'
+          - Tự kiểm tra ghi “Khớp” cho câu 5, đếm sai rồi tự sửa ngay trong bài (“khoan, sửa lại”), kết luận “không có sai sót”
+          - Dù đã dặn “Fa, Son”, đề vẫn dùng “Pha trưởng”, “Sol, Do”
+        scores: [2, 4, 5, 3, 1]
+        shots:
+          - file: images/bai3/t3_v3_a.jpg
+            caption: Prompt nâng cao có câu mẫu và 5 ràng buộc
+          - file: images/bai3/t3_v3_b.jpg
+            caption: Câu 2 lẫn lời “tự sửa” của AI, có hai phương án “La trưởng”
+          - file: images/bai3/t3_v3_c.jpg
+            caption: Câu 5 chọn Fa thăng thứ; đúng phải là Đô thăng thứ
+          - file: images/bai3/t3_v3_d.jpg
+            caption: Phần tự giải lại ghi câu 5 là “Khớp”
+          - file: images/bai3/t3_v3_e.jpg
+            caption: Kết luận “Đề chuẩn xác, không có sai sót”
+    check:
+      type: answers
+      title: Mình tự giải lại 8 câu trắc nghiệm
+      rows:
+        - label: Cải tiến
+          marks: [ok, ok, bad, bad, ok, ok, ok, ok]
+          note: 'Đáp án Gemini: A B C C B B A A · đúng ra: A B A B B B A A'
+        - label: Nâng cao
+          marks: [ok, bad, ok, ok, bad, ok, ok, ok]
+          note: 'Câu 2 hỏng đề, câu 5 sai đáp án (đúng ra là A – Đô thăng thứ)'
+      legend: {ok: Đáp án đúng, bad: Đáp án sai hoặc câu hỏi hỏng}
+
+# ------------------------------------------------------------
+#  Phân tích – vì sao prompt này hiệu quả hơn prompt kia
+# ------------------------------------------------------------
+analysis:
+  - head: Prompt dài hơn không tự động tốt hơn
+    body: 'Ở tác vụ 1 và 2, điểm tăng đều từ cơ bản → cải tiến → nâng cao. Ở tác vụ 3, prompt nâng cao (15 điểm) lại thấp hơn prompt cải tiến (18 điểm). Khi một prompt bắt AI cùng lúc phải đúng kiến thức, rải đều đáp án, viết nhiễu khéo và tự kiểm tra, các ràng buộc giành nhau sự chú ý. Ràng buộc dễ thấy (phân bố A–D) được làm rất tốt, còn ràng buộc khó thấy nhất là đúng kiến thức thì không. Nhiều kỹ thuật nhồi vào một lượt chưa chắc đã cộng dồn hiệu quả.'
+    from: Tác vụ 3
+  - head: Chất lượng đầu ra bị giới hạn bởi thông tin đầu vào
+    body: 'Prompt cơ bản và cải tiến của tác vụ 1 đều “tóm tắt” một bài mà AI chưa từng đọc. Gemini lấp chỗ trống bằng kết quả tìm kiếm và kiến thức chung, nên bản cơ bản mới có một mục bài không hề viết. Chỉ khi có toàn văn, bản tóm tắt mới đủ 8/8 mục và 16/18 phần mềm. Viết prompt hay đến đâu cũng không bù được việc thiếu tài liệu: cấu trúc prompt quyết định cách trình bày, còn nguồn dữ liệu quyết định độ đúng.'
+    from: Tác vụ 1
+  - head: Muốn AI trung thực thì phải yêu cầu điều đó
+    body: 'Cùng một đường link, hai prompt đầu cho ra bản tóm tắt tự tin, còn prompt có câu “nếu không mở được tài liệu, hãy nói rõ thay vì tự suy đoán” khiến Gemini thừa nhận giới hạn ngay. Tức là việc AI nói “không biết” không phải lúc nào cũng tự có, mà phụ thuộc vào việc người hỏi có cho phép nó nói vậy hay không.'
+    from: Tác vụ 1
+  - head: “Tự kiểm tra” trong prompt không thay được kiểm chứng
+    body: 'Cả ba prompt nâng cao đều có bước tự kiểm tra, và cả ba lần bước này đều bỏ sót lỗi: gộp nhầm ngữ cảnh (tác vụ 1), “F5 vượt 3.000 Hz” (tác vụ 2), “Mi xuống 3 bán âm là Fa#” (tác vụ 3). AI tự chấm bằng chính cách suy luận đã sinh ra lỗi, nên lỗi lặp lại thay vì bị phát hiện. Phần tự kiểm tra làm câu trả lời trông đáng tin hơn, chứ không làm nó đúng hơn.'
+    from: Cả 3 tác vụ
+  - head: Kỹ thuật nào giúp phần nào
+    body: 'Mỗi kỹ thuật có tác dụng riêng, có thể thấy qua kết quả. Ví dụ mẫu (few-shot) quyết định hình thức: câu trả lời đúng 5 dòng, câu hỏi đúng phong cách. Suy luận từng bước (chain-of-thought) sửa được lỗi khái niệm (tách formant khỏi họa âm). Mô tả người học cụ thể (“sinh viên nữ học thanh nhạc”) mở ra nội dung chuyên sâu mà prompt chung chung không chạm tới. Đóng vai (role prompting) chủ yếu đổi giọng văn (“Chào các em, thầy…”) chứ ít đổi độ chính xác.'
+    from: So sánh 9 prompt
+
+# ------------------------------------------------------------
+#  Nguyên tắc – xếp theo 7 nốt Đô → Si
+# ------------------------------------------------------------
+principles:
+  - note: Đô
+    head: Đưa nguồn thật vào
+    body: Dán toàn văn hoặc trích đoạn cần xử lý, đừng chỉ gửi tên bài hay đường link.
+    eg: Tác vụ 1, từ 3/8 mục lên 8/8 mục khi có toàn văn
+  - note: Rê
+    head: Ràng buộc sự trung thực
+    body: 'Viết rõ: “chỉ dùng thông tin trong tài liệu”, “không chắc thì đánh dấu”, “không đọc được thì nói”.'
+    eg: Tác vụ 1, Gemini thừa nhận không mở được link
+  - note: Mi
+    head: Mô tả người học thật cụ thể
+    body: Trình độ, chuyên ngành, cả đặc điểm riêng (giọng nữ, năm nhất…). AI sẽ tự chọn độ sâu và ví dụ phù hợp.
+    eg: Tác vụ 2, có dòng “Với giọng nữ”
+  - note: Fa
+    head: Format bằng một ví dụ mẫu
+    body: Muốn câu trả lời có hình dạng nào thì đưa một mẫu hình dạng ấy (few-shot). Hiệu quả hơn mô tả bằng lời.
+    eg: Tác vụ 2 và 3, câu trả lời theo đúng mẫu
+  - note: Son
+    head: Suy luận từng bước, đúng chỗ khó
+    body: Đặt các câu hỏi dẫn dắt vào đúng điểm dễ nhầm, thay vì chỉ ghi chung “hãy suy nghĩ từng bước”.
+    eg: Tác vụ 2, hết nhầm formant với họa âm
+  - note: La
+    head: Làm ít việc trong một lượt
+    body: Tách việc lớn thành chuỗi prompt (prompt chaining), ví dụ “viết đề” rồi “giải đề” ở lượt sau, thay vì nhồi mọi ràng buộc vào một lần.
+    eg: Tác vụ 3, nhiều ràng buộc thì độ chính xác lại giảm
+  - note: Si
+    head: Soát lại bằng chính mình
+    body: Coi phần “tự kiểm tra” của AI chỉ là gợi ý. Mọi số liệu, đáp án, trích dẫn đều phải đối chiếu với nguồn gốc hoặc tự giải lại.
+    eg: Cả 3 tác vụ, AI tự xác nhận cả những chỗ sai
+
+refs:
+  - text: 'Lương Minh Tân, “Ứng dụng công nghệ thông tin trong đổi mới phương pháp dạy học âm nhạc trong kỷ nguyên số”, Tạp chí Văn hóa Nghệ thuật, số 627, 12/2025, tr. 96–99'
+    url: https://vjol.info.vn/tcvanhoanghethuat/article/view/139860
+  - text: 'J. Sundberg, “Level and center frequency of the singer''s formant”, Journal of Voice 15(2), 2001, 176–186'
+  - text: 'I. R. Titze & S. M. Jin, về vai trò của ống thanh quản trên thanh môn (epilaryngeal tube) trong “vocal ring”'
+  - text: 'N. Henrich và cộng sự, Direct measurements of vocal tract resonances in the 2–4 kHz range in Western operatic singing (PEVOC 7)'
+    url: https://www.pevoc.org/pevoc07/Henrich-FP.htm
+  - text: Gemini – gemini.google.com (không đăng nhập, chế độ Quick answers), thử nghiệm ngày 12/11/2026

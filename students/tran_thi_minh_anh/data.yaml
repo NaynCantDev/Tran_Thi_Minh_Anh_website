@@ -128,13 +128,18 @@ projects:
     section: '3.4'
     title: Viết Prompt hiệu quả cho các tác vụ học tập
     chapter: Chương 3 – Tổng quan về trí tuệ nhân tạo
-    objective: …
-    process: ['Bước 1: …']
-    tool: …
-    ai_use: …
-    product:
-      intro: …
-      gallery: []
+    objective: Phát triển kỹ năng viết prompt hiệu quả để khai thác tốt mô hình ngôn ngữ lớn trong học tập. Mình chọn ba tác vụ gắn với chuyên ngành và sở thích ca hát của mình, viết cho mỗi tác vụ ba phiên bản prompt, chạy thử trên Gemini, rồi tự đối chiếu với tài liệu gốc và kiến thức nhạc lý. Mục đích là trả lời câu hỏi “vì sao prompt này tốt hơn prompt kia”, chứ không chỉ chứng minh rằng prompt dài thì tốt hơn.
+    process:
+      - 'Bước 1: Chọn 3 tác vụ theo đề và lấy nội dung từ chính ngành học: tóm tắt bài báo về ứng dụng CNTT trong dạy học âm nhạc của một giảng viên trường mình, giải thích khái niệm âm học “formant ca sĩ”, soạn đề ôn tập “Giọng trưởng và hóa biểu”. Với mỗi tác vụ, xác định trước thế nào là một câu trả lời tốt.'
+      - 'Bước 2: Viết 9 prompt. Bản cơ bản chỉ có một câu. Bản cải tiến thêm người học, cấu trúc và độ dài. Bản nâng cao ở mỗi tác vụ dùng một tổ hợp kỹ thuật khác nhau: (1) đóng vai + suy luận từng bước + ràng buộc chỉ dùng tài liệu; (2) đóng vai + ví dụ mẫu + suy luận dẫn dắt + cá nhân hóa; (3) câu hỏi mẫu + ràng buộc phương án nhiễu + tự giải lại.'
+      - 'Bước 3: Chạy cả 9 prompt trên Gemini (gemini.google.com, không đăng nhập) ngày 12/11/2026, mỗi prompt trong một cuộc trò chuyện mới. Riêng prompt nâng cao của tác vụ 1 có thêm lượt thứ hai: chép toàn văn bài báo từ file PDF rồi gửi tiếp (nối prompt). Chụp 27 ảnh màn hình.'
+      - 'Bước 4: Chuẩn bị “đáp án” độc lập với AI: trích toàn văn bài báo từ VJOL; tra các nghiên cứu âm học giọng hát của Sundberg; tự giải lại 16 câu trắc nghiệm.'
+      - 'Bước 5: Chấm mỗi phiên bản theo 5 tiêu chí (Chính xác, Đầy đủ, Hợp người học, Rõ ràng, Trung thực; thang 1–5), so sánh, phân tích nguyên nhân và rút ra 7 nguyên tắc.'
+      - 'Khó khăn: Gemini trả lời rất tự tin dù không đọc được tài liệu, nên rất dễ tin ngay. – Giải quyết bằng cách tự tìm và đọc bản gốc trước khi chấm, và thêm vào prompt yêu cầu “không đọc được thì nói rõ”.'
+      - 'Khó khăn: Kết quả không theo đúng dự đoán “nâng cao luôn thắng”: ở tác vụ 3, bản nâng cao lại kém bản cải tiến. – Giải quyết bằng cách chấm riêng từng tiêu chí và ghi lại kết quả đúng như đã xảy ra, rồi tìm nguyên nhân thay vì chỉnh lại cho đẹp.'
+    tool: Gemini (gemini.google.com, không đăng nhập, chế độ Quick answers); bài báo trên Tạp chí Văn hóa Nghệ thuật (VJOL); các nghiên cứu âm học giọng hát của J. Sundberg
+    ai_use: Gemini là đối tượng thử nghiệm của 9 prompt. Có dùng trợ lý AI (Claude) hỗ trợ chạy thử nghiệm, chụp màn hình và dựng trang. Mọi nhận định về đúng/sai đều được đối chiếu với bài báo gốc, tài liệu âm học và lời giải nhạc lý.
+    product_file: bai3.yaml
   - id: 4
     section: '4.4'
     title: Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm

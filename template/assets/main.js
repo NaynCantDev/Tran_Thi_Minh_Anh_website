@@ -397,6 +397,44 @@
     addEventListener("pointerup", () => { pressing = false; keys._last = null; });
   }
 
+  /* ================= LIGHTBOX ảnh chụp màn hình ================= */
+  const lb = $("#lb");
+  if (lb) {
+    document.body.appendChild(lb);
+    const shots = $$(".shot"), img = $("img", lb), cap = $("figcaption", lb);
+    let idx = 0, lastFocus = null;
+    const show = i => {
+      idx = (i + shots.length) % shots.length;
+      img.src = shots[idx].dataset.full; img.alt = shots[idx].dataset.cap; cap.textContent = shots[idx].dataset.cap;
+    };
+    const open = i => { lastFocus = document.activeElement; show(i); lb.hidden = false; document.body.style.overflow = "hidden"; $(".lb-x", lb).focus(); };
+    const close = () => { lb.hidden = true; document.body.style.overflow = ""; lastFocus && lastFocus.focus(); };
+    shots.forEach((b, i) => b.addEventListener("click", () => open(i)));
+    $(".lb-x", lb).addEventListener("click", close);
+    $(".lb-prev", lb).addEventListener("click", () => show(idx - 1));
+    $(".lb-next", lb).addEventListener("click", () => show(idx + 1));
+    lb.addEventListener("click", e => { if (e.target === lb) close(); });
+    addEventListener("keydown", e => {
+      if (lb.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(idx - 1);
+      if (e.key === "ArrowRight") show(idx + 1);
+    });
+  }
+
+  /* ================= GAM NGUYÊN TẮC: bấm nốt để nghe gam đi lên ================= */
+  const sols = $$(".sol");
+  sols.forEach(b => b.addEventListener("click", () => {
+    const c = audio(); if (!c || !soundOn) return;
+    const deg = +b.dataset.deg;
+    for (let i = 0; i <= deg; i++) {
+      const t = c.currentTime + i * .28, last = i === deg;
+      sing(midiHz(60 + MAJ[i]), t, last ? .9 : .3, last ? .5 : .32, "a");
+      setTimeout(() => { sols.forEach(s => s.classList.toggle("on", s === sols[i])); }, i * 280);
+    }
+    setTimeout(() => sols.forEach(s => s.classList.remove("on")), deg * 280 + 900);
+  }));
+
   /* ================= VÉ: nghiêng theo chuột ================= */
   const tk = $("#ticket");
   if (tk && !reduce && matchMedia("(hover:hover)").matches) {
