@@ -11,7 +11,7 @@ Portfolio học phần **Nhập môn Công nghệ số và ứng dụng AI (INF2
 - ✅ Bài 4 (Hợp tác trực tuyến): vai trò người điều phối trong cuộc họp Google Meet 12/11/2026, ảnh minh chứng do nhóm cung cấp (`bai4.yaml`)
 - ✅ Bài 5 (AI tạo sinh): học liệu tương tác “Khởi động giọng cùng Đô Rê Mi” – Gemini 2 lượt, bảng đối chiếu giữ/sửa/bỏ (`bai5.yaml`)
 - ✅ Bài 6 (AI có trách nhiệm): nhật ký sự cố + căn cứ pháp lý 2025 + bộ nguyên tắc 4 giai đoạn + bảng tự kiểm tra (`bai6.yaml`)
-- ⚠️ Tổng kết: đã có **bản nháp** – đề thi yêu cầu sinh viên tự viết phần cảm nhận, tự đánh giá
+- ✅ Tổng kết
 - ⏳ Mã sinh viên, lớp, email: chưa có
 
 ## Giao diện — "Recital"
@@ -44,3 +44,9 @@ python scripts/render.py
 python -m http.server -d dist   # mở http://localhost:8000
 ```
 Push lên `main` → GitHub Actions tự build & deploy (bật **Settings → Pages → Source: GitHub Actions** một lần).
+
+## Khai báo hỗ trợ AI trong mã nguồn
+
+Mã nguồn website này (bộ sinh trang `scripts/render.py`, giao diện `template/`, âm thanh tổng hợp trong `template/assets/main.js`) được xây dựng với sự hỗ trợ của **Claude (Anthropic)**. Claude còn hỗ trợ thao tác máy tính, chụp ảnh màn hình minh chứng (Bài 2, 3, 5), chạy thử prompt trên Gemini và tra cứu số hiệu, ngày hiệu lực của văn bản pháp luật (Bài 6).
+
+Nội dung chuyên môn (chọn tác vụ, chấm điểm, sửa lỗi Thanh nhạc, câu vè, âm tiết luyện phát âm, cảm nhận) do sinh viên Trần Thị Minh Anh quyết định và chịu trách nhiệm. Việc dùng Gemini trong từng bài được khai báo ở mục "Sử dụng AI" của bài đó trên website.

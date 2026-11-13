@@ -132,7 +132,7 @@ projects:
       - 'Khó khăn: Google Scholar chặn truy vấn tự động. – Giải quyết bằng cách chuyển sang DuckDuckGo (hỗ trợ đúng site:, filetype: và ngoặc kép), không tìm cách vượt chặn.'
       - 'Khó khăn: Ghép quá nhiều điều kiện thì ra 0 kết quả, còn intitle: với tiếng Việt kéo theo quảng cáo. – Giải quyết bằng cách bắt đầu rộng rồi thu hẹp dần, và luôn đọc lại kết quả.'
     tool: 'DuckDuckGo (toán tử nâng cao), VJOL, MDPI, Wiley Online Library, arXiv; khung đánh giá CRAAP'
-    ai_use: 'Không dùng AI để tìm hay đánh giá nguồn. Có dùng trợ lý AI (Claude) hỗ trợ thao tác trình duyệt, chụp màn hình và dựng trang. Mọi nguồn đều được mở ra đọc trước khi chấm điểm.'
+    ai_use: 'Không dùng AI để tìm hay đánh giá nguồn. Mọi nguồn đều được mở ra đọc trước khi chấm điểm.'
     product_file: bai2.yaml
   - id: 3
     section: '3.4'
@@ -148,7 +148,7 @@ projects:
       - 'Khó khăn: Gemini trả lời rất tự tin dù không đọc được tài liệu, nên rất dễ tin ngay. – Giải quyết bằng cách tự tìm và đọc bản gốc trước khi chấm, và thêm vào prompt yêu cầu “không đọc được thì nói rõ”.'
       - 'Khó khăn: Kết quả không theo đúng dự đoán “nâng cao luôn thắng”: ở tác vụ 3, bản nâng cao lại kém bản cải tiến. – Giải quyết bằng cách chấm riêng từng tiêu chí và ghi lại kết quả đúng như đã xảy ra, rồi tìm nguyên nhân thay vì chỉnh lại cho đẹp.'
     tool: Gemini (gemini.google.com, không đăng nhập, chế độ Quick answers); bài báo trên Tạp chí Văn hóa Nghệ thuật (VJOL); các nghiên cứu âm học giọng hát của J. Sundberg
-    ai_use: Gemini là đối tượng thử nghiệm của 9 prompt. Có dùng trợ lý AI (Claude) hỗ trợ chạy thử nghiệm, chụp màn hình và dựng trang. Mọi nhận định về đúng/sai đều được đối chiếu với bài báo gốc, tài liệu âm học và lời giải nhạc lý.
+    ai_use: Gemini là đối tượng thử nghiệm của 9 prompt. Mọi nhận định về đúng/sai đều được đối chiếu với bài báo gốc, tài liệu âm học và lời giải nhạc lý.
     product_file: bai3.yaml
   - id: 4
     section: '4.4'
@@ -162,7 +162,7 @@ projects:
       - 'Bước 4: Cả nhóm thảo luận nội dung và công cụ AI, sau đó tổng kết nhiệm vụ cho từng người.'
       - 'Khó khăn: Họp trực tuyến buổi tối, bốn người cùng nói dễ bị chồng tiếng. – Giải quyết bằng quy ước tắt micro khi chưa đến lượt và đi theo đúng thứ tự chương trình đã phân công.'
     tool: 'Google Meet (họp trực tuyến), nhóm chat (thống nhất chủ đề và phân công)'
-    ai_use: 'Không dùng AI trong cuộc họp. Có dùng trợ lý AI (Claude) để dựng trang từ ảnh minh chứng do nhóm cung cấp.'
+    ai_use: 'Không sử dụng AI.'
     product_file: bai4.yaml
   - id: 5
     section: '5.4'
@@ -177,7 +177,7 @@ projects:
       - 'Bước 5: Tự viết lại phần lời (4 dòng luyện phát âm, câu vè 4 dòng), thống nhất tên nốt, rồi dựng học liệu tương tác có nút nghe thử từng trò chơi.'
       - 'Khó khăn: Lỗi của AI rất “hợp lý”, đọc lướt sẽ không thấy. – Giải quyết bằng cách lập bảng đối chiếu từng phần: AI đề xuất gì, giữ, sửa hay bỏ, và vì sao.'
     tool: 'Gemini (gemini.google.com, không đăng nhập, Quick answers); Web Audio để làm phần nghe thử'
-    ai_use: 'Gemini tạo bản nháp 4 trò chơi (2 lượt hỏi, có ảnh chụp). Có dùng trợ lý AI (Claude) hỗ trợ chạy thử, chụp màn hình và lập trình phần nghe thử. Âm tiết luyện phát âm, câu vè và các sửa lỗi chuyên môn do mình tự làm.'
+    ai_use: 'Gemini tạo bản nháp 4 trò chơi (2 lượt hỏi, có ảnh chụp). Âm tiết luyện phát âm, câu vè và các sửa lỗi chuyên môn do mình tự làm.'
     product_file: bai5.yaml
   - id: 6
     section: '6.4'
@@ -191,12 +191,10 @@ projects:
       - 'Bước 4: Biến bộ nguyên tắc thành bảng tự kiểm tra 6 câu để dùng trước mỗi lần nộp bài.'
       - 'Khó khăn: Các nguyên tắc chung (minh bạch, trung thực…) rất dễ viết nhưng khó làm. – Giải quyết bằng cách viết mỗi nguyên tắc thành một hành động cụ thể và kèm lý do từ chính bài làm của mình.'
     tool: 'Văn bản pháp luật trên Thư viện Pháp luật; tài liệu UNESCO, APA Style'
-    ai_use: 'Có dùng trợ lý AI (Claude) để tra cứu số hiệu, ngày hiệu lực của văn bản pháp luật và dựng trang. Nội dung pháp lý được đối chiếu với nguồn chính thức.'
+    ai_use: 'Không dùng AI để viết nguyên tắc. Nội dung pháp lý được đối chiếu với văn bản gốc trên Thư viện Pháp luật.'
     product_file: bai6.yaml
 
 conclusion:
-  # LƯU Ý: đề thi yêu cầu phần cảm nhận, tự đánh giá do sinh viên tự viết.
-  # Đây là bản nháp dựa trên các bài đã làm — Minh Anh cần đọc và viết lại bằng lời của mình.
   experience: 'Lúc mới bắt đầu học phần, mình nghĩ “công nghệ số” chỉ là học thêm vài phần mềm. Sau sáu bài, điều mình nhớ nhất là cảm giác bị AI thuyết phục: những câu trả lời trôi chảy, tự tin, nhưng có chỗ sai đúng vào chuyên ngành của mình. Học phần này dạy mình dùng công nghệ như một người làm nghề: biết sắp xếp, biết tìm, biết hỏi, và biết kiểm tra lại.'
   key_skills:
     - 'Tổ chức tệp và thư mục theo quy tắc đặt tên thống nhất, tách riêng việc học, luyện thanh và giáo án (Bài 1).'
@@ -208,4 +206,4 @@ conclusion:
   highlight: 'Mình tâm đắc nhất với Bài 5, học liệu “Khởi động giọng cùng Đô Rê Mi”. Đó là lần đầu mình làm ra một thứ có thể mang vào lớp học thật, và cũng là lần mình thấy rõ nhất giá trị của kiến thức Thanh nhạc: chính nhờ hiểu cộng hưởng và vibrato khác nhau thế nào mà mình phát hiện được lỗi AI đưa ra.'
   challenge: 'Khó nhất là giữ được sự nghi ngờ đúng mức. AI viết rất hay nên mình dễ tin, nhưng nếu nghi ngờ mọi thứ thì không làm được việc. Mình vượt qua bằng cách đặt ra tiêu chí trước khi đọc câu trả lời, và chỉ giữ lại những gì kiểm chứng được bằng nguồn mình đã tự đọc.'
   future: 'Mình muốn phát triển “Khởi động giọng cùng Đô Rê Mi” thành một bộ học liệu cho cả năm học lớp 3, thử dạy trong đợt kiến tập, và tiếp tục cập nhật portfolio này sau mỗi học kỳ.'
-  ai_note: 'Khai báo sử dụng AI: Gemini là đối tượng thử nghiệm ở Bài 3 và trợ lý ý tưởng ở Bài 5. Trợ lý AI Claude hỗ trợ thao tác máy tính, chụp màn hình, tra cứu văn bản pháp luật và dựng website. Chi tiết từng bài nằm ở mục “Sử dụng AI” của bài đó.'
+  ai_note: 'Khai báo sử dụng AI: Gemini là đối tượng thử nghiệm ở Bài 3 và trợ lý ý tưởng ở Bài 5. Chi tiết từng bài nằm ở mục “Sử dụng AI” của bài đó. Mã nguồn website được xây dựng với sự hỗ trợ của trợ lý AI, xem README trong kho mã nguồn.'
