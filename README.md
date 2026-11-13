@@ -6,7 +6,7 @@ Portfolio học phần **Nhập môn Công nghệ số và ứng dụng AI (INF2
 - ✅ Giao diện riêng + trang Giới thiệu (thông tin, sở thích, mục tiêu học tập, định hướng phát triển, mục tiêu portfolio — giữ nguyên văn, có tách ý để trình bày)
 - ✅ Trang Dự án / chi tiết bài / Tổng kết dựng sẵn; ô nào còn `…` hiện nhãn "đang cập nhật"
 - ✅ Bài 3 (Viết prompt hiệu quả): 3 tác vụ × 3 prompt chạy thật trên Gemini (12/11/2026) + 1 lượt nối prompt, 27 ảnh chụp màn hình, chấm 5 tiêu chí, kiểm chứng với tài liệu gốc, phân tích và 7 nguyên tắc (nội dung ở `students/tran_thi_minh_anh/bai3.yaml`)
-- ✅ Bài 1 (Tệp tin & thư mục): cây thư mục thật trên máy + quy tắc đặt tên, 5 ảnh File Explorer (`bai1.yaml`)
+- ✅ Bài 1 (Tệp tin & thư mục): thực hành File Explorer trong Windows Sandbox, 12 ảnh từng bước (`bai1.yaml`)
 - ✅ Bài 2 (Tìm kiếm học thuật): 7 truy vấn với toán tử nâng cao (DuckDuckGo, 13/11/2026), 11 nguồn chấm CRAAP (`bai2.yaml`)
 - ✅ Bài 4 (Hợp tác trực tuyến): vai trò người điều phối trong cuộc họp Google Meet 12/11/2026, ảnh minh chứng do nhóm cung cấp (`bai4.yaml`)
 - ✅ Bài 5 (AI tạo sinh): học liệu tương tác “Khởi động giọng cùng Đô Rê Mi” – Gemini 2 lượt, bảng đối chiếu giữ/sửa/bỏ (`bai5.yaml`)

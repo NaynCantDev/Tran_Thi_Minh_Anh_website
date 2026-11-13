@@ -106,17 +106,18 @@ projects:
     section: '1.4'
     title: Thao tác cơ bản với tệp tin và thư mục
     chapter: Chương 1 – Máy tính và các thiết bị ngoại vi
-    objective: 'Thiết lập một hệ thống thư mục và quy tắc đặt tên tệp cho toàn bộ việc học của một sinh viên Sư phạm Âm nhạc: bài tập các môn, ghi chú và bản ghi âm luyện thanh, giáo án – học liệu và tài liệu tham khảo. Mục tiêu là tìm được bất kỳ tệp nào trong vài giây, phân biệt rõ các phiên bản, và dùng tiếp được sau khi ra trường.'
+    objective: 'Thực hành trên Windows các thao tác cơ bản với tệp và thư mục: truy cập thư mục, tạo thư mục và tệp văn bản, đổi tên, sao chép, di chuyển và xóa. Qua đó rèn thói quen tổ chức thư mục có cấu trúc và đặt tên tệp rõ ràng.'
     process:
-      - 'Bước 1: Liệt kê các loại tệp mình thường có và nhóm chúng theo mục đích sử dụng: học trên lớp, luyện nghề (luyện thanh), dạy học (giáo án), tham khảo.'
-      - 'Bước 2: Phác thảo cây thư mục trên giấy: 6 nhánh đánh số 00–99, học phần chia theo học kỳ, mỗi bài tập một thư mục, tối đa 4 tầng.'
-      - 'Bước 3: Viết quy tắc đặt tên Ngày_MãHọcPhần_NộiDung_vSố và lưu thành tệp _QUY_TAC_DAT_TEN.txt ngay trong thư mục gốc.'
-      - 'Bước 4: Tạo cây thư mục trên ổ D: (D:\Web_based\Tran_Thi_Minh_Anh_web\ThucHanh_Bai1) cùng các tệp mẫu đặt tên theo quy tắc.'
-      - 'Bước 5: Kiểm tra bằng File Explorer: mở từng nhánh trong ngăn điều hướng, xem thứ tự tự sắp xếp, chỉnh độ rộng cột để đọc đủ tên tệp, và chụp màn hình minh chứng ngày 13/11/2026.'
-      - 'Khó khăn: Tên tệp theo quy tắc khá dài nên bị cắt mất phần _v01/_v02 trong File Explorer. – Giải quyết bằng cách nháy đúp vào vạch chia cột Name để cột tự giãn vừa tên dài nhất.'
-      - 'Khó khăn: Ban đầu mình muốn chia rất nhiều tầng cho “gọn”, nhưng mở tới bài tập phải bấm quá nhiều lần. – Giải quyết bằng cách đặt giới hạn tối đa 4 tầng và gộp các thư mục chỉ chứa 1–2 tệp.'
-    tool: 'File Explorer (Windows 11): ngăn điều hướng, thanh địa chỉ, sắp xếp theo tên, chỉnh độ rộng cột'
-    ai_use: 'Có dùng trợ lý AI (Claude) để tạo nhanh cây thư mục mẫu theo thiết kế, thao tác File Explorer và chụp màn hình, dựng trang. Cấu trúc thư mục và quy tắc đặt tên được thiết kế dựa trên nhu cầu học tập của mình.'
+      - 'Bước 1: Mở File Explorer, vào thư mục Documents.'
+      - 'Bước 2: Trong Documents, tạo thư mục ThucHanh_TranThiMinhAnh.'
+      - 'Bước 3: Tạo tệp GhiChu.txt rồi đổi tên thành GhiChuQuanTrong.txt.'
+      - 'Bước 4: Tạo thư mục con TaiLieu, sao chép GhiChuQuanTrong.txt vào đó.'
+      - 'Bước 5: Tạo tệp DiChuen.txt, cắt và dán vào TaiLieu.'
+      - 'Bước 6: Xóa GhiChuQuanTrong.txt trong TaiLieu bằng Delete (tệp vào Thùng rác).'
+      - 'Bước 7: Xóa DiChuen.txt, thư mục TaiLieu trở về trống.'
+      - 'Khó khăn: Dễ nhầm giữa sao chép (Copy) và di chuyển (Cut). – Giải quyết bằng cách kiểm tra lại cả thư mục nguồn và thư mục đích sau mỗi thao tác: sao chép thì tệp còn ở cả hai nơi, di chuyển thì chỉ còn ở nơi mới.'
+    tool: 'File Explorer (Windows 11), thực hành trong Windows Sandbox – môi trường Windows sạch'
+    ai_use: 'Không sử dụng AI.'
     product_file: bai1.yaml
   - id: 2
     section: '2.4'

@@ -12,49 +12,29 @@
 
 {# ================================================================ BÀI 1 #}
 {% if prod.kind == 'files' %}
-{% macro node(n, depth) %}
-  {% if n.f %}
-  <li class="tf"><span class="tf-ic" aria-hidden="true"></span><code>{{ n.name }}</code>{% if n.note %}<em>{{ n.note }}</em>{% endif %}</li>
-  {% elif n.children %}
-  <li class="td"><details{{ ' open' if depth < 3 }}><summary><span class="td-ic" aria-hidden="true"></span><b>{{ n.name }}</b>{% if n.note %}<em>{{ n.note }}</em>{% endif %}</summary>
-    <ul>{% for c in n.children %}{{ node(c, depth + 1) }}{% endfor %}</ul></details></li>
-  {% else %}
-  <li class="td td-leaf"><span class="td-ic" aria-hidden="true"></span><b>{{ n.name }}</b>{% if n.note %}<em>{{ n.note }}</em>{% endif %}</li>
-  {% endif %}
-{% endmacro %}
-
-  <section class="lab-sec reveal">
-    <h3 class="lab-h"><em>Trước khi lên dây</em> Vì sao cần sắp xếp lại</h3>
-    <p class="w-lead">{{ prod.problem }}</p>
-    <ol class="ideas">
-      {% for i in prod.ideas %}<li><span class="idea-k">{{ i.k }}</span><h4>{{ i.head }}</h4><p>{{ i.body }}</p></li>{% endfor %}
-    </ol>
-  </section>
-
   <section class="lab-sec reveal" id="cau-truc">
-    <h3 class="lab-h"><em>Sơ đồ sân khấu</em> Cấu trúc thư mục</h3>
-    <p class="crit-hint">Bấm vào tên thư mục để mở hoặc gập nhánh. Đây là đúng cây thư mục đang có trên máy, xem ảnh chụp ở cuối trang.</p>
-    <div class="tree-box"><ul class="tree">{{ node(prod.tree, 0) }}</ul></div>
+    <h3 class="lab-h"><em>Kết quả</em> Cấu trúc thư mục cuối cùng</h3>
+    <ul class="rtree">
+      {% for n in prod.result_tree %}<li style="--d:{{ n.depth }}" class="{{ 'rt-d' if n.d else 'rt-f' }}"><span class="{{ 'td-ic' if n.d else 'tf-ic' }}" aria-hidden="true"></span>{% if n.d %}<b>{{ n.name }}</b>{% else %}<code>{{ n.name }}</code>{% endif %}{% if n.note %}<em>{{ n.note }}</em>{% endif %}</li>{% endfor %}
+    </ul>
   </section>
 
   <section class="lab-sec reveal" id="dat-ten">
-    <h3 class="lab-h"><em>Ký âm</em> Quy tắc đặt tên tệp</h3>
-    <div class="pat" role="img" aria-label="Mẫu tên tệp: {% for x in prod.pattern %}{{ x.part }}{{ '_' if not loop.last }}{% endfor %}.docx">
-      {% for x in prod.pattern %}<span class="pat-seg pat-{{ loop.index }}"><code>{{ x.part }}</code><b>{{ x.label }}</b></span>{% if not loop.last %}<span class="pat-j">_</span>{% endif %}{% endfor %}<span class="pat-ext">.docx</span>
-    </div>
-    <ol class="pat-rules">
-      {% for x in prod.pattern %}<li class="pat-{{ loop.index }}"><b>{{ x.label }}</b> {{ x.rule }}</li>{% endfor %}
-    </ol>
-    <ul class="ticks rules">{% for r in prod.rules %}<li>{{ r }}</li>{% endfor %}</ul>
-    <h4 class="w-h4">Ví dụ đổi tên</h4>
-    <div class="renames">
-      {% for r in prod.renames %}<div class="rn-row"><del>{{ r.old }}</del><span aria-hidden="true">→</span><code>{{ r.new }}</code></div>{% endfor %}
-    </div>
+    <h3 class="lab-h"><em>Ký âm</em> Quy tắc đặt tên</h3>
+    <ul class="ticks">{% for r in prod.rules %}<li>{{ r }}</li>{% endfor %}</ul>
+    <h4 class="w-h4">Các thao tác và phím tắt</h4>
+    <div class="chk-scroll"><table class="board ops-t">
+      <thead><tr><th>Thao tác</th><th>Cách làm</th><th>Phím tắt</th></tr></thead>
+      <tbody>{% for o in prod.ops %}<tr><th>{{ o.op }}</th><td>{{ o.how }}</td><td><kbd>{{ o.key }}</kbd></td></tr>{% endfor %}</tbody>
+    </table></div>
   </section>
 
   <section class="lab-sec reveal" id="anh-chup">
-    <h3 class="lab-h"><em>Minh chứng</em> Ảnh chụp File Explorer</h3>
-    <div class="wgal">{% for s in prod.shots %}{{ shot(s) }}{% endfor %}</div>
+    <h3 class="lab-h"><em>Minh chứng</em> Ảnh chụp từng bước</h3>
+    <p class="crit-hint">Bấm vào ảnh để phóng to.</p>
+    <div class="wgal wgal-b1">{% for s in prod.shots %}{{ shot(s, 'wide') }}{% endfor %}</div>
+    <h4 class="w-h4">Bài học rút ra</h4>
+    <ul class="ticks">{% for l in prod.lessons %}<li>{{ l }}</li>{% endfor %}</ul>
   </section>
 
 {# ================================================================ BÀI 2 #}
