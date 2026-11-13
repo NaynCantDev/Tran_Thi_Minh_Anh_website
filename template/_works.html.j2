@@ -1,0 +1,259 @@
+{# Trang sản phẩm cho Bài 1, 2, 4, 5, 6 — dựng theo prod.kind #}
+{% macro shot(sh, cls='') %}
+<figure class="wshot {{ cls }}">
+  <button type="button" class="shot" data-full="{{ sh.src }}" data-cap="{{ sh.caption }}" aria-label="Phóng to ảnh: {{ sh.caption }}">
+    <img src="{{ sh.src }}" alt="{{ sh.caption }}" loading="lazy">
+  </button>
+  <figcaption>{{ sh.caption }}</figcaption>
+</figure>
+{% endmacro %}
+
+<div class="lab works works-{{ prod.kind }}">
+
+{# ================================================================ BÀI 1 #}
+{% if prod.kind == 'files' %}
+{% macro node(n, depth) %}
+  {% if n.f %}
+  <li class="tf"><span class="tf-ic" aria-hidden="true"></span><code>{{ n.name }}</code>{% if n.note %}<em>{{ n.note }}</em>{% endif %}</li>
+  {% elif n.children %}
+  <li class="td"><details{{ ' open' if depth < 3 }}><summary><span class="td-ic" aria-hidden="true"></span><b>{{ n.name }}</b>{% if n.note %}<em>{{ n.note }}</em>{% endif %}</summary>
+    <ul>{% for c in n.children %}{{ node(c, depth + 1) }}{% endfor %}</ul></details></li>
+  {% else %}
+  <li class="td td-leaf"><span class="td-ic" aria-hidden="true"></span><b>{{ n.name }}</b>{% if n.note %}<em>{{ n.note }}</em>{% endif %}</li>
+  {% endif %}
+{% endmacro %}
+
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Trước khi lên dây</em> Vì sao cần sắp xếp lại</h3>
+    <p class="w-lead">{{ prod.problem }}</p>
+    <ol class="ideas">
+      {% for i in prod.ideas %}<li><span class="idea-k">{{ i.k }}</span><h4>{{ i.head }}</h4><p>{{ i.body }}</p></li>{% endfor %}
+    </ol>
+  </section>
+
+  <section class="lab-sec reveal" id="cau-truc">
+    <h3 class="lab-h"><em>Sơ đồ sân khấu</em> Cấu trúc thư mục</h3>
+    <p class="crit-hint">Bấm vào tên thư mục để mở hoặc gập nhánh. Đây là đúng cây thư mục đang có trên máy, xem ảnh chụp ở cuối trang.</p>
+    <div class="tree-box"><ul class="tree">{{ node(prod.tree, 0) }}</ul></div>
+  </section>
+
+  <section class="lab-sec reveal" id="dat-ten">
+    <h3 class="lab-h"><em>Ký âm</em> Quy tắc đặt tên tệp</h3>
+    <div class="pat" role="img" aria-label="Mẫu tên tệp: {% for x in prod.pattern %}{{ x.part }}{{ '_' if not loop.last }}{% endfor %}.docx">
+      {% for x in prod.pattern %}<span class="pat-seg pat-{{ loop.index }}"><code>{{ x.part }}</code><b>{{ x.label }}</b></span>{% if not loop.last %}<span class="pat-j">_</span>{% endif %}{% endfor %}<span class="pat-ext">.docx</span>
+    </div>
+    <ol class="pat-rules">
+      {% for x in prod.pattern %}<li class="pat-{{ loop.index }}"><b>{{ x.label }}</b> {{ x.rule }}</li>{% endfor %}
+    </ol>
+    <ul class="ticks rules">{% for r in prod.rules %}<li>{{ r }}</li>{% endfor %}</ul>
+    <h4 class="w-h4">Ví dụ đổi tên</h4>
+    <div class="renames">
+      {% for r in prod.renames %}<div class="rn-row"><del>{{ r.old }}</del><span aria-hidden="true">→</span><code>{{ r.new }}</code></div>{% endfor %}
+    </div>
+  </section>
+
+  <section class="lab-sec reveal" id="anh-chup">
+    <h3 class="lab-h"><em>Minh chứng</em> Ảnh chụp File Explorer</h3>
+    <div class="wgal">{% for s in prod.shots %}{{ shot(s) }}{% endfor %}</div>
+  </section>
+
+{# ================================================================ BÀI 2 #}
+{% elif prod.kind == 'search' %}
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Đề tài</em> {{ prod.topic }}</h3>
+    <div class="rq">
+      <p class="rq-q">{{ prod.question }}</p>
+      <dl>
+        <div><dt>Vì sao chọn</dt><dd>{{ prod.why }}</dd></div>
+        <div><dt>Từ khóa tiếng Việt</dt><dd><ul class="chips">{% for k in prod.keywords.vi %}<li>{{ k }}</li>{% endfor %}</ul></dd></div>
+        <div><dt>Từ khóa tiếng Anh</dt><dd><ul class="chips">{% for k in prod.keywords.en %}<li>{{ k }}</li>{% endfor %}</ul></dd></div>
+        <div><dt>Giới hạn</dt><dd>{{ prod.limits }}</dd></div>
+      </dl>
+    </div>
+    <h4 class="w-h4">Các toán tử đã dùng</h4>
+    <ul class="ops">{% for o in prod.operators %}<li><code>{{ o.op }}</code><b>{{ o.name }}</b><span>{{ o.use }}</span></li>{% endfor %}</ul>
+  </section>
+
+  <section class="lab-sec reveal" id="truy-van">
+    <h3 class="lab-h"><em>Bảy lần thử giọng</em> Truy vấn và kết quả</h3>
+    <ol class="qs">
+      {% for q in prod.queries %}
+      <li class="q reveal">
+        <span class="q-n">{{ q.n }}</span>
+        <div class="q-body">
+          <code class="q-code">{{ q.q }}</code>
+          <ul class="chips">{% for o in q.ops %}<li>{{ o }}</li>{% endfor %}</ul>
+          <p>{{ q.result }}</p>
+          <p class="q-v">{{ q.verdict }}</p>
+        </div>
+        {% if q.src %}<button type="button" class="shot q-shot" data-full="{{ q.src }}" data-cap="Truy vấn {{ q.n }}: {{ q.q }}" aria-label="Phóng to ảnh kết quả truy vấn {{ q.n }}"><img src="{{ q.src }}" alt="Kết quả truy vấn {{ q.n }}" loading="lazy"></button>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+    <p class="req">{{ prod.snowball }}</p>
+  </section>
+
+  <section class="lab-sec reveal" id="danh-gia">
+    <h3 class="lab-h"><em>Ban giám khảo CRAAP</em> Bảng đánh giá {{ prod.sources|length }} nguồn</h3>
+    <ol class="crit craap">{% for c in prod.craap %}<li><b>{{ c.k }}</b><span><strong>{{ c.name }}</strong> ({{ c.en }}) – {{ c.d }}</span></li>{% endfor %}</ol>
+    {% for vk, vl in prod.verdicts.items() %}
+    {% set group = prod.sources|selectattr('verdict', 'equalto', vk)|list %}
+    <h4 class="w-h4 vd-h vd-{{ vk }}">{{ vl }} <span>{{ group|length }} nguồn</span></h4>
+    <div class="srcs">
+      {% for s in group %}
+      {% set tot = s.scores|sum %}
+      <article class="src vd-{{ vk }}">
+        <header><span class="src-n">[{{ s.n }}]</span><span class="src-t">{{ s.type }} · {{ 'Tiếng Việt' if s.lang == 'vi' else 'Tiếng Anh' }}</span><span class="src-tot"><b>{{ tot }}</b>/25</span></header>
+        <p class="src-ref">{% if s.url %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.ref|replace('*','') }}</a>{% else %}{{ s.ref|replace('*','') }}{% endif %}</p>
+        <div class="bars" role="img" aria-label="{% for c in prod.craap %}{{ c.name }} {{ s.scores[loop.index0] }}/5{{ ', ' if not loop.last }}{% endfor %}">
+          {% for c in prod.craap %}<div class="bar"><span>{{ c.k }}</span><i style="--v:{{ s.scores[loop.index0] }}"></i><b>{{ s.scores[loop.index0] }}</b></div>{% endfor %}
+        </div>
+        <p class="src-note">{{ s.note }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </section>
+
+  <section class="lab-sec reveal" id="bai-hoc">
+    <h3 class="lab-h"><em>Lời phê</em> Bài học về tìm kiếm</h3>
+    <ul class="ticks">{% for l in prod.lessons %}<li>{{ l }}</li>{% endfor %}</ul>
+  </section>
+
+{# ================================================================ BÀI 4 #}
+{% elif prod.kind == 'meeting' %}
+  {% set m = prod.meeting %}
+  {% set shots = {} %}{% for s in prod.shots %}{% set _ = shots.update({s.key: s}) %}{% endfor %}
+  <section class="lab-sec reveal" id="cuoc-hop">
+    <h3 class="lab-h"><em>Giấy mời</em> Cuộc họp lập kế hoạch dự án</h3>
+    <div class="invite">
+      <p class="inv-proj">Dự án nhóm</p>
+      <p class="inv-title">{{ prod.project }}</p>
+      <dl>
+        <div><dt>Chủ đề</dt><dd>{{ m.topic }}</dd></div>
+        <div><dt>Mục tiêu</dt><dd>{{ m.goal }}</dd></div>
+        <div><dt>Nền tảng</dt><dd>{{ m.platform }}</dd></div>
+        <div><dt>Thời gian</dt><dd>{{ m.when }}</dd></div>
+        <div><dt>Thành phần</dt><dd>{{ m.people }}</dd></div>
+      </dl>
+      <p class="inv-role"><span>Vai trò của Minh Anh</span><b>{{ m.role }}</b></p>
+    </div>
+  </section>
+
+  <section class="lab-sec reveal" id="chuong-trinh">
+    <h3 class="lab-h"><em>Chương trình</em> Bốn phần của cuộc họp</h3>
+    <ol class="agenda">
+      {% for a in prod.agenda %}
+      <li class="{{ 'me' if a.me }}"><span class="ag-n">{{ a.n|roman }}</span><div><p class="ag-w">{{ a.what }}</p><p class="ag-who">{{ a.who }}{% if a.tag %} <i>{{ a.tag }}</i>{% endif %}</p></div></li>
+      {% endfor %}
+    </ol>
+    <h4 class="w-h4">Phần việc của người điều phối</h4>
+    <ul class="ticks">{% for d in prod.duty %}<li>{{ d }}</li>{% endfor %}</ul>
+  </section>
+
+  <section class="lab-sec reveal" id="cong-cu">
+    <h3 class="lab-h"><em>Nhạc cụ</em> Công cụ và minh chứng</h3>
+    {% for t in prod.tools %}
+    <article class="tool">
+      <div class="tool-h"><span class="tool-ic tool-{{ t.icon }}" aria-hidden="true"></span><h4>{{ t.name }}</h4></div>
+      <p>{{ t.use }}</p>
+      <div class="wgal wgal-{{ t.proof|length }}">{% for k in t.proof %}{{ shot(shots[k]) }}{% endfor %}</div>
+    </article>
+    {% endfor %}
+    <h4 class="w-h4">Điều mình rút ra</h4>
+    <ul class="ticks">{% for l in prod.lessons %}<li>{{ l }}</li>{% endfor %}</ul>
+  </section>
+
+{# ================================================================ BÀI 5 #}
+{% elif prod.kind == 'material' %}
+  <section class="mat reveal" id="hoc-lieu">
+    <div class="mat-in">
+      <p class="eyebrow eyebrow-lt">Học liệu số · {{ prod.audience }}</p>
+      <h3 class="mat-title">{{ prod.title }}</h3>
+      <p class="mat-hint">Bấm <b>Nghe thử</b> để nghe cô làm mẫu. Âm thanh được tổng hợp ngay trên trình duyệt, không cần tải tệp.</p>
+      <ol class="games">
+        {% for g in prod.games %}
+        <li class="game" data-demo="{{ g.demo }}">
+          <p class="g-step"><span>{{ g.n }}</span>{{ g.step }}</p>
+          <h4 class="g-name">{{ g.name }}</h4>
+          <div class="g-vis g-vis-{{ g.demo }}" aria-hidden="true">{% if g.demo == 'breath' %}<i class="balloon"></i>{% elif g.demo == 'hum' %}{% for s in ['Đô','Rê','Mi','Fa','Son'] %}<i style="--i:{{ loop.index0 }}">{{ s }}</i>{% endfor %}{% elif g.demo == 'glide' %}<svg viewBox="0 0 200 60"><path d="M10 50 Q55 50 100 10 T190 50"/><circle r="6" cx="10" cy="50"/></svg>{% else %}<svg class="hat" viewBox="0 0 80 60"><rect x="22" y="6" width="36" height="38" rx="4"/><rect x="8" y="42" width="64" height="9" rx="4.5"/><rect class="band" x="22" y="34" width="36" height="6"/></svg>{% endif %}</div>
+          <p class="g-play">{{ g.play }}</p>
+          {% if g.lines %}<ul class="g-lines">{% for l in g.lines %}<li><button type="button" class="say" data-say="{{ l.t }}"><span>{{ l.c }}</span>{{ l.t }}</button></li>{% endfor %}</ul>{% endif %}
+          <dl class="g-meta"><div><dt>Âm vực</dt><dd>{{ g.range }}</dd></div><div><dt>An toàn</dt><dd>{{ g.safe }}</dd></div></dl>
+          <button type="button" class="btn btn-glow g-btn"><span class="ic-play"></span> Nghe thử</button>
+        </li>
+        {% endfor %}
+      </ol>
+      <div class="ve">
+        <p class="ve-h">{{ prod.ve.title }}</p>
+        <ol class="ve-lines">{% for l in prod.ve.lines %}<li>{% for w in l.split(' ') %}<span>{{ w }}</span> {% endfor %}</li>{% endfor %}</ol>
+        <p class="ve-note">{{ prod.ve.note }}</p>
+        <button type="button" class="btn btn-line ve-btn"><span class="ic-play"></span> Đọc vè theo nhịp</button>
+      </div>
+    </div>
+  </section>
+  <p class="req">{{ prod.link_group }}</p>
+
+  <section class="lab-sec reveal" id="qua-trinh-ai">
+    <h3 class="lab-h"><em>Phòng tập</em> Làm việc với Gemini</h3>
+    <ul class="chips">{% for k in prod.techniques %}<li>{{ k }}</li>{% endfor %}</ul>
+    <details class="lyr"><summary>Prompt lượt 1 <span>({{ prod.prompt.split('\n')|length }} dòng) · bấm để xem</span></summary><pre>{{ prod.prompt }}</pre>
+      <p class="lyr-sub">↳ Lượt 2: mình chỉ ra 3 lỗi và yêu cầu sửa</p><pre>{{ prod.followup }}</pre></details>
+    <div class="wgal wgal-6">{% for s in prod.shots %}{{ shot(s, 'tall') }}{% endfor %}</div>
+  </section>
+
+  <section class="lab-sec reveal" id="doi-chieu">
+    <h3 class="lab-h"><em>Bản sửa của giáo viên</em> Gemini đề xuất gì, mình giữ hay sửa</h3>
+    <div class="edits">
+      <div class="ed ed-h"><span>Phần</span><span>Gemini đề xuất</span><span>Mình xử lý</span></div>
+      {% for e in prod.edits %}
+      <div class="ed"><span class="ed-p">{{ e.part }}<i class="pill pill-{{ e.verdict }}">{{ prod.verdicts[e.verdict] }}</i></span><span class="ed-ai">{{ e.ai }}</span><span class="ed-me">{{ e.me }}</span></div>
+      {% endfor %}
+    </div>
+    <div class="ratio">{% for r in prod.ratio %}<div class="ratio-{{ loop.index }}"><b>{{ r.who }}</b><p>{{ r.part }}</p></div>{% endfor %}</div>
+    <h4 class="w-h4">Điều mình rút ra</h4>
+    <ul class="ticks">{% for l in prod.lessons %}<li>{{ l }}</li>{% endfor %}</ul>
+  </section>
+
+{# ================================================================ BÀI 6 #}
+{% elif prod.kind == 'charter' %}
+  <section class="lab-sec reveal" id="su-co">
+    <h3 class="lab-h"><em>Nhật ký sự cố</em> Những lần AI làm mình suýt sai</h3>
+    <div class="incs">
+      {% for i in prod.incidents %}
+      <article class="inc"><a class="inc-from" href="{{ i.link }}">{{ i.from }} →</a><p>{{ i.what }}</p><p class="inc-risk">{{ i.risk }}</p></article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="lab-sec reveal" id="co-so">
+    <h3 class="lab-h"><em>Căn cứ</em> Những gì mình đã đọc</h3>
+    <ol class="basis">{% for b in prod.basis %}<li><span class="bs-k">{{ b.k }}</span><div><h4>{{ b.head }}</h4><p>{{ b.body }}</p></div></li>{% endfor %}</ol>
+  </section>
+
+  <section class="lab-sec reveal" id="nguyen-tac">
+    <h3 class="lab-h"><em>Bộ nguyên tắc của Minh Anh</em> Bốn thời điểm của một lần dùng AI</h3>
+    <p class="crit-hint">Mình hình dung một lần dùng AI giống như một buổi biểu diễn: chuẩn bị, biểu diễn, tập lại, ra mắt. Mỗi giai đoạn có những việc riêng phải làm.</p>
+    <ol class="mvts">
+      {% for c in prod.charter %}
+      <li class="mvt"><header><span class="mvt-n">{{ loop.index|roman }}</span><div><p class="mvt-m">{{ c.mark }}</p><h4>{{ c.when }}</h4></div></header>
+        <ul>{% for r in c.rules %}<li><h5>{{ r.head }}</h5><p>{{ r.body }}</p><p class="why">{{ r.why }}</p></li>{% endfor %}</ul>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+
+  <section class="lab-sec reveal" id="tu-kiem">
+    <h3 class="lab-h"><em>Trước khi nộp bài</em> Bảng tự kiểm tra</h3>
+    <div class="chk-list" id="chkList">
+      {% for c in prod.checklist %}<label><input type="checkbox"><span>{{ c }}</span></label>{% endfor %}
+      <p class="chk-out" aria-live="polite"><b>0</b>/{{ prod.checklist|length }} · <span>Chưa sẵn sàng nộp</span></p>
+    </div>
+  </section>
+
+  <section class="lab-sec reveal">
+    <h3 class="lab-h"><em>Tư liệu</em> Nguồn tham khảo</h3>
+    <ol class="refs">{% for r in prod.refs %}<li>{% if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.text }}</a>{% else %}{{ r.text }}{% endif %}</li>{% endfor %}</ol>
+  </section>
+{% endif %}
+</div>

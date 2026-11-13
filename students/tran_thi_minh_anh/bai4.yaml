@@ -1,0 +1,62 @@
+# ============================================================
+#  Bài 4.4 – Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm
+#  Minh chứng: ảnh do nhóm cung cấp (Google Meet 12/11/2026, nhóm chat)
+#  Trang trình bày phần việc cá nhân của Minh Anh: người điều phối cuộc họp
+# ============================================================
+kind: meeting
+intro: 'Yêu cầu: minh chứng việc sử dụng công cụ quản lý dự án nhóm và cách phối hợp trực tuyến (không trình bày sản phẩm của nhóm). Trang này kể lại phần việc của chính mình trong một cuộc họp trực tuyến của nhóm.'
+
+project: Ứng dụng AI trong dạy học Âm nhạc ở tiểu học – Biến mỗi giờ học thành một hành trình khám phá
+meeting:
+  topic: Thống nhất kế hoạch thực hiện dự án
+  goal: Thống nhất định hướng, nội dung và phương pháp triển khai dự án ứng dụng trí tuệ nhân tạo (AI) trong dạy học Âm nhạc ở cấp tiểu học.
+  platform: Google Meet
+  when: 21:37, thứ Năm 12/11/2026
+  people: 4 thành viên
+  role: Người điều phối
+
+# Chương trình họp theo phân công (đúng như tin nhắn của nhóm)
+agenda:
+  - n: 1
+    what: Ổn định, kiểm tra kết nối, giới thiệu mục tiêu cuộc họp
+    who: Minh Anh
+    me: true
+    tag: Người điều phối
+  - n: 2
+    what: Trình bày ý tưởng và thống nhất chủ đề dự án
+    who: Phương Anh (70)
+  - n: 3
+    what: Thảo luận nội dung và công cụ AI sử dụng
+    who: Cả nhóm
+    me: true
+    tag: Cùng thảo luận
+  - n: 4
+    what: Tổng kết các nhiệm vụ cần làm
+    who: Phương Anh (69)
+
+# Mỗi công cụ dùng vào việc gì
+tools:
+  - name: Nhóm chat
+    icon: chat
+    use: Trước buổi họp, nhóm chốt chủ đề, nền tảng, mục tiêu và phân công bằng tin nhắn, để ai cũng biết mình phụ trách phần nào trước khi vào phòng họp.
+    proof: [phancong, chude]
+  - name: Google Meet
+    icon: meet
+    use: 'Họp trực tuyến buổi tối (21:37) khi mỗi người ở một nơi. Quy ước của nhóm: ai chưa đến lượt nói thì tắt micro để tránh chồng tiếng và tiếng ồn.'
+    proof: [meet]
+
+# Việc người điều phối cần làm — theo phân công
+duty:
+  - Mở cuộc họp, chờ đủ thành viên vào phòng Meet và kiểm tra từng người nghe, nói được.
+  - Nhắc lại chủ đề và mục tiêu đã chốt trong nhóm chat, để cuộc họp không lạc đề.
+  - Giới thiệu chương trình 4 phần cùng người phụ trách từng phần, rồi chuyển lời cho bạn trình bày ý tưởng.
+
+shots:
+  - {file: images/bai4/chude.jpg, key: chude, caption: 'Tin nhắn chốt chủ đề, nền tảng (Google Meet) và mục tiêu cuộc họp'}
+  - {file: images/bai4/phancong.jpg, key: phancong, caption: 'Tin nhắn phân công: Minh Anh là người điều phối phần mở đầu'}
+  - {file: images/bai4/meet_crop.jpg, key: meet, caption: 'Phòng Google Meet lúc 21:37 ngày 12/11/2026, 4 người tham gia'}
+
+lessons:
+  - Phân công rõ ràng bằng văn bản trước khi họp giúp cuộc họp ngắn gọn. Ai cũng biết lúc nào đến lượt mình nói.
+  - Người điều phối không cần nói nhiều nhất, nhưng phải giữ cho cuộc họp đi đúng chương trình và đúng mục tiêu đã thống nhất.
+  - Họp trực tuyến cần một “quy ước micro” (tắt khi không nói), nếu không bốn người cùng nói sẽ rất khó nghe.

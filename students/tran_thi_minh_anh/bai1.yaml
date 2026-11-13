@@ -1,0 +1,101 @@
+# ============================================================
+#  Bài 1.4 – Thao tác cơ bản với tệp tin và thư mục
+#  Cây thư mục thật trên máy: D:\Web_based\Tran_Thi_Minh_Anh_web\ThucHanh_Bai1\
+#  Ảnh chụp File Explorer ngày 13/11/2026: images/bai1/
+# ============================================================
+kind: files
+intro: 'Yêu cầu: trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập, kèm ảnh chụp minh họa.'
+
+problem: 'Một sinh viên Sư phạm Âm nhạc có rất nhiều loại tệp: bài tập nhiều môn, bản ghi âm luyện thanh, bản nhạc, giáo án và tài liệu tham khảo. Nếu để tất cả ở Desktop hay Downloads với những cái tên như “bai tap (1).docx” hoặc “ban cuoi that su.docx”, đến lúc cần nộp bài sẽ rất khó tìm và dễ nộp nhầm bản cũ. Vì vậy mình thiết lập lại toàn bộ cấu trúc thư mục ngay từ học kỳ này.'
+
+# Bốn ý tưởng thiết kế
+ideas:
+  - k: '00 → 99'
+    head: Đánh số thư mục
+    body: Thư mục được đánh số 00, 01, 02… nên luôn hiện theo đúng thứ tự mình muốn, không bị xếp theo chữ cái. 00 là “hộp thư đến” để tạm mọi thứ mới tải về, 99 là kho lưu trữ đồ cũ.
+  - k: 'Học kỳ'
+    head: Chia theo học kỳ và học phần
+    body: 'Mỗi học phần có một thư mục mang mã kỳ và tên môn, ví dụ “2026-HK1_INF2501_CongNgheSo-AI”. Hết kỳ, mình chỉ cần chuyển cả thư mục vào 99_LuuTru.'
+  - k: 'Nghề'
+    head: Tách riêng việc của nghề
+    body: Luyện thanh (ghi chú, bản ghi âm theo tháng) và giáo án – học liệu cho học sinh được để riêng, không trộn với bài tập trên lớp, vì đó là những thứ mình sẽ dùng lâu dài sau khi ra trường.
+  - k: '≤ 4'
+    head: Không sâu quá 4 tầng
+    body: Từ thư mục gốc tới một bài tập chỉ cần tối đa 4 lần mở thư mục. Sâu hơn thì rất khó tìm và đường dẫn sẽ quá dài.
+
+# Cây thư mục (d = thư mục, f = tệp)
+tree:
+  name: HocTap_TranThiMinhAnh
+  note: Thư mục gốc
+  children:
+    - name: 00_HopThuDen
+      note: 'Tạm để tệp mới tải về, mỗi tuần dọn một lần'
+    - name: 01_HocPhan
+      note: Mỗi học phần một thư mục
+      children:
+        - name: 2026-HK1_INF2501_CongNgheSo-AI
+          children:
+            - {name: 01_BaiGiang, note: Ghi chú bài giảng theo ngày}
+            - name: 02_BaiTap
+              note: Mỗi bài một thư mục
+              children:
+                - name: Bai1_TepTin-ThuMuc
+                  children:
+                    - {f: 1, name: 2026-11-13_INF2501_Bai1-CauTrucThuMuc_v01.docx}
+                    - {f: 1, name: 2026-11-13_INF2501_Bai1-CauTrucThuMuc_v02.docx}
+                - {name: Bai2_TimKiem-HocThuat}
+                - {name: Bai3_Prompt}
+                - {name: Bai4_HopTac-TrucTuyen}
+                - {name: Bai5_AI-TaoSinh}
+                - {name: Bai6_AI-CoTrachNhiem}
+            - {name: 03_Portfolio, note: Đường dẫn tới trang web này}
+        - {name: 2026-HK1_ThanhNhac1, note: Bài hát đang tập}
+        - {name: 2026-HK1_NhacLy-CoBan}
+    - name: 02_LuyenThanh
+      note: Ghi chú và bản ghi âm luyện thanh, chia theo tháng
+      children:
+        - name: 2026-11
+          children:
+            - {f: 1, name: 2026-11-10_LuyenThanh_NguyenAm-A_GhiChu.txt}
+            - {f: 1, name: 2026-11-12_LuyenThanh_RaiHopAm_GhiChu.txt}
+    - name: 03_GiaoAn-HocLieu
+      note: Giáo án, học liệu cho học sinh
+      children:
+        - name: Lop3_ChuDe-AmThanhQuanhEm
+          children:
+            - {f: 1, name: 2026-11-14_GiaoAn_Lop3-KhoiDongGiong_v01.docx}
+    - name: 04_TaiLieuThamKhao
+      note: Tài liệu đặt tên theo Tác giả_Năm_Từ khóa
+      children:
+        - {f: 1, name: HaThiLy-NguyenThiHuyen_2026_CongNgheSo-DaoTaoThanhNhac.url}
+        - {f: 1, name: La-Fiuza_2022_RealTimeVisualFeedback.url}
+        - {f: 1, name: LuongMinhTan_2025_CNTT-DayHocAmNhac.url}
+    - name: 99_LuuTru
+      note: Học kỳ cũ, bản nháp không dùng nữa
+    - {f: 1, name: _QUY_TAC_DAT_TEN.txt, note: 'Dấu _ ở đầu giúp tệp đứng đầu danh sách tệp'}
+
+# Quy tắc đặt tên: mẫu chung, tách thành từng phần
+pattern:
+  - {part: '2026-11-13', label: Ngày, rule: 'Viết theo dạng NĂM-THÁNG-NGÀY để tệp tự xếp đúng thứ tự thời gian'}
+  - {part: 'INF2501', label: Mã học phần, rule: Biết ngay tệp thuộc môn nào}
+  - {part: 'Bai1-CauTrucThuMuc', label: Nội dung, rule: 'Ngắn, không dấu, các từ nối bằng “-”'}
+  - {part: 'v02', label: Phiên bản, rule: 'v01, v02… và không bao giờ dùng chữ “final”'}
+rules:
+  - Không dùng dấu tiếng Việt và khoảng trắng, vì một số phần mềm, web và điện thoại sẽ làm hỏng tên tệp.
+  - Các phần lớn nối bằng gạch dưới “_”, các từ trong cùng một phần nối bằng gạch ngang “-”.
+  - Ngày đứng đầu nên khi sắp xếp theo tên, tệp cũng xếp luôn theo thời gian.
+  - Tài liệu tham khảo đặt theo Tác giả_Năm_Từ khóa để trích dẫn nhanh.
+  - Ghi âm luyện thanh đặt theo Ngày_LuyenThanh_NoiDung để nghe lại theo đúng tiến trình.
+
+renames:
+  - {old: 'bai tap tin hoc.docx', new: '2026-11-13_INF2501_Bai1-CauTrucThuMuc_v01.docx'}
+  - {old: 'bai tap tin hoc (1) ban cuoi.docx', new: '2026-11-13_INF2501_Bai1-CauTrucThuMuc_v02.docx'}
+  - {old: 'ghi am luyen thanh moi.m4a', new: '2026-11-12_LuyenThanh_RaiHopAm_v01.m4a'}
+  - {old: 'bài báo thanh nhạc hay.pdf', new: 'HaThiLy-NguyenThiHuyen_2026_CongNgheSo-DaoTaoThanhNhac.pdf'}
+
+shots:
+  - {file: images/bai1/01_root.jpg, caption: 'Thư mục gốc: 6 nhánh đánh số 00–99 và tệp quy tắc đặt tên nằm ở cuối danh sách'}
+  - {file: images/bai1/02_baitap.jpg, caption: 'Đi xuống 4 tầng tới 02_BaiTap: mỗi bài tập một thư mục, cây điều hướng bên trái cho thấy toàn bộ cấu trúc'}
+  - {file: images/bai1/03_bai1_versions.jpg, caption: 'Hai phiên bản của cùng một bài: chỉ khác _v01 và _v02, không có “final”'}
+  - {file: images/bai1/04_tailieu.jpg, caption: 'Tài liệu tham khảo đặt tên theo Tác giả_Năm_Từ khóa'}
+  - {file: images/bai1/05_luyenthanh.jpg, caption: 'Ghi chú luyện thanh tháng 11, ngày đứng đầu nên tự xếp theo thời gian'}

@@ -40,7 +40,7 @@
   };
 
   /** Giọng "a/o/u/i" có vibrato: sóng răng cưa qua 3 bộ lọc formant. */
-  function sing(freq, t0, dur, vol = .5, vowel = "a", bus) {
+  function sing(freq, t0, dur, vol = .5, vowel = "a", bus, path) {
     const c = audio(); if (!c) return;
     const out = bus || master;
     const t = Math.max(t0, c.currentTime);
@@ -55,6 +55,8 @@
     osc.type = "sawtooth"; osc2.type = "sawtooth";
     osc.frequency.setValueAtTime(freq, t);
     osc2.frequency.setValueAtTime(freq, t); osc2.detune.value = 7;
+    // path: [[giây, Hz], ...] để trượt cao độ (glissando)
+    if (path) path.forEach(([dt, f]) => { osc.frequency.linearRampToValueAtTime(f, t + dt); osc2.frequency.linearRampToValueAtTime(f, t + dt); });
     const lfo = c.createOscillator(), depth = c.createGain();
     lfo.frequency.value = 5.4;
     depth.gain.setValueAtTime(0, t);
@@ -444,5 +446,124 @@
       tk.style.transform = `perspective(1200px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
     });
     tk.addEventListener("pointerleave", () => { tk.style.transform = ""; });
+  }
+
+  /* ================= BÀI 5: HỌC LIỆU "KHỞI ĐỘNG GIỌNG" ================= */
+  /** Tiếng thở "sss": nhiễu trắng qua lọc thông cao. */
+  function hiss(t0, dur, vol = .18) {
+    const c = audio(); if (!c) return;
+    const t = Math.max(t0, c.currentTime), n = Math.ceil(c.sampleRate * dur);
+    const buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+    const src = c.createBufferSource(); src.buffer = buf;
+    const hp = c.createBiquadFilter(); hp.type = "bandpass"; hp.frequency.value = 6500; hp.Q.value = .8;
+    const g = c.createGain();
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .3);
+    g.gain.setValueAtTime(vol, t + dur - .6); g.gain.linearRampToValueAtTime(0, t + dur);
+    src.connect(hp).connect(g).connect(master); src.start(t); src.stop(t + dur + .05);
+  }
+  const games = $$(".game");
+  let busy = null;
+  const later = (fn, ms) => setTimeout(fn, ms);
+  function demo(card) {
+    const c = audio(); if (!c) return 0;
+    if (!soundOn) { soundOn = true; store.set("ma-sound", "on"); paintSnd(); master.gain.setTargetAtTime(.9, c.currentTime, .05); }
+    const t = c.currentTime + .05, kind = card.dataset.demo;
+    card.classList.add("on");
+    if (kind === "breath") {
+      // hít vào 4 giây (im lặng, bóng phồng) rồi thở ra "sss" 6 giây
+      later(() => { card.classList.add("out"); }, 4000);
+      hiss(t + 4, 6, .2);
+      return 10200;
+    }
+    if (kind === "hum") {
+      const vis = $$(".g-vis-hum i", card);
+      [0, 2, 4, 5, 7].forEach((s, i) => {
+        sing(midiHz(60 + s), t + i * .9, .85, .34, "u");
+        later(() => vis.forEach((v, k) => v.classList.toggle("lit", k === i)), i * 900);
+      });
+      return 4700;
+    }
+    if (kind === "glide") {
+      const dot = $(".g-vis-glide circle", card), path = $(".g-vis-glide path", card);
+      const C4 = midiHz(60), G4 = midiHz(67), C5 = midiHz(72);
+      sing(C4, t, 2.4, .36, "u", null, [[.2, C4], [1.2, G4], [2.2, C4]]);
+      sing(C4, t + 2.8, 3, .36, "u", null, [[.2, C4], [1.5, C5], [2.8, C4]]);
+      if (dot && path && path.getTotalLength) {
+        const L = path.getTotalLength(), t0 = performance.now();
+        const step = now => {
+          const k = Math.min(1, (now - t0) / 5800), p = path.getPointAtLength(L * k);
+          dot.setAttribute("cx", p.x); dot.setAttribute("cy", p.y);
+          if (k < 1 && card.classList.contains("on")) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+      return 6000;
+    }
+    if (kind === "diction") return chantAll(card, t);
+    return 0;
+  }
+  // Đọc 1 dòng theo nhịp Fa – Son: mỗi chữ một nốt ngắn, chữ cuối ngân dài
+  function chant(text, t, el) {
+    const words = text.split(" "), F = midiHz(65), G = midiHz(67), beat = .32;
+    words.forEach((w, i) => {
+      const last = i === words.length - 1;
+      sing(i % 2 ? G : F, t + i * beat, last ? .55 : .2, .38, /[iíìỉĩị]/i.test(w) ? "i" : /[uúùủũụưô]/i.test(w) ? "u" : "a");
+      pluck(i % 2 ? G : F, t + i * beat, .25, .08);
+    });
+    if (el) { el.classList.add("on"); later(() => el.classList.remove("on"), (words.length * beat + .5) * 1000); }
+    return words.length * beat + .7;
+  }
+  function chantAll(card, t) {
+    let at = 0;
+    $$(".say", card).forEach(b => { const d0 = at; later(() => chant(b.dataset.say, ctx.currentTime + .02, b), d0 * 1000); at += b.dataset.say.split(" ").length * .32 + .7; });
+    return at * 1000 + 200;
+  }
+  games.forEach(card => {
+    const btn = $(".g-btn", card);
+    btn && btn.addEventListener("click", () => {
+      if (busy) return;
+      games.forEach(g => g.classList.remove("on", "out"));
+      busy = card; btn.classList.add("is-playing");
+      const ms = demo(card);
+      later(() => { card.classList.remove("on", "out"); btn.classList.remove("is-playing"); busy = null; }, ms);
+    });
+    $$(".say", card).forEach(b => b.addEventListener("click", e => {
+      e.stopPropagation(); const c = audio(); if (!c || !soundOn) return;
+      chant(b.dataset.say, c.currentTime + .03, b);
+    }));
+  });
+  // Câu vè: đọc theo nhịp 2/4, vỗ tay ở phách mạnh
+  const veBtn = $(".ve-btn");
+  veBtn && veBtn.addEventListener("click", () => {
+    const c = audio(); if (!c || veBtn.classList.contains("is-playing")) return;
+    if (!soundOn) { soundOn = true; store.set("ma-sound", "on"); paintSnd(); master.gain.setTargetAtTime(.9, c.currentTime, .05); }
+    veBtn.classList.add("is-playing");
+    const spans = $$(".ve-lines span"), beat = .42, t = c.currentTime + .1;
+    const mel = [67, 67, 64, 60, 69, 67, 64, 62, 64, 65, 67, 69, 72, 67, 64, 60];
+    spans.forEach((s, i) => {
+      const end = (i + 1) % 4 === 0;
+      sing(midiHz(mel[i % mel.length]), t + i * beat, end ? .38 : .26, .3, "a");
+      if (i % 2 === 0) pluck(midiHz(48), t + i * beat, .2, .14);
+      later(() => { spans.forEach(x => x.classList.remove("on")); s.classList.add("on"); }, (i * beat + .1) * 1000);
+    });
+    later(() => { spans.forEach(x => x.classList.remove("on")); veBtn.classList.remove("is-playing"); }, (spans.length * beat + .6) * 1000);
+  });
+
+  /* ================= BÀI 6: BẢNG TỰ KIỂM TRA ================= */
+  const chk = $("#chkList");
+  if (chk) {
+    const boxes = $$("input", chk), out = $(".chk-out", chk);
+    boxes.forEach(b => b.addEventListener("change", () => {
+      const n = boxes.filter(x => x.checked).length, done = n === boxes.length;
+      $("b", out).textContent = n;
+      $("span", out).textContent = done ? "Sẵn sàng nộp bài" : "Chưa sẵn sàng nộp";
+      out.classList.toggle("done", done);
+      if (ready()) {
+        const t = ctx.currentTime;
+        if (done) [60, 64, 67, 72].forEach((m, i) => sing(midiHz(m), t + i * .16, i === 3 ? .9 : .2, .34, "a"));
+        else if (b.checked) pluck(midiHz(60 + MAJ[Math.min(n, 7) - 1]), t, .8, .2);
+      }
+    }));
   }
 })();

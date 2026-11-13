@@ -106,24 +106,34 @@ projects:
     section: '1.4'
     title: Thao tác cơ bản với tệp tin và thư mục
     chapter: Chương 1 – Máy tính và các thiết bị ngoại vi
-    objective: …
-    process: ['Bước 1: …']
-    tool: …
-    ai_use: …
-    product:
-      intro: 'Yêu cầu: trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập, kèm ảnh chụp minh họa.'
-      gallery: []
+    objective: 'Thiết lập một hệ thống thư mục và quy tắc đặt tên tệp cho toàn bộ việc học của một sinh viên Sư phạm Âm nhạc: bài tập các môn, ghi chú và bản ghi âm luyện thanh, giáo án – học liệu và tài liệu tham khảo. Mục tiêu là tìm được bất kỳ tệp nào trong vài giây, phân biệt rõ các phiên bản, và dùng tiếp được sau khi ra trường.'
+    process:
+      - 'Bước 1: Liệt kê các loại tệp mình thường có và nhóm chúng theo mục đích sử dụng: học trên lớp, luyện nghề (luyện thanh), dạy học (giáo án), tham khảo.'
+      - 'Bước 2: Phác thảo cây thư mục trên giấy: 6 nhánh đánh số 00–99, học phần chia theo học kỳ, mỗi bài tập một thư mục, tối đa 4 tầng.'
+      - 'Bước 3: Viết quy tắc đặt tên Ngày_MãHọcPhần_NộiDung_vSố và lưu thành tệp _QUY_TAC_DAT_TEN.txt ngay trong thư mục gốc.'
+      - 'Bước 4: Tạo cây thư mục trên ổ D: (D:\Web_based\Tran_Thi_Minh_Anh_web\ThucHanh_Bai1) cùng các tệp mẫu đặt tên theo quy tắc.'
+      - 'Bước 5: Kiểm tra bằng File Explorer: mở từng nhánh trong ngăn điều hướng, xem thứ tự tự sắp xếp, chỉnh độ rộng cột để đọc đủ tên tệp, và chụp màn hình minh chứng ngày 13/11/2026.'
+      - 'Khó khăn: Tên tệp theo quy tắc khá dài nên bị cắt mất phần _v01/_v02 trong File Explorer. – Giải quyết bằng cách nháy đúp vào vạch chia cột Name để cột tự giãn vừa tên dài nhất.'
+      - 'Khó khăn: Ban đầu mình muốn chia rất nhiều tầng cho “gọn”, nhưng mở tới bài tập phải bấm quá nhiều lần. – Giải quyết bằng cách đặt giới hạn tối đa 4 tầng và gộp các thư mục chỉ chứa 1–2 tệp.'
+    tool: 'File Explorer (Windows 11): ngăn điều hướng, thanh địa chỉ, sắp xếp theo tên, chỉnh độ rộng cột'
+    ai_use: 'Có dùng trợ lý AI (Claude) để tạo nhanh cây thư mục mẫu theo thiết kế, thao tác File Explorer và chụp màn hình, dựng trang. Cấu trúc thư mục và quy tắc đặt tên được thiết kế dựa trên nhu cầu học tập của mình.'
+    product_file: bai1.yaml
   - id: 2
     section: '2.4'
     title: Tìm kiếm và đánh giá thông tin học thuật
     chapter: Chương 2 – Khai thác dữ liệu và thông tin
-    objective: …
-    process: ['Bước 1: …']
-    tool: …
-    ai_use: …
-    product:
-      intro: …
-      gallery: []
+    objective: 'Rèn kỹ năng tìm kiếm thông tin học thuật bằng các toán tử tìm kiếm nâng cao và đánh giá độ tin cậy của nguồn theo tiêu chí CRAAP. Chủ đề gắn với sở thích ca hát của mình: công nghệ số và AI trong dạy học thanh nhạc.'
+    process:
+      - 'Bước 1: Xác định câu hỏi nghiên cứu, từ khóa tiếng Việt và tiếng Anh, giới hạn thời gian (ưu tiên từ 2020).'
+      - 'Bước 2: Thử 7 truy vấn kết hợp các toán tử " ", site:, filetype:, intitle:, dấu trừ và bộ lọc thời gian. Mỗi truy vấn đều chụp lại màn hình kết quả.'
+      - 'Bước 3: Từ kết quả tốt, lần theo danh mục tài liệu tham khảo (snowballing) để tìm thêm nghiên cứu gốc.'
+      - 'Bước 4: Mở và đọc từng nguồn, chấm 5 tiêu chí CRAAP (1–5 điểm), xếp vào ba nhóm: Dùng, Dùng có điều kiện, Loại.'
+      - 'Bước 5: Rút ra bài học về cách dùng toán tử với tiếng Việt và tiếng Anh.'
+      - 'Khó khăn: Google Scholar chặn truy vấn tự động. – Giải quyết bằng cách chuyển sang DuckDuckGo (hỗ trợ đúng site:, filetype: và ngoặc kép), không tìm cách vượt chặn.'
+      - 'Khó khăn: Ghép quá nhiều điều kiện thì ra 0 kết quả, còn intitle: với tiếng Việt kéo theo quảng cáo. – Giải quyết bằng cách bắt đầu rộng rồi thu hẹp dần, và luôn đọc lại kết quả.'
+    tool: 'DuckDuckGo (toán tử nâng cao), VJOL, MDPI, Wiley Online Library, arXiv; khung đánh giá CRAAP'
+    ai_use: 'Không dùng AI để tìm hay đánh giá nguồn. Có dùng trợ lý AI (Claude) hỗ trợ thao tác trình duyệt, chụp màn hình và dựng trang. Mọi nguồn đều được mở ra đọc trước khi chấm điểm.'
+    product_file: bai2.yaml
   - id: 3
     section: '3.4'
     title: Viết Prompt hiệu quả cho các tác vụ học tập
@@ -144,39 +154,58 @@ projects:
     section: '4.4'
     title: Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm
     chapter: Chương 4 – Giao tiếp và hợp tác trong môi trường số
-    objective: …
-    process: ['Bước 1: …']
-    tool: …
-    ai_use: …
-    product:
-      intro: …
-      gallery: []
+    objective: 'Sử dụng công cụ trực tuyến để phối hợp trong dự án nhóm “Ứng dụng AI trong dạy học Âm nhạc ở tiểu học”. Trong buổi họp lập kế hoạch, mình nhận vai trò người điều phối: mở đầu, kiểm tra kết nối và giữ cho cuộc họp đi đúng mục tiêu.'
+    process:
+      - 'Bước 1: Nhóm thống nhất chủ đề, nền tảng họp (Google Meet) và mục tiêu cuộc họp qua nhóm chat.'
+      - 'Bước 2: Phân công trước cuộc họp: Minh Anh điều phối và mở đầu; Phương Anh (70) trình bày ý tưởng; cả nhóm thảo luận nội dung và công cụ AI; Phương Anh (69) tổng kết nhiệm vụ.'
+      - 'Bước 3: Họp trên Google Meet lúc 21:37 ngày 12/11/2026 với 4 thành viên. Mình ổn định, kiểm tra kết nối từng bạn và giới thiệu mục tiêu cuộc họp.'
+      - 'Bước 4: Cả nhóm thảo luận nội dung và công cụ AI, sau đó tổng kết nhiệm vụ cho từng người.'
+      - 'Khó khăn: Họp trực tuyến buổi tối, bốn người cùng nói dễ bị chồng tiếng. – Giải quyết bằng quy ước tắt micro khi chưa đến lượt và đi theo đúng thứ tự chương trình đã phân công.'
+    tool: 'Google Meet (họp trực tuyến), nhóm chat (thống nhất chủ đề và phân công)'
+    ai_use: 'Không dùng AI trong cuộc họp. Có dùng trợ lý AI (Claude) để dựng trang từ ảnh minh chứng do nhóm cung cấp.'
+    product_file: bai4.yaml
   - id: 5
     section: '5.4'
     title: Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung
     chapter: Chương 5 – Sáng tạo nội dung số
-    objective: …
-    process: ['Bước 1: …']
-    tool: …
-    ai_use: …
-    product:
-      intro: …
-      gallery: []
+    objective: 'Dùng AI tạo sinh làm “trợ lý ý tưởng” để tạo một học liệu số hoàn chỉnh: “Khởi động giọng cùng Đô Rê Mi”, 4 trò chơi khởi động giọng cho học sinh lớp 3. Mục tiêu không chỉ là có sản phẩm, mà còn là phát hiện được AI sai ở đâu và chứng minh phần đóng góp của chính mình.'
+    process:
+      - 'Bước 1: Xác định người học (lớp 3, 8–9 tuổi), thời lượng (5 phút đầu tiết) và trình tự khởi động chuẩn: thở → ngân → lên xuống cao độ → phát âm.'
+      - 'Bước 2: Viết prompt có đóng vai, bối cảnh, định dạng 4 dòng cố định, ràng buộc độ dài câu vè, và yêu cầu AI tự ghi điều chưa chắc. Chạy trên Gemini ngày 13/11/2026.'
+      - 'Bước 3: Đối chiếu từng dòng với kiến thức Thanh nhạc. Phát hiện 3 lỗi: gọi cộng hưởng là “vibrato”, không có âm tiết luyện phát âm, câu vè sai độ dài.'
+      - 'Bước 4: Gửi lượt 2 chỉ ra lỗi. Gemini sửa nhưng lại thêm một khẳng định chưa có nguồn và cụm “Mê mha” không phải tiếng Việt.'
+      - 'Bước 5: Tự viết lại phần lời (4 dòng luyện phát âm, câu vè 4 dòng), thống nhất tên nốt, rồi dựng học liệu tương tác có nút nghe thử từng trò chơi.'
+      - 'Khó khăn: Lỗi của AI rất “hợp lý”, đọc lướt sẽ không thấy. – Giải quyết bằng cách lập bảng đối chiếu từng phần: AI đề xuất gì, giữ, sửa hay bỏ, và vì sao.'
+    tool: 'Gemini (gemini.google.com, không đăng nhập, Quick answers); Web Audio để làm phần nghe thử'
+    ai_use: 'Gemini tạo bản nháp 4 trò chơi (2 lượt hỏi, có ảnh chụp). Có dùng trợ lý AI (Claude) hỗ trợ chạy thử, chụp màn hình và lập trình phần nghe thử. Âm tiết luyện phát âm, câu vè và các sửa lỗi chuyên môn do mình tự làm.'
+    product_file: bai5.yaml
   - id: 6
     section: '6.4'
     title: Sử dụng AI có trách nhiệm trong học tập và nghiên cứu
     chapter: Chương 6 – An toàn và liêm chính học thuật trong môi trường số
-    objective: …
-    process: ['Bước 1: …']
-    tool: …
-    ai_use: …
-    product:
-      intro: …
-      gallery: []
+    objective: 'Xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm trong học tập và nghiên cứu, dựa trên văn bản pháp luật hiện hành, khuyến nghị quốc tế và chính những lần mình gặp lỗi AI trong học phần này.'
+    process:
+      - 'Bước 1: Xem lại Bài 2, 3, 5 và ghi “nhật ký sự cố”: những lần AI bịa, sai chuyên môn, hoặc nguồn không đáng tin.'
+      - 'Bước 2: Tìm đọc các căn cứ: Luật Trí tuệ nhân tạo 2025, Luật Bảo vệ dữ liệu cá nhân 2025, hướng dẫn của UNESCO (2023) về AI tạo sinh trong giáo dục, hướng dẫn trích dẫn AI của APA và quy định của học phần.'
+      - 'Bước 3: Sắp xếp nguyên tắc theo 4 thời điểm của một lần dùng AI: trước khi hỏi, trong khi dùng, sau khi nhận, khi công bố. Mỗi nguyên tắc gắn với một minh chứng.'
+      - 'Bước 4: Biến bộ nguyên tắc thành bảng tự kiểm tra 6 câu để dùng trước mỗi lần nộp bài.'
+      - 'Khó khăn: Các nguyên tắc chung (minh bạch, trung thực…) rất dễ viết nhưng khó làm. – Giải quyết bằng cách viết mỗi nguyên tắc thành một hành động cụ thể và kèm lý do từ chính bài làm của mình.'
+    tool: 'Văn bản pháp luật trên Thư viện Pháp luật; tài liệu UNESCO, APA Style'
+    ai_use: 'Có dùng trợ lý AI (Claude) để tra cứu số hiệu, ngày hiệu lực của văn bản pháp luật và dựng trang. Nội dung pháp lý được đối chiếu với nguồn chính thức.'
+    product_file: bai6.yaml
 
 conclusion:
-  experience: …
-  key_skills: ['…']
-  highlight: …
-  challenge: …
-  future: …
+  # LƯU Ý: đề thi yêu cầu phần cảm nhận, tự đánh giá do sinh viên tự viết.
+  # Đây là bản nháp dựa trên các bài đã làm — Minh Anh cần đọc và viết lại bằng lời của mình.
+  experience: 'Lúc mới bắt đầu học phần, mình nghĩ “công nghệ số” chỉ là học thêm vài phần mềm. Sau sáu bài, điều mình nhớ nhất là cảm giác bị AI thuyết phục: những câu trả lời trôi chảy, tự tin, nhưng có chỗ sai đúng vào chuyên ngành của mình. Học phần này dạy mình dùng công nghệ như một người làm nghề: biết sắp xếp, biết tìm, biết hỏi, và biết kiểm tra lại.'
+  key_skills:
+    - 'Tổ chức tệp và thư mục theo quy tắc đặt tên thống nhất, tách riêng việc học, luyện thanh và giáo án (Bài 1).'
+    - 'Tìm kiếm học thuật bằng toán tử nâng cao và đánh giá nguồn theo CRAAP, phân biệt bài báo có bình duyệt với quảng cáo và bài “top 10” (Bài 2).'
+    - 'Viết prompt có cấu trúc và chấm kết quả AI theo tiêu chí, thay vì tin ngay câu trả lời (Bài 3).'
+    - 'Điều phối một cuộc họp trực tuyến theo chương trình đã phân công (Bài 4).'
+    - 'Dùng AI tạo sinh làm trợ lý ý tưởng nhưng tự chịu trách nhiệm về nội dung chuyên môn (Bài 5).'
+    - 'Xây dựng bộ nguyên tắc dùng AI có trách nhiệm, dựa trên luật hiện hành và minh chứng của chính mình (Bài 6).'
+  highlight: 'Mình tâm đắc nhất với Bài 5, học liệu “Khởi động giọng cùng Đô Rê Mi”. Đó là lần đầu mình làm ra một thứ có thể mang vào lớp học thật, và cũng là lần mình thấy rõ nhất giá trị của kiến thức Thanh nhạc: chính nhờ hiểu cộng hưởng và vibrato khác nhau thế nào mà mình phát hiện được lỗi AI đưa ra.'
+  challenge: 'Khó nhất là giữ được sự nghi ngờ đúng mức. AI viết rất hay nên mình dễ tin, nhưng nếu nghi ngờ mọi thứ thì không làm được việc. Mình vượt qua bằng cách đặt ra tiêu chí trước khi đọc câu trả lời, và chỉ giữ lại những gì kiểm chứng được bằng nguồn mình đã tự đọc.'
+  future: 'Mình muốn phát triển “Khởi động giọng cùng Đô Rê Mi” thành một bộ học liệu cho cả năm học lớp 3, thử dạy trong đợt kiến tập, và tiếp tục cập nhật portfolio này sau mỗi học kỳ.'
+  ai_note: 'Khai báo sử dụng AI: Gemini là đối tượng thử nghiệm ở Bài 3 và trợ lý ý tưởng ở Bài 5. Trợ lý AI Claude hỗ trợ thao tác máy tính, chụp màn hình, tra cứu văn bản pháp luật và dựng website. Chi tiết từng bài nằm ở mục “Sử dụng AI” của bài đó.'

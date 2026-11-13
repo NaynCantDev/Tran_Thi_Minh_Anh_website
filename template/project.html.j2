@@ -27,7 +27,14 @@
       {% endif %}
     </section>
 
-    {% if not prod.trials %}
+    {% if prod.kind %}
+    <section class="part reveal">
+      <h2 class="h3"><em>Thành phẩm</em> Sản phẩm</h2>
+      <p class="req">{{ prod.intro }}</p>
+      {% set toc = {'files':[['cau-truc','Cấu trúc thư mục'],['dat-ten','Quy tắc đặt tên'],['anh-chup','Ảnh chụp minh chứng']],'search':[['truy-van','7 truy vấn'],['danh-gia','Bảng đánh giá nguồn'],['bai-hoc','Bài học']],'meeting':[['cuoc-hop','Cuộc họp'],['chuong-trinh','Chương trình & vai trò'],['cong-cu','Công cụ & minh chứng']],'material':[['hoc-lieu','Học liệu – nghe thử'],['qua-trinh-ai','Làm việc với Gemini'],['doi-chieu','Bảng đối chiếu']],'charter':[['su-co','Nhật ký sự cố'],['co-so','Cơ sở'],['nguyen-tac','Bộ nguyên tắc'],['tu-kiem','Tự kiểm tra']]}[prod.kind] %}
+      <nav class="toc" aria-label="Mục lục sản phẩm">{% for a in toc %}<a href="#{{ a[0] }}">{{ a[1] }}</a>{% endfor %}</nav>
+    </section>
+    {% elif not prod.trials %}
     <section class="part reveal">
       <h2 class="h3"><em>Thành phẩm</em> Sản phẩm</h2>
       {% if not (prod.intro is blank) %}<p class="req">{{ prod.intro }}</p>{% endif %}
@@ -61,6 +68,16 @@
 
 {% if prod.trials %}
 <div class="sec-in">{% include "_lab.html.j2" %}</div>
+{% elif prod.kind %}
+<div class="sec-in">{% include "_works.html.j2" %}</div>
+{% endif %}
+{% if prod.trials or prod.kind %}
+<div class="lb" id="lb" hidden>
+  <button type="button" class="lb-x" aria-label="Đóng">×</button>
+  <button type="button" class="lb-nav lb-prev" aria-label="Ảnh trước">‹</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button type="button" class="lb-nav lb-next" aria-label="Ảnh sau">›</button>
+</div>
 {% endif %}
 
 <nav class="sec-in turn" aria-label="Chuyển tiết mục">

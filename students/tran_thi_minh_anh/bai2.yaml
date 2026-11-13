@@ -1,0 +1,199 @@
+# ============================================================
+#  Bài 2.4 – Tìm kiếm và đánh giá thông tin học thuật
+#  Tìm thật ngày 13/11/2026 trên DuckDuckGo (Google Scholar chặn
+#  truy vấn tự động nên không dùng được), ảnh: images/bai2/
+# ============================================================
+kind: search
+intro: 'Yêu cầu: trình bày kết quả tìm kiếm học thuật bằng các toán tử nâng cao và bảng đánh giá nguồn tin đã thực hiện.'
+
+topic: Ứng dụng công nghệ số và AI trong dạy học thanh nhạc
+question: Công nghệ số, đặc biệt là phản hồi hình ảnh theo thời gian thực và AI, đang được dùng thế nào trong dạy hát, và mang lại hiệu quả gì cho người học?
+why: Ca hát là sở thích lớn nhất của mình, và mình muốn sau này đưa công nghệ vào giờ dạy hát. Chủ đề này nối thẳng hai điều đó lại với nhau.
+keywords:
+  vi: [thanh nhạc, dạy hát, đào tạo thanh nhạc, công nghệ số, kỷ nguyên số]
+  en: [singing, voice pedagogy, real-time visual feedback, artificial intelligence, music education]
+limits: Ưu tiên tài liệu từ 2020 trở lại đây. Riêng các công trình nền tảng về phản hồi hình ảnh trong dạy hát (2005, 2014) vẫn giữ lại vì được các nghiên cứu mới trích dẫn nhiều.
+
+operators:
+  - op: '" "'
+    name: Ngoặc kép
+    use: Tìm đúng nguyên cụm từ, không tách rời các từ
+  - op: 'site:'
+    name: Giới hạn trang
+    use: Chỉ tìm trong một trang hoặc tên miền (ví dụ vjol.info.vn – kho tạp chí khoa học Việt Nam)
+  - op: 'filetype:'
+    name: Định dạng tệp
+    use: Chỉ lấy tệp PDF, thường là toàn văn bài báo
+  - op: 'intitle:'
+    name: Trong tiêu đề
+    use: Từ khóa phải nằm trong tiêu đề trang
+  - op: '−'
+    name: Loại trừ
+    use: Bỏ các kết quả chứa từ không mong muốn (ví dụ karaoke)
+  - op: 'Thời gian'
+    name: Bộ lọc năm
+    use: Chỉ hiện kết quả trong một năm gần đây (Past year)
+
+queries:
+  - n: 1
+    q: '"thanh nhạc" site:vjol.info.vn'
+    ops: ['" "', 'site:']
+    result: Chỉ còn kết quả trên VJOL; ra 4 bài về thanh nhạc nhưng chủ yếu là lịch sử và dân ca, chưa đúng hướng công nghệ.
+    verdict: Đúng nguồn, chưa đúng chủ đề
+    shot: images/bai2/q1_site.jpg
+  - n: 2
+    q: '"thanh nhạc" "công nghệ" site:vjol.info.vn'
+    ops: ['" "', 'site:']
+    result: 0 kết quả. Ghép quá nhiều điều kiện chặt cùng lúc làm truy vấn hẹp tới mức không còn gì.
+    verdict: Quá hẹp → nới bớt điều kiện
+    shot: images/bai2/q2_zero.jpg
+  - n: 3
+    q: 'intitle:"thanh nhạc" "phần mềm"'
+    ops: ['intitle:', '" "']
+    result: 'Toàn quảng cáo “AI Music Generator” và bài giới thiệu phần mềm. Toán tử intitle: gần như bị bỏ qua với tiếng Việt có dấu.'
+    verdict: Nhiễu → loại toàn bộ
+    shot: images/bai2/q3_intitle_ads.jpg
+  - n: 4
+    q: '"đào tạo thanh nhạc" "xu hướng và thách thức"'
+    ops: ['" "']
+    result: 'Ra đúng bài của Hà Thị Lý và Nguyễn Thị Huyền (ĐHSP Nghệ thuật TW) trên Tạp chí Giáo dục & Xã hội, kèm bản PDF toàn văn.'
+    verdict: Giữ – nguồn [1]
+    shot: images/bai2/q4_phrase.jpg
+  - n: 5
+    q: '"giảng dạy thanh nhạc" "kỷ nguyên số" + lọc Past year'
+    ops: ['" "', 'Thời gian']
+    result: 'Hai kết quả: bài của Hoàng Quốc Tuấn (Tạp chí Khoa học ĐHSP Hà Nội 2) và bài của Nguyễn Thu Trang đăng trên website Trường CĐ Lạng Sơn.'
+    verdict: Giữ – nguồn [2], [3]
+    shot: images/bai2/q5_pastyear.jpg
+  - n: 6
+    q: '"singing" "real-time visual feedback" filetype:pdf'
+    ops: ['" "', 'filetype:']
+    result: 'Toàn bộ là PDF học thuật: bài tổng quan trên Applied Sciences (MDPI), dự án VOXed đăng trên Music Education Research, một bản preprint trên arXiv…'
+    verdict: Giữ – nguồn [4], [5], [8]
+    shot: images/bai2/q6_filetype.jpg
+  - n: 7
+    q: 'intitle:singing "artificial intelligence" "music education" -karaoke'
+    ops: ['intitle:', '" "', '−']
+    result: 'Ra bài tổng quan hệ thống về AI trong xướng âm – luyện tai (Wiley, 2026) và trang định hướng của NAfME. Tiêu đề không phải lúc nào cũng có chữ “singing”, tức intitle: chỉ được áp dụng lỏng.'
+    verdict: Giữ – nguồn [7], [9]
+    shot: images/bai2/q7_intitle_en.jpg
+snowball: 'Ngoài tìm kiếm bằng toán tử, mình còn lần theo danh mục tài liệu tham khảo (snowballing) của các bài tổng quan và tìm ra nghiên cứu của Leong & Cheng (2014). Nghiên cứu này làm thực nghiệm với chính sinh viên sư phạm âm nhạc – nguồn [6].'
+
+# Tiêu chí CRAAP, mỗi tiêu chí 1–5
+craap:
+  - k: C
+    name: Cập nhật
+    en: Currency
+    d: Năm công bố, còn phù hợp với hiện tại không
+  - k: R
+    name: Liên quan
+    en: Relevance
+    d: Có trả lời đúng câu hỏi nghiên cứu không
+  - k: A
+    name: Uy tín
+    en: Authority
+    d: Tác giả, cơ quan, nơi đăng có bình duyệt không
+  - k: A
+    name: Chính xác
+    en: Accuracy
+    d: Có dữ liệu, phương pháp, trích dẫn để kiểm chứng không
+  - k: P
+    name: Mục đích
+    en: Purpose
+    d: Viết để nghiên cứu/giáo dục hay để quảng cáo, bán hàng
+sources:
+  - n: 1
+    lang: vi
+    type: Bài báo khoa học
+    ref: 'Hà Thị Lý & Nguyễn Thị Huyền (2026). Ứng dụng công nghệ số trong đào tạo thanh nhạc: xu hướng và thách thức. *Tạp chí Giáo dục & Xã hội*, tháng 1/2026 (kì 2), tr. 50–55.'
+    url: https://giaoducvaxahoi.vn/pic/Service/ha_thi_ly_nguyen_thi_huyen_pages_50_55_2070.pdf
+    scores: [5, 5, 4, 4, 5]
+    note: Tác giả ở chính trường mình (ĐHSP Nghệ thuật TW). Nghiên cứu định tính, kết hợp phân tích tài liệu và phỏng vấn sâu giảng viên, sinh viên thanh nhạc; 18 tài liệu tham khảo. Kết luận công nghệ chỉ có ý nghĩa khi củng cố năng lực nghệ thuật và tôn trọng bản sắc giọng hát.
+    verdict: keep
+  - n: 2
+    lang: vi
+    type: Bài báo khoa học
+    ref: 'Hoàng Quốc Tuấn (2025). Giảng dạy thanh nhạc trong kỷ nguyên số: xu hướng mới. *Tạp chí Khoa học – Trường ĐHSP Hà Nội 2*, số 04, tập 01, tr. 231–239.'
+    url: https://sjsh.hpu2.edu.vn/index.php/journal/article/view/630
+    scores: [5, 5, 4, 3, 5]
+    note: Tạp chí có quy trình nhận – duyệt bài, tác giả là giảng viên ĐHSP Nghệ thuật TW. Nêu rõ lợi ích và thách thức (thiếu phản hồi trực tiếp, phụ thuộc công nghệ). Chủ yếu là lập luận, chỉ 9 tài liệu tham khảo, ít số liệu.
+    verdict: keep
+  - n: 3
+    lang: vi
+    type: Nguồn mở – bài đăng web trường
+    ref: 'Nguyễn Thu Trang (2026). Chuyển đổi số trong giảng dạy thanh nhạc cho sinh viên chuyên ngành Thanh nhạc Trường Cao đẳng Lạng Sơn trong kỷ nguyên số. Website Trường Cao đẳng Lạng Sơn, đăng ngày 07/08/2026.'
+    url: https://lce.edu.vn/nguyen-thu-trang_chuyen-doi-so-trong-giang-day-thanh-nhac-cho-sinh-vien-chuyen-nganh-thanh-nhac-truong-cao-dang-lang-son-trong-ky-nguyen-so/
+    scores: [5, 5, 2, 2, 4]
+    note: Rất sát chủ đề và có góc nhìn thực tiễn, nhưng chỉ là tệp tải về trên mục “Bài viết – Nghiên cứu” của trường, không qua bình duyệt và không có thông tin xuất bản.
+    verdict: cond
+  - n: 4
+    lang: en
+    type: Bài tổng quan (bình duyệt)
+    ref: 'Lã, F. M. B. & Fiuza, M. B. (2022). Real-Time Visual Feedback in Singing Pedagogy: Current Trends and Future Directions. *Applied Sciences*, 12(21), 10781. https://doi.org/10.3390/app122110781'
+    url: https://www.mdpi.com/2076-3417/12/21/10781
+    scores: [4, 5, 5, 5, 5]
+    note: Tác giả đầu vừa là nhà nghiên cứu giọng hát vừa là ca sĩ opera (UNED, Tây Ban Nha). Tổng hợp các công cụ hiển thị hơi thở, dây thanh, cộng minh theo thời gian thực. Truy cập mở, có công khai báo cáo phản biện.
+    verdict: keep
+  - n: 5
+    lang: en
+    type: Nghiên cứu hành động (bình duyệt)
+    ref: 'Welch, G. F., Howard, D. M., Himonides, E. & Brereton, J. (2005). Real-time feedback in the singing studio: an innovatory action-research project using new voice technology. *Music Education Research*, 7(2), 225–249. https://doi.org/10.1080/14613800500169779'
+    url: https://www.imerc.org/papers/voxed/mer05.pdf
+    scores: [2, 5, 5, 4, 5]
+    note: Công trình kinh điển (dự án VOXed, tài trợ AHRB, Anh) về phản hồi hình ảnh trong phòng dạy hát, cho thấy công nghệ làm thay đổi tích cực hành vi của giáo viên và trải nghiệm của học viên. Đã cũ (2005), nên mình dùng làm nền lý thuyết, không dùng để nói về công cụ hiện nay.
+    verdict: keep
+  - n: 6
+    lang: en
+    type: Nghiên cứu thực nghiệm (bình duyệt)
+    ref: 'Leong, S. & Cheng, L. (2014). Effects of real-time visual feedback on pre-service teachers'' singing. *Journal of Computer Assisted Learning*, 30(3), 285–296. https://doi.org/10.1111/jcal.12046'
+    url: https://doi.org/10.1111/jcal.12046
+    scores: [3, 5, 5, 4, 5]
+    note: Đối tượng là sinh viên sư phạm âm nhạc, giống hệt mình. Dùng phần mềm Sing & See, có nhóm thực nghiệm và nhóm đối chứng; nhóm thực nghiệm cải thiện rõ âm sắc. Quy mô nhỏ (nghiên cứu thử).
+    verdict: keep
+  - n: 7
+    lang: en
+    type: Tổng quan hệ thống (bình duyệt)
+    ref: 'Chen và cộng sự (2026). AI and Digital Technologies in Sight-Singing and Aural Training (tổng quan hệ thống). *European Journal of Education*. https://doi.org/10.1111/ejed.70502'
+    url: https://onlinelibrary.wiley.com/doi/10.1111/ejed.70502
+    scores: [5, 4, 5, 4, 5]
+    note: Rất mới, tổng hợp nghiên cứu thực nghiệm về AI và công cụ số (EarMaster, MIDI…) trong xướng âm – luyện tai, đồng thời chỉ ra giới hạn về khả năng tiếp cận và tính minh bạch của thuật toán. Hơi lệch sang xướng âm hơn là thanh nhạc.
+    verdict: keep
+  - n: 8
+    lang: en
+    type: Preprint (chưa bình duyệt)
+    ref: 'A Survey on 30+ Years of Automatic Singing Assessment and Singing Information Processing (2026). arXiv:2601.12153.'
+    url: https://arxiv.org/abs/2601.12153
+    scores: [5, 4, 3, 3, 5]
+    note: Tổng quan rộng về chấm điểm giọng hát tự động, phản hồi hình ảnh. Có ích để biết công nghệ đã đi tới đâu, nhưng là bản thảo trên arXiv nên chỉ trích khi đã đối chiếu với nguồn có bình duyệt.
+    verdict: cond
+  - n: 9
+    lang: en
+    type: Tài liệu tổ chức nghề nghiệp
+    ref: 'National Association for Music Education – NAfME. Artificial Intelligence and Music Education (trang tài nguyên).'
+    url: https://nafme.org/resource/art-int-and-music-education/
+    scores: [3, 3, 4, 2, 4]
+    note: Hiệp hội giáo dục âm nhạc lớn của Hoa Kỳ nên đáng tin về định hướng, nhưng không phải công trình nghiên cứu, không có dữ liệu, và không riêng về thanh nhạc. Chỉ dùng để tham khảo quan điểm nghề nghiệp.
+    verdict: cond
+  - n: 10
+    lang: vi
+    type: Quảng cáo
+    ref: 'Các quảng cáo “AI Music Generator – Make Songs With AI Today” (thebestpdf.com, pdfleader.com) xuất hiện ở truy vấn 3.'
+    scores: [3, 1, 1, 1, 1]
+    note: Nội dung bán hàng, không có tác giả, không liên quan tới dạy học.
+    verdict: drop
+  - n: 11
+    lang: vi
+    type: Bài tổng hợp trên trang công nghệ
+    ref: '“10 phần mềm tạo nhạc bằng AI tốt nhất năm 2026”, Quản Trị Mạng (quantrimang.com).'
+    url: https://quantrimang.com/cong-cu-tao-nhac-ai-tot-nhat-203065
+    scores: [5, 2, 2, 1, 2]
+    note: Bài dạng “top 10” để giới thiệu sản phẩm, không có phương pháp, không phải tài liệu học thuật, lại về sáng tác nhạc chứ không phải dạy hát.
+    verdict: drop
+verdicts: {keep: Dùng, cond: Dùng có điều kiện, drop: Loại}
+
+lessons:
+  - Google Scholar chặn truy vấn tự động. Khi một công cụ không dùng được, hãy đổi công cụ chứ không lách luật.
+  - 'Ghép quá nhiều cụm trong ngoặc kép cùng với site: dễ ra 0 kết quả. Nên bắt đầu rộng rồi thu hẹp dần.'
+  - 'intitle: hoạt động kém với tiếng Việt có dấu và chỉ được áp dụng lỏng, có thể kéo theo quảng cáo. Luôn đọc lại kết quả chứ đừng tin toán tử tuyệt đối.'
+  - Cụm từ chính xác lấy từ tên một bài báo (“xu hướng và thách thức”) là cách nhanh nhất để tìm ra bản PDF toàn văn.
+  - Nguồn tiếng Anh về dạy hát phong phú hơn hẳn. Kết hợp filetype:pdf với cụm chuyên ngành (“real-time visual feedback”) cho kết quả gần như toàn học thuật.

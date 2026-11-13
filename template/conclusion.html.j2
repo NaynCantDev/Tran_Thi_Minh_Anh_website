@@ -22,6 +22,8 @@
     <div class="part"><h2 class="h3"><em>iv.</em> Hướng đi tiếp theo</h2>{% if c.future is blank %}{{ tbd() }}{% else %}<p>{{ c.future }}</p>{% endif %}</div>
   </div>
 
+  {% if c.ai_note %}<p class="req ai-note">{{ c.ai_note }}</p>{% endif %}
+
   <h2 class="h3 bis-h">Bis — xem lại các tiết mục</h2>
   <ol class="bis">{% for p in projects %}<li><a href="project-{{ p.id }}.html"><span>{{ p.id|roman }}.</span>{{ p.title }}</a></li>{% endfor %}</ol>
 </section>

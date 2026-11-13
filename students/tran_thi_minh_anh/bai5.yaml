@@ -1,0 +1,121 @@
+# ============================================================
+#  Bài 5.4 – Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung
+#  Sản phẩm: học liệu số tương tác "Khởi động giọng cùng Đô Rê Mi"
+#  Gemini chạy thật ngày 13/11/2026 (2 lượt), ảnh: images/bai5/
+# ============================================================
+kind: material
+intro: 'Yêu cầu: trưng bày sản phẩm nội dung số hoàn thiện có sự hỗ trợ của AI tạo sinh. Sản phẩm của mình là một học liệu số dùng trong 5 phút đầu tiết hát lớp 3. Bạn có thể bấm nghe thử từng trò chơi ngay bên dưới.'
+
+title: Khởi động giọng cùng Đô Rê Mi
+audience: Học sinh lớp 3 (8–9 tuổi) · 5 phút đầu tiết hát
+link_group: 'Học liệu này là phần cá nhân của mình trong đề tài nhóm “Ứng dụng AI trong dạy học Âm nhạc ở tiểu học: Biến mỗi giờ học thành một hành trình khám phá” (xem Bài 4).'
+
+# --- 4 trò chơi đã chỉnh sửa (bản cuối) ---
+games:
+  - n: 1
+    step: Thở
+    name: Bóng bay căng phồng
+    play: Cô làm mẫu hít vào bằng mũi thật êm, bụng phình ra như quả bóng, hai tay mở rộng thành vòng tròn. Thở ra từ từ bằng âm “sss…”, hai tay thu nhỏ dần như bóng xì hơi. Cả lớp làm 3 lần, lần sau thở ra lâu hơn lần trước.
+    range: Không có cao độ, chỉ có hơi thở với âm “s”
+    safe: Vai đứng yên, không nín thở, không cố thở ra đến hết sạch hơi.
+    demo: breath
+  - n: 2
+    step: Ngân
+    name: Chú ong chăm chỉ
+    play: 'Cô ngân âm “m…” khép môi nhẹ như tiếng ong bay, rồi đi dần lên từng nốt Đô – Rê – Mi – Fa – Son. Học sinh đặt hai ngón tay lên cánh mũi để cảm nhận độ rung. Đó là âm thanh cộng hưởng (vang) ở vùng mặt, không phải vibrato.'
+    range: Đô (C4) → Son (G4)
+    safe: Ngân nhỏ (p–mf), không đẩy hơi mạnh, hàm và lưỡi thả lỏng.
+    demo: hum
+  - n: 3
+    step: Lên xuống cao độ
+    name: Thang máy vui vẻ
+    play: 'Tay cô là chiếc thang máy. Tay đưa lên thì giọng trượt lên, tay hạ xuống thì giọng trượt xuống, cả lớp hát âm “vu…” theo tay. Bắt đầu bằng quãng ngắn Đô – Son, khi các em đã quen mới đi tới Đô cao.'
+    range: Đô (C4) → Đô cao (C5)
+    safe: Không với lên quá Đô cao, không hét ở đỉnh, mỗi lượt trượt khoảng 2–3 giây.
+    demo: glide
+  - n: 4
+    step: Phát âm rõ lời
+    name: Chiếc mũ kỳ diệu
+    play: Cô đội “chiếc mũ kỳ diệu” rồi đọc mẫu một dòng. Cả lớp nhắc lại, mở rõ khẩu hình và bật rõ âm đầu. Mỗi dòng tập một phụ âm đầu, đọc theo nhịp hai nốt Fa – Son, lần sau nhanh hơn lần trước một chút.
+    range: Fa (F4) – Son (G4)
+    safe: Bật âm đầu bằng môi và lưỡi, không gằn cổ, không cắn chặt răng.
+    demo: diction
+    lines:
+      - {c: B, t: 'Ba bế bé Bi'}
+      - {c: L, t: 'Lá lúa lung linh'}
+      - {c: M, t: 'Mẹ mua mũ mới'}
+      - {c: C/K, t: 'Cô kể chuyện cổ'}
+
+ve:
+  title: Câu vè chuyển trò chơi
+  note: 'Mỗi dòng 4 chữ và báo trước trò chơi tiếp theo, cả lớp vừa đọc vừa vỗ tay theo nhịp 2/4.'
+  lines: ['Hít thật sâu nào', 'Ngân tiếng ong bay', 'Lên xuống thang mây', 'Đọc rõ từng lời']
+
+# --- Quá trình làm việc với Gemini ---
+prompt: |-
+  Bạn là giáo viên Âm nhạc tiểu học có kinh nghiệm dạy hát cho học sinh lớp 3 (8–9 tuổi).
+  Mình là sinh viên Sư phạm Âm nhạc, đang làm một học liệu số tên “Khởi động giọng cùng Đô Rê Mi” để dùng 5 phút đầu tiết hát.
+  Hãy thiết kế 4 trò chơi khởi động ngắn, mỗi trò khoảng 1 phút, theo thứ tự: thở – ngân – lên xuống cao độ – phát âm rõ lời.
+  Với mỗi trò chơi, ghi đúng 4 dòng:
+  – Tên trò chơi (vui, dễ nhớ với trẻ em)
+  – Cách chơi (2–3 câu, giáo viên làm mẫu thế nào, học sinh làm gì)
+  – Âm vực sử dụng (ghi rõ từ nốt nào đến nốt nào)
+  – Lưu ý an toàn cho giọng trẻ em
+  Cuối cùng viết một câu vè 4 dòng, mỗi dòng 4–6 chữ, để cả lớp đọc theo nhịp khi chuyển giữa các trò chơi.
+  Nếu có điểm nào bạn không chắc về sinh lý giọng trẻ em, hãy ghi rõ là chưa chắc.
+techniques: [Đóng vai, Bối cảnh người học, Định dạng cố định 4 dòng, Ràng buộc độ dài, Yêu cầu tự báo điều chưa chắc]
+followup: |-
+  Cảm ơn bạn. Mình kiểm tra lại và thấy 3 chỗ cần sửa:
+  1) Trò chơi 2: gõ ngón tay lên má khi ngân "m" có thật sự tạo ra vibrato không? Mình hiểu cảm giác rung ở mũi, má là do cộng hưởng (cộng minh), còn vibrato là dao động cao độ. Bạn kiểm tra lại giúp mình.
+  2) Trò chơi 4: bạn chưa đưa ra âm tiết cụ thể nào. Hãy cho 4 cụm âm tiết ngắn cho học sinh lớp 3 đọc, mỗi cụm có phụ âm đầu khác nhau.
+  3) Câu vè: mình yêu cầu mỗi dòng 4–6 chữ nhưng các dòng bạn viết chỉ có 3–4 chữ. Hãy viết lại cho đúng.
+  Trả lời ngắn gọn theo 3 mục.
+
+shots:
+  - {file: images/bai5/01_prompt.jpg, caption: 'Lượt 1 – prompt gửi Gemini (13/11/2026)'}
+  - {file: images/bai5/00_top.jpg, caption: 'Gemini mở đầu và Trò chơi 1 “Bong bóng bay căng phồng”'}
+  - {file: images/bai5/02_game2_vibrato.jpg, caption: 'Trò chơi 2: Gemini gọi cảm giác rung ở má là “vibrato tự nhiên” – sai khái niệm'}
+  - {file: images/bai5/03_game4_ve.jpg, caption: 'Trò chơi 4 không có âm tiết cụ thể; câu vè chỉ 3–4 chữ/dòng'}
+  - {file: images/bai5/04_round2a.jpg, caption: 'Lượt 2 – Gemini nhận lỗi vibrato, nhưng lại thêm một khẳng định chưa có nguồn'}
+  - {file: images/bai5/05_round2b.jpg, caption: 'Lượt 2 – các cụm âm tiết mới, có cụm “Mê mha, mi mhi” không phải tiếng Việt'}
+
+# --- Đối chiếu: AI đề xuất gì, mình giữ / sửa gì ---
+edits:
+  - part: Trò chơi 1 – Thở
+    ai: Bong bóng bay căng phồng, thở ra bằng âm “s”, có nhắc thở bằng cơ hoành và không nhún vai.
+    me: Giữ ý tưởng, rút tên còn “Bóng bay căng phồng” và thêm cách tăng dần độ dài hơi qua 3 lần.
+    verdict: keep
+  - part: Trò chơi 2 – Ngân
+    ai: Gõ ngón tay lên má để “tạo độ rung (vibrato tự nhiên)”.
+    me: 'Sai khái niệm. Vibrato là sự dao động nhẹ của cao độ, còn cảm giác rung ở mũi, má là cộng hưởng. Mình bỏ động tác gõ má, cho các em đặt tay lên cánh mũi để cảm nhận độ vang, và ghi rõ “không phải vibrato”.'
+    verdict: fix
+  - part: Lượt 2 – lời giải thích thêm
+    ai: Khẳng định thanh đới trẻ lớp 3 “chưa phát triển đủ để tạo vibrato tự nhiên”.
+    me: Đây là một khẳng định mới, mình chưa có tài liệu nào để kiểm chứng. Vì vậy mình không đưa vào học liệu.
+    verdict: drop
+  - part: Trò chơi 3 – Thang máy
+    ai: Trượt âm “vu” từ C4 đến C5, có tự ghi là chưa chắc về độ ổn định ở quãng cao.
+    me: Giữ, nhưng bắt đầu bằng quãng ngắn (Đô – Son) và giới hạn mỗi lượt trượt 2–3 giây, đúng với điều Gemini tự cảnh báo.
+    verdict: keep
+  - part: Trò chơi 4 – Phát âm
+    ai: 'Lượt 1 không có âm tiết nào. Lượt 2 đưa “Mê mha, mi mhi”, “La la, li li”, “Ba ba, bi bi”, “Ca ca, ki ki”.'
+    me: '“mha, mhi” không phải âm tiết tiếng Việt, còn các cụm khác chỉ là lặp âm nên không có nghĩa. Mình tự viết 4 dòng có nghĩa, mỗi dòng luyện một phụ âm đầu, ví dụ “Ba bế bé Bi”, “Mẹ mua mũ mới”.'
+    verdict: fix
+  - part: Câu vè
+    ai: 'Lượt 1: “Nghe cô hô, / Vào vị trí…” (3–4 chữ, sai yêu cầu). Lượt 2: 5 chữ/dòng, đúng độ dài nhưng không gắn với trò chơi nào.'
+    me: Mình tự viết câu vè 4 chữ/dòng, mỗi dòng báo trước một trò chơi, để vè vừa làm hiệu lệnh chuyển hoạt động vừa giúp các em nhớ thứ tự.
+    verdict: fix
+  - part: Tên nốt
+    ai: Viết “Sol” và ký hiệu C4, G4…
+    me: Thống nhất cách gọi tên nốt theo sách giáo khoa (Đô, Rê, Mi, Fa, Son, La, Si). Ký hiệu C4… chỉ để trong ngoặc, dành cho giáo viên.
+    verdict: fix
+verdicts: {keep: Giữ, fix: Tự sửa, drop: Bỏ}
+
+ratio:
+  - {who: Gemini, part: 'Khung 4 trò chơi, ý tưởng thở bằng âm “s”, trò thang máy, các lưu ý an toàn chung'}
+  - {who: Mình, part: 'Phát hiện và sửa 3 lỗi nội dung, tự viết âm tiết luyện phát âm và câu vè, thống nhất tên nốt, thiết kế giao diện và phần nghe thử'}
+
+lessons:
+  - AI viết rất trôi chảy nên lỗi chuyên môn dễ bị bỏ qua. Lỗi “vibrato” nghe rất hợp lý, mình chỉ phát hiện được nhờ đã học Thanh nhạc.
+  - Khi bị chỉ ra lỗi, AI sửa ngay nhưng có thể thêm một khẳng định mới chưa có nguồn. Vì vậy câu trả lời sau khi sửa cũng phải kiểm tra lại.
+  - Với trẻ em, phần quan trọng nhất (lời đọc, câu vè) nên do giáo viên tự viết. AI phù hợp để gợi khung ý tưởng hơn là viết thay từng chữ.

@@ -91,6 +91,21 @@ def render_student(env, student_id):
                 for sh in v.get("shots") or []:
                     sh["src"] = copy_img(student_id, sh["file"], img_dir)
             print(f"  [OK] bài {p['id']}: tác vụ {t['n']} – {len(t.get('versions') or [])} phiên bản")
+        # Bài 1, 2, 4, 5: mọi mục có khóa 'shot' hoặc 'file' (ảnh) đều được chép sang dist/
+        def walk(o):
+            if isinstance(o, dict):
+                for key in ("shot", "file"):
+                    v = o.get(key)
+                    if isinstance(v, str) and v.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
+                        o["src"] = copy_img(student_id, v, img_dir)
+                for v in o.values():
+                    walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v)
+        if prod.get("kind"):
+            walk(prod)
+            print(f"  [OK] bài {p['id']}: dạng {prod['kind']}")
         kept = []
         for g in prod.get("gallery") or []:
             url = copy_img(student_id, g["file"], img_dir)
