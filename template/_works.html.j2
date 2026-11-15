@@ -173,6 +173,14 @@
     </div>
   </section>
   <p class="req">{{ prod.link_group }}</p>
+  {% if prod.video %}
+  <section class="lab-sec reveal" id="video">
+    <h3 class="lab-h"><em>Video</em> Sản phẩm nhóm</h3>
+    <div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/{{ prod.video.id }}" title="{{ prod.video.title }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+    <p class="vid-cap"><b>{{ prod.video.title }}</b> · {{ prod.video.length }} · <a href="https://www.youtube.com/watch?v={{ prod.video.id }}" target="_blank" rel="noopener">Xem trên YouTube ↗</a></p>
+    <p class="req">{{ prod.video.note }}</p>
+  </section>
+  {% endif %}
 
   <section class="lab-sec reveal" id="qua-trinh-ai">
     <h3 class="lab-h"><em>Phòng tập</em> Làm việc với Gemini</h3>
