@@ -9,7 +9,7 @@ Portfolio học phần **Nhập môn Công nghệ số và ứng dụng AI (INF2
 - ✅ Bài 1 (Tệp tin & thư mục): thực hành File Explorer trong Windows Sandbox, 12 ảnh từng bước (`bai1.yaml`)
 - ✅ Bài 2 (Tìm kiếm học thuật): 7 truy vấn với toán tử nâng cao (DuckDuckGo, 13/11/2026), 11 nguồn chấm CRAAP (`bai2.yaml`)
 - ✅ Bài 4 (Hợp tác trực tuyến): vai trò người điều phối trong cuộc họp Google Meet 12/11/2026, ảnh minh chứng do nhóm cung cấp (`bai4.yaml`)
-- ✅ Bài 5 (AI tạo sinh): học liệu tương tác “Khởi động giọng cùng Đô Rê Mi” – Gemini 2 lượt, bảng đối chiếu giữ/sửa/bỏ (`bai5.yaml`)
+- ✅ Bài 5 (AI tạo sinh): nhúng video sản phẩm nhóm trên YouTube (`bai5.yaml`)
 - ✅ Bài 6 (AI có trách nhiệm): nhật ký sự cố + căn cứ pháp lý 2025 + bộ nguyên tắc 4 giai đoạn + bảng tự kiểm tra (`bai6.yaml`)
 - ✅ Tổng kết
 - ⏳ Mã sinh viên, lớp, email: chưa có

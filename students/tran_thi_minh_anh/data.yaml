@@ -169,16 +169,13 @@ projects:
     section: '5.4'
     title: Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung
     chapter: Chương 5 – Sáng tạo nội dung số
-    objective: 'Dùng AI tạo sinh làm “trợ lý ý tưởng” để tạo một học liệu số hoàn chỉnh: “Khởi động giọng cùng Đô Rê Mi”, 4 trò chơi khởi động giọng cho học sinh lớp 3. Mục tiêu không chỉ là có sản phẩm, mà còn là phát hiện được AI sai ở đâu và chứng minh phần đóng góp của chính mình.'
+    objective: 'Cùng nhóm hoàn thiện một sản phẩm nội dung số dạng video về đề tài “Ứng dụng công nghệ số và AI trong học tập Âm nhạc ở trường tiểu học”, có sự hỗ trợ của AI tạo sinh, và công bố công khai để chia sẻ.'
     process:
-      - 'Bước 1: Xác định người học (lớp 3, 8–9 tuổi), thời lượng (5 phút đầu tiết) và trình tự khởi động chuẩn: thở → ngân → lên xuống cao độ → phát âm.'
-      - 'Bước 2: Viết prompt có đóng vai, bối cảnh, định dạng 4 dòng cố định, ràng buộc độ dài câu vè, và yêu cầu AI tự ghi điều chưa chắc. Chạy trên Gemini ngày 13/11/2026.'
-      - 'Bước 3: Đối chiếu từng dòng với kiến thức Thanh nhạc. Phát hiện 3 lỗi: gọi cộng hưởng là “vibrato”, không có âm tiết luyện phát âm, câu vè sai độ dài.'
-      - 'Bước 4: Gửi lượt 2 chỉ ra lỗi. Gemini sửa nhưng lại thêm một khẳng định chưa có nguồn và cụm “Mê mha” không phải tiếng Việt.'
-      - 'Bước 5: Tự viết lại phần lời (4 dòng luyện phát âm, câu vè 4 dòng), thống nhất tên nốt, rồi dựng học liệu tương tác có nút nghe thử từng trò chơi.'
-      - 'Khó khăn: Lỗi của AI rất “hợp lý”, đọc lướt sẽ không thấy. – Giải quyết bằng cách lập bảng đối chiếu từng phần: AI đề xuất gì, giữ, sửa hay bỏ, và vì sao.'
-    tool: 'Gemini (gemini.google.com, không đăng nhập, Quick answers); Web Audio để làm phần nghe thử'
-    ai_use: 'Gemini tạo bản nháp 4 trò chơi (2 lượt hỏi, có ảnh chụp). Âm tiết luyện phát âm, câu vè và các sửa lỗi chuyên môn do mình tự làm.'
+      - 'Bước 1: Nhóm thống nhất chủ đề, nội dung và công cụ AI sẽ dùng trong buổi họp trực tuyến ngày 12/11/2026 (xem Bài 4).'
+      - 'Bước 2: Các thành viên thực hiện phần việc được phân công và ghép thành video hoàn chỉnh (9 phút 19 giây).'
+      - 'Bước 3: Đăng video ở chế độ công khai trên YouTube và nhúng trực tiếp vào portfolio.'
+    tool: 'YouTube (đăng tải và chia sẻ video)'
+    ai_use: 'Video được nhóm thực hiện với sự hỗ trợ của AI tạo sinh, theo nội dung và công cụ AI đã thống nhất ở Bài 4.'
     product_file: bai5.yaml
   - id: 6
     section: '6.4'
@@ -186,7 +183,7 @@ projects:
     chapter: Chương 6 – An toàn và liêm chính học thuật trong môi trường số
     objective: 'Xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm trong học tập và nghiên cứu, dựa trên văn bản pháp luật hiện hành, khuyến nghị quốc tế và chính những lần mình gặp lỗi AI trong học phần này.'
     process:
-      - 'Bước 1: Xem lại Bài 2, 3, 5 và ghi “nhật ký sự cố”: những lần AI bịa, sai chuyên môn, hoặc nguồn không đáng tin.'
+      - 'Bước 1: Xem lại Bài 2, 3 và ghi “nhật ký sự cố”: những lần AI bịa, sai chuyên môn, hoặc nguồn không đáng tin.'
       - 'Bước 2: Tìm đọc các căn cứ: Luật Trí tuệ nhân tạo 2025, Luật Bảo vệ dữ liệu cá nhân 2025, hướng dẫn của UNESCO (2023) về AI tạo sinh trong giáo dục, hướng dẫn trích dẫn AI của APA và quy định của học phần.'
       - 'Bước 3: Sắp xếp nguyên tắc theo 4 thời điểm của một lần dùng AI: trước khi hỏi, trong khi dùng, sau khi nhận, khi công bố. Mỗi nguyên tắc gắn với một minh chứng.'
       - 'Bước 4: Biến bộ nguyên tắc thành bảng tự kiểm tra 6 câu để dùng trước mỗi lần nộp bài.'
@@ -202,9 +199,9 @@ conclusion:
     - 'Tìm kiếm học thuật bằng toán tử nâng cao và đánh giá nguồn theo CRAAP, phân biệt bài báo có bình duyệt với quảng cáo và bài “top 10” (Bài 2).'
     - 'Viết prompt có cấu trúc và chấm kết quả AI theo tiêu chí, thay vì tin ngay câu trả lời (Bài 3).'
     - 'Điều phối một cuộc họp trực tuyến theo chương trình đã phân công (Bài 4).'
-    - 'Dùng AI tạo sinh làm trợ lý ý tưởng nhưng tự chịu trách nhiệm về nội dung chuyên môn (Bài 5).'
+    - 'Cùng nhóm hoàn thiện và công bố một video nội dung số có sự hỗ trợ của AI tạo sinh (Bài 5).'
     - 'Xây dựng bộ nguyên tắc dùng AI có trách nhiệm, dựa trên luật hiện hành và minh chứng của chính mình (Bài 6).'
-  highlight: 'Mình tâm đắc nhất với Bài 5, học liệu “Khởi động giọng cùng Đô Rê Mi”. Đó là lần đầu mình làm ra một thứ có thể mang vào lớp học thật, và cũng là lần mình thấy rõ nhất giá trị của kiến thức Thanh nhạc: chính nhờ hiểu cộng hưởng và vibrato khác nhau thế nào mà mình phát hiện được lỗi AI đưa ra.'
+  highlight: 'Mình tâm đắc nhất với Bài 3. Khi tự giải lại đề trắc nghiệm “Giọng trưởng và hóa biểu”, mình phát hiện 2/8 câu AI làm sai, trong khi AI vẫn khẳng định không có sai sót. Đó là lần mình thấy rõ nhất giá trị của kiến thức chuyên ngành khi làm việc với AI.'
   challenge: 'Khó nhất là giữ được sự nghi ngờ đúng mức. AI viết rất hay nên mình dễ tin, nhưng nếu nghi ngờ mọi thứ thì không làm được việc. Mình vượt qua bằng cách đặt ra tiêu chí trước khi đọc câu trả lời, và chỉ giữ lại những gì kiểm chứng được bằng nguồn mình đã tự đọc.'
-  future: 'Mình muốn phát triển “Khởi động giọng cùng Đô Rê Mi” thành một bộ học liệu cho cả năm học lớp 3, thử dạy trong đợt kiến tập, và tiếp tục cập nhật portfolio này sau mỗi học kỳ.'
-  ai_note: 'Khai báo sử dụng AI: Gemini là đối tượng thử nghiệm ở Bài 3 và trợ lý ý tưởng ở Bài 5. Chi tiết từng bài nằm ở mục “Sử dụng AI” của bài đó. Mã nguồn website được xây dựng với sự hỗ trợ của trợ lý AI, xem README trong kho mã nguồn.'
+  future: 'Mình muốn tiếp tục dùng AI để chuẩn bị học liệu âm nhạc cho học sinh tiểu học, thử dạy trong đợt kiến tập, và cập nhật portfolio này sau mỗi học kỳ.'
+  ai_note: 'Khai báo sử dụng AI: Gemini là đối tượng thử nghiệm ở Bài 3; video ở Bài 5 là sản phẩm nhóm có sự hỗ trợ của AI tạo sinh. Chi tiết từng bài nằm ở mục “Sử dụng AI” của bài đó. Mã nguồn website được xây dựng với sự hỗ trợ của trợ lý AI, xem README trong kho mã nguồn.'

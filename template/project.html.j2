@@ -31,7 +31,7 @@
     <section class="part reveal">
       <h2 class="h3"><em>Thành phẩm</em> Sản phẩm</h2>
       <p class="req">{{ prod.intro }}</p>
-      {% set toc = {'files':[['cau-truc','Cấu trúc thư mục'],['dat-ten','Quy tắc & thao tác'],['anh-chup','Ảnh chụp từng bước']],'search':[['truy-van','7 truy vấn'],['danh-gia','Bảng đánh giá nguồn'],['bai-hoc','Bài học']],'meeting':[['cuoc-hop','Cuộc họp'],['chuong-trinh','Chương trình & vai trò'],['cong-cu','Công cụ & minh chứng']],'material':[['hoc-lieu','Học liệu – nghe thử'],['video','Video sản phẩm nhóm'],['qua-trinh-ai','Làm việc với Gemini'],['doi-chieu','Bảng đối chiếu']],'charter':[['su-co','Nhật ký sự cố'],['co-so','Cơ sở'],['nguyen-tac','Bộ nguyên tắc'],['tu-kiem','Tự kiểm tra']]}[prod.kind] %}
+      {% set toc = {'files':[['cau-truc','Cấu trúc thư mục'],['dat-ten','Quy tắc & thao tác'],['anh-chup','Ảnh chụp từng bước']],'search':[['truy-van','7 truy vấn'],['danh-gia','Bảng đánh giá nguồn'],['bai-hoc','Bài học']],'meeting':[['cuoc-hop','Cuộc họp'],['chuong-trinh','Chương trình & vai trò'],['cong-cu','Công cụ & minh chứng']],'material':[['hoc-lieu','Học liệu – nghe thử'],['qua-trinh-ai','Làm việc với Gemini'],['doi-chieu','Bảng đối chiếu']],'video':[['video','Video sản phẩm']],'charter':[['su-co','Nhật ký sự cố'],['co-so','Cơ sở'],['nguyen-tac','Bộ nguyên tắc'],['tu-kiem','Tự kiểm tra']]}[prod.kind] %}
       <nav class="toc" aria-label="Mục lục sản phẩm">{% for a in toc %}<a href="#{{ a[0] }}">{{ a[1] }}</a>{% endfor %}</nav>
     </section>
     {% elif not prod.trials %}

@@ -1,6 +1,6 @@
 # ============================================================
 #  Bài 6.4 – Sử dụng AI có trách nhiệm trong học tập và nghiên cứu
-#  Bộ nguyên tắc cá nhân, dựng từ chính các lỗi AI mình gặp ở Bài 2, 3, 5
+#  Bộ nguyên tắc cá nhân, dựng từ chính các lỗi AI mình gặp ở Bài 2, 3
 # ============================================================
 kind: charter
 intro: 'Yêu cầu: xây dựng bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm, dựa trên nghiên cứu. Mình không chép lại nguyên tắc chung chung, mà đi từ những lần chính mình bị AI “đánh lừa” trong các bài trước.'
@@ -11,10 +11,6 @@ incidents:
     link: project-3.html
     what: 'Gemini tóm tắt một bài báo mà không cho biết mình chưa đọc được bài, còn bịa thêm một mục mà bài gốc không có. Ở đề trắc nghiệm nhạc lý, phần “tự giải lại” vẫn kết luận không có sai sót, trong khi 2/8 câu sai.'
     risk: Ảo giác (hallucination) và tự kiểm tra không đáng tin
-  - from: Bài 5
-    link: project-5.html
-    what: Gemini gọi cảm giác rung ở má là “vibrato tự nhiên”. Khi bị chỉ ra, AI nhận lỗi nhưng lại thêm một khẳng định mới chưa có nguồn, và đưa ra cụm “Mê mha” không phải tiếng Việt.
-    risk: Sai kiến thức chuyên ngành và sai ngôn ngữ, khó nhận ra nếu không học chuyên ngành
   - from: Bài 2
     link: project-2.html
     what: 'Google Scholar chặn truy vấn tự động. Toán tử intitle: kéo theo toàn quảng cáo “AI Music Generator”, và có cả bài “top 10 phần mềm AI” được trình bày như nguồn tham khảo.'
@@ -48,7 +44,7 @@ charter:
     rules:
       - head: Tự nghĩ trước, rồi mới hỏi
         body: Mình viết ra điều mình đã biết và điều mình cần trước khi mở AI. Nếu chưa nghĩ gì mà hỏi ngay thì mình sẽ không có gì để đối chiếu với câu trả lời.
-        why: 'Bài 5: nhờ đã học Thanh nhạc nên mình mới nhận ra lỗi “vibrato”.'
+        why: 'Bài 3: nhờ đã tự giải đề nhạc lý nên mình mới nhận ra 2/8 câu AI làm sai.'
       - head: Không đưa dữ liệu của người khác vào AI
         body: Không tải lên ảnh, giọng hát, họ tên hay điểm số của học sinh và bạn bè, kể cả để “nhờ nhận xét”. Ví dụ phải đặt tên giả và bỏ chi tiết nhận dạng.
         why: Luật Bảo vệ dữ liệu cá nhân 2025, đặc biệt là dữ liệu trẻ em.
@@ -57,7 +53,7 @@ charter:
     rules:
       - head: Yêu cầu AI nói rõ điều chưa chắc
         body: Prompt nào cũng có câu “Nếu không chắc hoặc không đọc được tài liệu thì nói rõ”. Mình hỏi theo từng phần nhỏ để dễ kiểm tra.
-        why: 'Bài 3 và Bài 5: Gemini có tự ghi “chưa chắc” ở trò chơi 3 khi được yêu cầu.'
+        why: 'Bài 3: Gemini tóm tắt bài báo mà không cho biết mình chưa đọc được bài.'
       - head: Tôn trọng quy định của nền tảng
         body: Không lách CAPTCHA, không dùng công cụ để vượt chặn. Khi một công cụ không cho phép, mình đổi sang công cụ hoặc cách làm khác.
         why: 'Bài 2: Google Scholar chặn truy vấn tự động.'
@@ -66,10 +62,10 @@ charter:
     rules:
       - head: Kiểm tra mọi khẳng định chuyên môn bằng nguồn gốc
         body: Mỗi thông tin về giọng hát, nhạc lý hay số liệu đều phải có một nguồn mình đã tự đọc (giáo trình, bài báo có bình duyệt). Không tìm được nguồn thì bỏ, kể cả khi nghe rất hay.
-        why: 'Bài 5: mình bỏ câu “thanh đới trẻ chưa đủ để tạo vibrato” vì không kiểm chứng được.'
+        why: 'Bài 2: mình loại bài “top 10 phần mềm AI” vì không phải nguồn học thuật.'
       - head: Câu trả lời đã sửa cũng phải kiểm tra lại
         body: AI sửa lỗi rất nhanh nhưng có thể thêm lỗi mới. Mình không tin việc AI “tự kiểm tra”.
-        why: 'Bài 3 (tự giải lại vẫn sai) và Bài 5 (lượt 2 thêm “Mê mha”).'
+        why: 'Bài 3: phần “tự giải lại” vẫn kết luận không có sai sót, trong khi 2/8 câu sai.'
   - when: Khi công bố
     mark: Ra mắt
     rules:
@@ -78,9 +74,9 @@ charter:
         why: Quy định của học phần INF2501 và APA Style.
       - head: Phần cảm nhận và giọng nói riêng là của mình
         body: Không để AI viết cảm nhận, tự đánh giá hay lời bài hát thay mình. Với học sinh, những lời các em sẽ đọc và hát phải do giáo viên tự viết và chịu trách nhiệm.
-        why: 'Bài 5: mình tự viết câu vè và các dòng luyện phát âm.'
+        why: 'Quy định của học phần INF2501: phần cảm nhận và tự đánh giá do sinh viên tự viết.'
       - head: Trong lớp tiểu học, giáo viên dùng AI, không phải học sinh
-        body: Mình dùng AI để chuẩn bị bài ở nhà. Học sinh lớp 3 được học bằng học liệu đã kiểm duyệt, không tự trò chuyện với chatbot.
+        body: Mình dùng AI để chuẩn bị bài ở nhà. Học sinh tiểu học được học bằng học liệu đã kiểm duyệt, không tự trò chuyện với chatbot.
         why: Khuyến nghị về độ tuổi của UNESCO (2023).
 
 # Bảng tự kiểm tra trước khi nộp (tương tác)
